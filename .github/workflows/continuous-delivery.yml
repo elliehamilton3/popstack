@@ -1,0 +1,74 @@
+name: Continuous Delivery
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release-front-end:
+    name: Release Front-End
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Cache npm dependencies
+        uses: actions/cache@v2
+        with:
+          key: npm-${{ hashFiles('package-lock.json') }}
+          path: ~/.npm
+          restore-keys: |
+            npm-
+      - name: Install dependencies
+        run: npm ci 
+    #   - name: Deploy to netlify
+    #     uses: netlify/actions/cli@master
+    #     env:
+    #       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+    #       NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+    #     with:
+    #       args: deploy --prod
+    #       secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+  release-back-end:
+    name: Release Back-End
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: Cache npm dependencies
+        uses: actions/cache@v2
+        with:
+          key: npm-${{ hashFiles('package-lock.json') }}
+          path: ~/.npm
+          restore-keys: |
+            npm-
+      - name: Install dependencies
+        run: npm ci 
+    #   - name: Login to Heroku Container registry
+    #     env: 
+    #       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+    #     run: heroku container:login 
+    #   - name: Build and push
+    #     env:
+    #       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+    #     run: cd packages/backend/ && heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web 
+    #   - name: Release
+    #     env:
+    #       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+    #     run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web 
+    #   - name: Scale
+    #     env:
+    #       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+    #     run: heroku ps:scale web=1 -a ${{ secrets.HEROKU_APP_NAME }}
