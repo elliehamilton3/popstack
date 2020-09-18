@@ -1,0 +1,39 @@
+{
+  "name": "root",
+  "version": "1.0.0",
+  "description": "Mono-repo for popstack",
+  "scripts": {
+    "start": "docker-compose up",
+    "stop": "docker-compose down",
+    "build": "lerna run build",
+    "postinstall": "lerna exec --parallel -- npm install",
+    "test": "lerna run --parallel test",
+    "test:unit": "lerna run --parallel test:unit",
+    "test:service": "lerna run --parallel test:service",
+    "lint": "lerna run lint",
+    "lint:fix": "lerna run lint:fix",
+    "pre-commit": "npm run lint:fix"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elliehamilton3/popstack.git"
+  },
+  "author": "JRNY Limited",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elliehamilton3/popstack/issues"
+  },
+  "homepage": "https://github.com/elliehamilton3/popstack#readme",
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lerna": "^3.22.1",
+    "lint-staged": "^10.2.11"
+  },
+  "dependencies": {}
+}

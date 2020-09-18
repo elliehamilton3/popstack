@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  backend:
+    image: node:13-alpine
+    volumes:
+      - ./packages/backend:/backend
+    ports:
+      - "3000:3000"
+    working_dir: /backend
+    entrypoint: npm run start:dev
+
+  frontend:
+    image: node:13-alpine
+    volumes:
+      - ./packages/frontend:/frontend
+    ports:
+      - "8080:8080"
+    working_dir: /frontend
+    entrypoint: npm run start:dev
+    
+  storybook:
+    image: node:13-alpine
+    volumes:
+      - ./packages/frontend:/storybook
+    ports:
+      - "9009:9009"
+    working_dir: /storybook
+    entrypoint: npm run storybook:dev
