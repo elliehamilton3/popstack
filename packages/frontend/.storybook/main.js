@@ -1,15 +1,9 @@
 module.exports = {
-  stories: ["../src/**/*.(stories|story).(mdx|tsx)"],
-  presets: [
-    "@storybook/preset-typescript",
-    {
-      name: "@storybook/addon-docs/preset",
-      options: {
-        sourceLoaderOptions: null,
-      },
-    },
+  stories: ["../src/**/*.stories.tsx"],
+  addons: [
+    "@storybook/addon-a11y/preset",
+    "@storybook/addon-essentials"
   ],
-  addons: ['@storybook/addon-a11y/register'],
   webpack: config => {
     config.node = {
       fs: "empty",
@@ -33,5 +27,14 @@ module.exports = {
     });
 
     return config;
+  },
+  typescript: {
+    check: false,
+    checkOptions: {},
+    reactDocgen: "react-docgen-typescript",
+    reactDocgenTypescriptOptions: {
+      shouldExtractLiteralValuesFromEnum: true,
+      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
+    },
   },
 };

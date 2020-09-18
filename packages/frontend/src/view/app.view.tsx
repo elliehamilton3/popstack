@@ -6,8 +6,6 @@ import {
 import { IndexView } from './index.view';
 import { Page2View } from './page2.view';
 
-import '../styles/main.scss';
-
 export const AppView: React.FunctionComponent = () => (
   <BrowserRouter>
     <Switch>

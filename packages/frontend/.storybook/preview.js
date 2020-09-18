@@ -1,12 +1,17 @@
-import { addParameters, addDecorator } from "@storybook/react";
-import { DocsPage, DocsContainer } from "@storybook/addon-docs/blocks";
-import { withA11y } from '@storybook/addon-a11y';
+import React from 'react';
+import { ThemeProvider } from '../src/styles/theme';
 
-addDecorator(withA11y)
+const withThemeProvider = (Story, context) => {
+  return (
+    <ThemeProvider >
+      <Story {...context} />
+    </ThemeProvider>
+  )
+}
 
-addParameters({
-  docs: {
-    container: DocsContainer,
-    page: DocsPage,
-  },
-});
+export const decorators = [withThemeProvider];
+
+export const parameters = {
+  controls: { expanded: true },
+  dependencies: { withStoriesOnly: true, hideEmpty: true },
+};

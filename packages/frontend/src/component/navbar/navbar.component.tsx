@@ -7,8 +7,6 @@ import {
   Menu, PhoneOutlined, LayersRounded,
 } from '@material-ui/icons';
 
-import '../../styles/main.scss';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.dark,

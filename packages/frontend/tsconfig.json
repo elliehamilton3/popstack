@@ -3,6 +3,8 @@
     "target": "es5",
     "module": "commonjs",
     "outDir": "dist",
+    "strict": true,
+    "allowJs": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noImplicitAny": true,
@@ -36,11 +38,12 @@
     "paths": {
       "*": [
         "node_modules/*",
-        "src/*"
       ]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "importsNotUsedAsValues": "preserve",
   },
   "include": [
     "src/**/*",

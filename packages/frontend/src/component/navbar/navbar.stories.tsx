@@ -1,15 +1,7 @@
-import * as React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { storiesOf } from '@storybook/react';
-
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import React from 'react';
 import Navbar from './navbar.component';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-const stories = storiesOf('Navbar', module).addParameters({
-  component: Navbar,
-});
-
-stories.add('Default', () => (
-  <BrowserRouter>
-    <Navbar />
-  </BrowserRouter>
-));
+export default { title: 'Navbar', component: Navbar };
+export const Basic = () => <Router><Navbar /></Router>;
