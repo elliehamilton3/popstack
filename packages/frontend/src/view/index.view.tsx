@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Page } from '../component/page/page.component';
 import { useGlobalState } from '../store/appStore.store';
 
-export const IndexView = () => {
+export const IndexView: React.FunctionComponent = () => {
   const [count, setCount] = useGlobalState('count');
 
   return (

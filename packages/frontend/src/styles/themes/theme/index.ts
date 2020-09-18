@@ -6,19 +6,14 @@ import { CreateThemeProvider } from '../createThemeProvider';
 const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#266efb',
-            dark: '#1d5fdf',
+            light: '#fba5a6',
+            main: '#ed1f2a',
         },
         secondary: {
-            // lightest: '#FFEEF1',
-            light: '#FFDFE5',
-            main: '#FFBFCC',
+            main: '#f6be11',
         },
         common: {
             black: '#1C1A1A',
-        },
-        error: {
-            main: '#FB4C26',
         },
     },
     typography: {

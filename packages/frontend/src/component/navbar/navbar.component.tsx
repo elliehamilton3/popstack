@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-  AppBar, Toolbar, Link, IconButton, Typography, Grid,
+  AppBar, Toolbar, IconButton, Typography, Grid,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Menu, PhoneOutlined, LayersRounded,
+  Menu, NewReleases,
 } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// eslint-disable-next-line import/prefer-default-export
 const Navbar: React.FunctionComponent = () => {
   const classes = useStyles();
 
@@ -43,9 +42,9 @@ const Navbar: React.FunctionComponent = () => {
               spacing={1}
             >
               <Grid item>
-                <LayersRounded color="inherit" />
+                <NewReleases color="inherit" />
               </Grid>
-              <Grid item><Typography variant="h5">Brand</Typography></Grid>
+              <Grid item><Typography variant="h5">PopStack</Typography></Grid>
             </Grid>
           </Grid>
           <Grid item>
@@ -55,14 +54,6 @@ const Navbar: React.FunctionComponent = () => {
               alignItems="center"
               spacing={1}
             >
-              <Grid item>
-                <Typography variant="subtitle1">
-                  <Link href="http://google.com" onClick={() => { }} className={classes.subtitle1}>
-                    Questions?
-                  </Link>
-                </Typography>
-              </Grid>
-              <Grid item><IconButton color="inherit" className={classes.iconButton}><PhoneOutlined /></IconButton></Grid>
               <Grid item>
                 <IconButton color="inherit"><Menu /></IconButton>
               </Grid>

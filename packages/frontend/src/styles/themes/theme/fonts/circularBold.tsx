@@ -3,6 +3,7 @@ import React from 'react';
 import CircularBoldFontTtf from '../../../../assets/font/circular/Circular-Bold.ttf';
 import CircularBoldFontWoff from '../../../../assets/font/circular/Circular-Bold.woff';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const circularBold: any = {
   fontFamily: 'Circular',
   fontStyle: 'normal',
