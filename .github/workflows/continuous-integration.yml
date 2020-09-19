@@ -51,28 +51,28 @@ jobs:
         run: npm run build
       - name: Test
         run: npm run test
-#   test-visual-regression:
-#     name: Visual Regression Test
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v2
-#         with:
-#           persist-credentials: false
-#       - name: Setup Node.js
-#         uses: actions/setup-node@v1
-#         with:
-#           node-version: ${{ matrix.node-version }}
-#       - name: Cache npm dependencies
-#         uses: actions/cache@v2
-#         with:
-#           key: npm-${{ hashFiles('package-lock.json') }}
-#           path: ~/.npm
-#           restore-keys: |
-#             npm-
-#       - name: Install dependencies
-#         run: npm ci
-#       - name: Test:Visual Regression
-#         run: npm run test:visual-regression
-#         env:
-#           CHROMATIC_PROJECT_TOKEN: ${{secrets.CHROMATIC_PROJECT_TOKEN}}
+  test-visual-regression:
+    name: Visual Regression Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Cache npm dependencies
+        uses: actions/cache@v2
+        with:
+          key: npm-${{ hashFiles('package-lock.json') }}
+          path: ~/.npm
+          restore-keys: |
+            npm-
+      - name: Install dependencies
+        run: npm ci
+      - name: Test:Visual Regression
+        run: npm run test:visual-regression
+        env:
+          CHROMATIC_PROJECT_TOKEN: ${{secrets.CHROMATIC_PROJECT_TOKEN}}

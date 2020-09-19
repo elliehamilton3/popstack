@@ -44,17 +44,15 @@
   "scripts": {
     "prefixes": "npm rebuild node-sass",
     "build": "npm run prefixes && npx webpack --config webpack.config.js",
-    "start": "",
     "start:dev": "npm run prefixes && ./node_modules/.bin/webpack-dev-server --port 8080 --host 0.0.0.0",
     "storybook:build": "npm run prefixes && build-storybook -c .storybook -o .storybook-dist",
     "storybook:dev": "npm run prefixes && start-storybook --quiet -p 9009",
-    "build-storybook": "npm run prefixes && build-storybook",
     "lint": "npm run prefixes && eslint --ext .tsx,.ts ./src/",
     "lint:fix": "npm run lint -- --fix",
     "test": "npm run test:unit && npm run test:service",
     "test:service": "jest --config jest.config.service.json",
     "test:unit": "jest --config jest.config.unit.json",
-    "chromatic": "npx chromatic --exit-zero-on-changes --project-token="
+    "test:visual-regression": "npx chromatic --exit-zero-on-changes --build-script-name storybook:build"
   },
   "repository": {
     "type": "git",
