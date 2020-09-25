@@ -42,11 +42,15 @@ export const MatterStepThree = () => {
     const defaultCategory = 0x0001,
         redCategory = 0x0002,
         greenCategory = 0x0004,
-        blueCategory = 0x0008;
+        blueCategory = 0x0008,
+        orangeCategory = 0x0010,
+        yellowCategory = 0x0012;
 
-    const redColor = '#C44D58',
-        blueColor = '#4ECDC4',
-        greenColor = '#C7F464';
+    const redColor = '#FFB7D5',
+        blueColor = '#62CFF1',
+        greenColor = '#26C58C',
+        yellowColor = '#FFD84C',
+        orangeColor = '#FF8C4C';
 
     // add floor
     World.add(world, Bodies.rectangle(400, 600, 900, 50, { 
@@ -63,7 +67,15 @@ export const MatterStepThree = () => {
             let category = redCategory,
                 color = redColor;
 
-            if (row > 5) {
+            if (row > 8) {
+                category = yellowCategory;
+                color = yellowColor;
+            } 
+           else if (row > 6) {
+                category = orangeCategory;
+                color = orangeColor;
+            } 
+            else if (row > 4) {
                 category = blueCategory;
                 color = blueColor;
             } else if (row > 2) {
@@ -76,8 +88,9 @@ export const MatterStepThree = () => {
                     category: category
                 },
                 render: {
-                    strokeStyle: color,
-                    opacity: 0.4,
+                    strokeStyle: 'transparent',
+                    opacity: 0.6,
+                    fillStyle: Common.choose(['#FFB7D5', '#26C58C', '#FFD84C', '#FF8C4C', '#62CFF1']),
                     lineWidth: 1
                 }
             });
@@ -108,6 +121,18 @@ export const MatterStepThree = () => {
         })
     );
 
+      // this body will only collide with the walls and the orange bodies
+      World.add(world,
+        Bodies.circle(400, 40, 30, {
+            collisionFilter: {
+                mask: defaultCategory | orangeCategory
+            },
+            render: {
+                fillStyle: orangeColor
+            }
+        })
+    );
+
     // this body will only collide with the walls and the blue bodies
     World.add(world,
         Bodies.circle(480, 40, 30, {
@@ -116,6 +141,18 @@ export const MatterStepThree = () => {
             },
             render: {
                 fillStyle: blueColor
+            }
+        })
+    );
+
+      // this body will only collide with the walls and the yellow bodies
+      World.add(world,
+        Bodies.circle(480, 40, 30, {
+            collisionFilter: {
+                mask: defaultCategory | yellowCategory
+            },
+            render: {
+                fillStyle: yellowColor
             }
         })
     );
@@ -138,7 +175,7 @@ export const MatterStepThree = () => {
     render.mouse = mouse;
 
     // red category objects should not be draggable with the mouse
-    mouseConstraint.collisionFilter.mask = defaultCategory | blueCategory | greenCategory;
+    mouseConstraint.collisionFilter.mask = defaultCategory | blueCategory | greenCategory | orangeCategory | yellowCategory;
 
     // fit the render viewport to the scene
     Render.lookAt(render, {
