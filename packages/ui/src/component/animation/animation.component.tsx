@@ -137,7 +137,7 @@ export const MatterStepThree = () => {
                     // },
                     render: {
                         strokeStyle: 'transparent',
-                        opacity: 0.6,
+                        opacity: Common.random(0.6, 1),
                         fillStyle: Common.choose(['#FFB7D5', '#26C58C', '#FFD84C', '#FF8C4C', '#62CFF1']),
                         lineWidth: 1 }});
                 }
