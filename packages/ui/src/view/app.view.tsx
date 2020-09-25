@@ -4,13 +4,13 @@ import {
 } from 'react-router-dom';
 
 import { IndexView } from './index.view';
-import { Page2View } from './page2.view';
+import { ResumeView } from './resume.view';
 
 export const AppView: React.FunctionComponent = () => (
   <BrowserRouter>
     <Switch>
       <Route path="/" exact component={IndexView} />
-      <Route path="/page2" component={Page2View} />
+      <Route path="/resume" component={ResumeView} />
       <Redirect to="/" />
     </Switch>
   </BrowserRouter>
