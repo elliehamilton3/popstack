@@ -83,17 +83,44 @@ export const MatterStepThree = () => {
                 color = greenColor;
             }
 
-            return Bodies.circle(x, y, 20, {
-                collisionFilter: {
+            let sides = Math.round(Common.random(1, 8));
+
+            // triangles can be a little unstable, so avoid until fixed
+            sides = (sides === 3) ? 4 : sides;
+
+            switch (Math.round(Common.random(0, 1))) {
+            case 0:
+                if (Common.random() < 0.8) {
+                    return Bodies.rectangle(x, y, Common.random(25, 50), Common.random(25, 50), {      
+                            collisionFilter: {
+                                category: category
+                            },
+                            render: {
+                                strokeStyle: 'transparent',
+                                opacity: 0.6,
+                                fillStyle: Common.choose(['#FFB7D5', '#26C58C', '#FFD84C', '#FF8C4C', '#62CFF1']),
+                                lineWidth: 1
+                            } });
+                } else {
+                    return Bodies.rectangle(x, y, Common.random(80, 120), Common.random(25, 30), { collisionFilter: {
+                        category: category
+                    },
+                    render: {
+                        strokeStyle: 'transparent',
+                        opacity: 0.6,
+                        fillStyle: Common.choose(['#FFB7D5', '#26C58C', '#FFD84C', '#FF8C4C', '#62CFF1']),
+                        lineWidth: 1 }});
+                }
+            case 1:
+                return Bodies.polygon(x, y, sides, Common.random(25, 50), { collisionFilter: {
                     category: category
                 },
                 render: {
                     strokeStyle: 'transparent',
                     opacity: 0.6,
                     fillStyle: Common.choose(['#FFB7D5', '#26C58C', '#FFD84C', '#FF8C4C', '#62CFF1']),
-                    lineWidth: 1
-                }
-            });
+                    lineWidth: 1}});
+            }
         })
     );
 
