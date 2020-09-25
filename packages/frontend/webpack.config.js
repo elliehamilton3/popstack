@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -111,6 +113,17 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: `${__dirname}/src/index.ejs`,
       inject: 'body',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': ((envs) => {
+        let output = {};
+        Object.entries(envs).forEach(([key, value]) => {
+          if (key.startsWith("API_")) {
+            output[key] = JSON.stringify(value);
+          }
+        });
+        return output;
+      })(process.env)
     }),
   ],
 };
