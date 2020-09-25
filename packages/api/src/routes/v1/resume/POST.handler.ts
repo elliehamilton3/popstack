@@ -4,7 +4,13 @@ import Education from '../../../models/Education';
 import Job from '../../../models/Job';
 
 export default async function postHandler() {
-  const user = (await User.findOne({ where: { userUuid: '0001' } }));
+  const user = await User.create({
+    userUuid: '0001',
+    authId: '0001',
+    name: 'Example Person',
+    email: 'email@test.com',
+    phoneNumber: '0123123123',
+  });
   const userId = user && user.id;
   const resume = await Resume.create({
     bio: 'about me blah blah.',
