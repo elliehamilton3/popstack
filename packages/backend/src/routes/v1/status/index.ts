@@ -1,10 +1,11 @@
 import Joi from '@hapi/joi';
+import withPathPrefix from '../../../services/withPathPrefix.service';
 import getHandler from './GET.handler';
 
 export default [
   {
     method: 'GET',
-    path: '/status',
+    path: '',
     options: {
       auth: false,
       id: 'status',
@@ -19,4 +20,4 @@ export default [
       },
     },
   },
-];
+].map(withPathPrefix('/status'));

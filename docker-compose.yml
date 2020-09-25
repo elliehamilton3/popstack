@@ -4,6 +4,13 @@ services:
     image: node:13-alpine
     volumes:
       - ./packages/backend:/backend
+    depends_on: 
+      - postgres
+    environment:
+      PGUSER: user
+      PGPASSWORD: password
+      PGDATABASE: dev
+      PGHOST: postgres
     ports:
       - "3000:3000"
     working_dir: /backend
@@ -16,6 +23,10 @@ services:
     ports:
       - "8080:8080"
     working_dir: /frontend
+    depends_on: 
+      - backend
+    environment:
+      API_HOST: http://localhost:3000
     entrypoint: npm run start:dev
     
   storybook:
@@ -25,4 +36,17 @@ services:
     ports:
       - "9009:9009"
     working_dir: /storybook
+    environment: 
+      - API_HOST=http://localhost:3000
     entrypoint: npm run storybook:dev
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dev
+    ports:
+      - 5432:5432
+    volumes:
+      - .db/pg:/var/lib/postgresql/data

@@ -1,12 +1,8 @@
+import withPathPrefix from '../../services/withPathPrefix.service';
+import resumeRoutes from './resume';
 import statusRoute from './status';
 
-function configureRoute(route: { path: any; }) {
-  const modifiedRoute = { ...route };
-  // add v1 to all paths
-  modifiedRoute.path = `/v1${route.path}`;
-  return modifiedRoute;
-}
-
 export default []
+  .concat(resumeRoutes)
   .concat(statusRoute)
-  .map(configureRoute);
+  .map(withPathPrefix('/v1'));

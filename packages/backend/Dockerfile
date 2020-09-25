@@ -5,6 +5,7 @@ COPY package*.json ./
 
 RUN npm ci
 
+COPY config/ ./config
 COPY src/ ./src
 COPY tsconfig.json ./
 

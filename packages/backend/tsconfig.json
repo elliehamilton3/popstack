@@ -3,9 +3,12 @@
     "module": "commonjs",
     "target": "es6",
     "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "sourceMap": true,
     "outDir": "dist",
     "baseUrl": ".",
+    "allowJs": true,
     "paths": {
       "*": [
         "node_modules/*",
@@ -22,9 +25,14 @@
   "include": [
     "src/**/*",
     "./tests/**/*",
+    "config/**/*",
+    "dockest.service.ts",
+    "dockest.unit.ts",
+    "scripts/*",
   ],
   "exclude": [
     "node_modules",
     "dist",
+    "seeders/*",
   ]
 }
