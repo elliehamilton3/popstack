@@ -99,10 +99,7 @@ export const MatterStepThree = () => {
                 color = greenColor;
             }
 
-            let sides = Math.round(Common.random(1, 8));
-
-            // triangles can be a little unstable, so avoid until fixed
-            sides = (sides === 3) ? 4 : sides;
+            const sides = Math.round(Common.random(1, 8));
 
             switch (Math.round(Common.random(0, 1))) {
             case 0:
