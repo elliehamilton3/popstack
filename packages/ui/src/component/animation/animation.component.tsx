@@ -24,11 +24,8 @@ export const MatterStepThree = () => {
     const World = Matter.World
     const Bodies = Matter.Bodies
     const Runner = Matter.Runner
-    const Composite = Matter.Composite
     const Composites = Matter.Composites
     const Common = Matter.Common
-    const MouseConstraint = Matter.MouseConstraint
-    const Mouse = Matter.Mouse
 
     const engine = Engine.create({})
     const world = engine.world
@@ -37,8 +34,6 @@ export const MatterStepThree = () => {
         element: document.body,
         engine: engine,
         options: {
-            width: 800,
-            height: 600,
             wireframes: false,
             background: '#ffffff'
         }
@@ -113,13 +108,25 @@ export const MatterStepThree = () => {
             switch (Math.round(Common.random(0, 1))) {
             case 0:
                 if (Common.random() < 0.8) {
-                    return Bodies.rectangle(x, y, Common.random(25, 50), Common.random(25, 50), {      
+                    return Bodies.rectangle(x, y, Common.random(25, 80), Common.random(25, 80), {      
                             // collisionFilter: {
                             //     category: category
                             // },
                             render: {
                                 strokeStyle: 'transparent',
-                                opacity: 0.6,
+                                opacity: 0.7,
+                                fillStyle: Common.choose(['#FFB7D5', '#26C58C', '#FFD84C', '#FF8C4C', '#62CFF1']),
+                                lineWidth: 1
+                            } });
+                } 
+                else if (Common.random() < 0.6) {
+                    return Bodies.trapezoid(x, y, Common.random(25, 80), Common.random(25, 80), Common.random(0, 1), {      
+                            // collisionFilter: {
+                            //     category: category
+                            // },
+                            render: {
+                                strokeStyle: 'transparent',
+                                opacity: 0.8,
                                 fillStyle: Common.choose(['#FFB7D5', '#26C58C', '#FFD84C', '#FF8C4C', '#62CFF1']),
                                 lineWidth: 1
                             } });
@@ -135,7 +142,7 @@ export const MatterStepThree = () => {
                         lineWidth: 1 }});
                 }
             case 1:
-                return Bodies.polygon(x, y, sides, Common.random(25, 50), { 
+                return Bodies.polygon(x, y, sides, Common.random(25, 80), { 
                 //     collisionFilter: {
                 //     category: category
                 // },
@@ -150,10 +157,10 @@ export const MatterStepThree = () => {
 
     // this body will only collide with the walls and the green bodies
     World.add(world,
-        Bodies.circle(310, 40, 30, {
-            collisionFilter: {
-                mask: defaultCategory | greenCategory
-            },
+        Bodies.circle(310, 40, 60, {
+            // collisionFilter: {
+            //     mask: defaultCategory | greenCategory
+            // },
             render: {
                 fillStyle: greenColor
             }
@@ -162,10 +169,10 @@ export const MatterStepThree = () => {
 
     // this body will only collide with the walls and the red bodies
     World.add(world,
-        Bodies.circle(400, 40, 30, {
-            collisionFilter: {
-                mask: defaultCategory | redCategory
-            },
+        Bodies.circle(400, 40, 40, {
+            // collisionFilter: {
+            //     mask: defaultCategory | redCategory
+            // },
             render: {
                 fillStyle: redColor
             }
@@ -174,10 +181,10 @@ export const MatterStepThree = () => {
 
       // this body will only collide with the walls and the orange bodies
       World.add(world,
-        Bodies.circle(400, 40, 30, {
-            collisionFilter: {
-                mask: defaultCategory | orangeCategory
-            },
+        Bodies.circle(400, 40, 50, {
+            // collisionFilter: {
+            //     mask: defaultCategory | orangeCategory
+            // },
             render: {
                 fillStyle: orangeColor
             }
@@ -187,9 +194,9 @@ export const MatterStepThree = () => {
     // this body will only collide with the walls and the blue bodies
     World.add(world,
         Bodies.circle(480, 40, 30, {
-            collisionFilter: {
-                mask: defaultCategory | blueCategory
-            },
+            // collisionFilter: {
+            //     mask: defaultCategory | blueCategory
+            // },
             render: {
                 fillStyle: blueColor
             }
@@ -198,10 +205,10 @@ export const MatterStepThree = () => {
 
       // this body will only collide with the walls and the yellow bodies
       World.add(world,
-        Bodies.circle(480, 40, 30, {
-            collisionFilter: {
-                mask: defaultCategory | yellowCategory
-            },
+        Bodies.circle(480, 40, 50, {
+            // collisionFilter: {
+            //     mask: defaultCategory | yellowCategory
+            // },
             render: {
                 fillStyle: yellowColor
             }
