@@ -20,7 +20,8 @@
     "types": [
       "reflect-metadata",
       "node",
-      "jest"
+      "jest",
+      "jquery"
     ],
     "typeRoots": [
       "node_modules/@types",
@@ -50,7 +51,7 @@
     "node_modules/@types",
     "*.d.ts",
     "webpack.config.js",
-    "./tests/**/*",
+    "./tests/**/*", "pathseg.js",
   ],
   "exclude": [
     "node_modules",

@@ -5,7 +5,10 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: ['./src/index.tsx'],
+  entry: {
+    // polyfills: './src/polyfills.js',
+    index: './src/index.tsx',
+  },
 
   node: {
     fs: 'empty',

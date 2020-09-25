@@ -4,7 +4,7 @@ import { MatterStepThree } from '../component/animation/animation.component';
 export const IndexView: React.FunctionComponent = () => {
   return (
     <>
-    <Typography variant="h1">PopStack</Typography>
+    {/* <Typography variant="h1">PopStack</Typography> */}
     <MatterStepThree />
     </>
   );

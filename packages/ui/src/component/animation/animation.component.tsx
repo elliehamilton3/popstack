@@ -1,10 +1,21 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState, useRef } from "react"
 import Matter from "matter-js"
 
 
 export const MatterStepThree = () => {
-  const boxRef = useRef(null)
-  const canvasRef = useRef(null)
+  const boxRef = useRef<any>(null)
+  const canvasRef = useRef<any>(null)
+  const STATIC_DENSITY = 15
+
+  const [constraints, setContraints] = useState<any>()
+  const [scene, setScene] = useState<any>()
+//   {bounds:{max:{}}, options: {}, canvas:{}, engine:{world:{bodies:[]}}}
+
+  const handleResize = () => {
+    setContraints(boxRef.current.getBoundingClientRect())
+  }
+
 
   useEffect(() => {
     const Engine = Matter.Engine
@@ -38,6 +49,11 @@ export const MatterStepThree = () => {
     const runner = Runner.create();
     Runner.run(runner, engine);
 
+
+    setContraints(boxRef.current.getBoundingClientRect())
+    setScene(render)
+    window.addEventListener("resize", handleResize)
+    
     // define our categories (as bit fields, there are up to 32 available)
     const defaultCategory = 0x0001,
         redCategory = 0x0002,
@@ -205,12 +221,42 @@ export const MatterStepThree = () => {
     mouseConstraint.collisionFilter.mask = defaultCategory | blueCategory | greenCategory | orangeCategory | yellowCategory;
 
     // fit the render viewport to the scene
-    Render.lookAt(render, {
-        min: { x: 0, y: 0 },
-        max: { x: 800, y: 600 }
-    });
+    // Render.lookAt(render, {
+    //     min: { x: 0, y: 0 },
+    //     max: { x: 800, y: 600 }
+    // });
 
   }, [])
+
+  useEffect(() => {
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
+  }, [])
+  useEffect(() => {
+    if (constraints && scene) {
+      const { width, height } = constraints
+      // Dynamically update canvas and bounds
+      scene.bounds.max.x = width
+      scene.bounds.max.y = height
+      scene.options.width = width
+      scene.options.height = height
+      scene.canvas.width = width
+      scene.canvas.height = height
+      // Dynamically update floor
+      const floor = scene.engine.world.bodies[0]
+      Matter.Body.setPosition(floor, {
+        x: width / 2,
+        y: height + STATIC_DENSITY / 2,
+      })
+      Matter.Body.setVertices(floor, [
+        { x: 0, y: height },
+        { x: width, y: height },
+        { x: width, y: height + STATIC_DENSITY },
+        { x: 0, y: height + STATIC_DENSITY },
+      ])
+    }
+  }, [scene, constraints])
 
   return (
       <div
