@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/indent */
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme, lighten } from '@material-ui/core/styles';
 import { FontLoader } from './fonts';
 import { CreateThemeProvider } from '../createThemeProvider';
 
 const theme = createMuiTheme({
     palette: {
         primary: {
-            light: '#fba5a6',
-            main: '#ed1f2a',
+            main: '#0057FF',
         },
         secondary: {
-            main: '#f6be11',
+            main: '#FF8C4C',
         },
         common: {
             black: '#1C1A1A',
@@ -28,6 +27,22 @@ const theme = createMuiTheme({
             fontSize: '1.6rem',
         },
     },
+    overrides: {
+        MuiOutlinedInput: {
+            root: {
+                backgroundColor: lighten('#0057FF', 0.95),
+                '&:hover $notchedOutline': {
+                    borderColor: '#0057FF',
+                    borderWidth: '2px'
+                },
+                '&$focused $notchedOutline': {
+                    borderWidth: '1px'
+                 }
+            },
+            focused: {},
+            notchedOutline: {}
+        }
+    }
 });
 
 const ThemeProvider = CreateThemeProvider(theme, FontLoader);
