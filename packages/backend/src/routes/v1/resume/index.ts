@@ -19,14 +19,9 @@ export default [
       tags: ['api'],
       description:
         'Create resume',
-      validate: {
-        payload: Joi.object({}).unknown(),
-        headers:
-          Joi.object({
-            // Could match against all valid codes from db
-            'x-referrer': Joi.string(),
-          }).unknown(),
-      },
+      // validate: {
+      //   payload: Joi.object({}).unknown(),
+      // },
     },
   },
   {

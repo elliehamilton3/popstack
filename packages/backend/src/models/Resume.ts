@@ -1,24 +1,29 @@
 import {
-  Model, Column, Table, CreatedAt, UpdatedAt, DeletedAt,
-  // BelongsTo, ForeignKey,
+  Model, Column, Table, CreatedAt, UpdatedAt, DeletedAt, BelongsTo, ForeignKey,
 } from 'sequelize-typescript';
-// import User from './User';
+import User from './User';
 
 @Table
 export default class Resume extends Model<Resume> {
   @Column
-  bio!: string;
+  bio: string;
 
-  // @ForeignKey(() => User)
-  // @Column
-  // userId: number;
+  @Column
+  title: string;
 
-  // @BelongsTo(() => User, {
-  //   onUpdate: 'CASCADE',
-  //   onDelete: 'CASCADE',
-  //   hooks: true,
-  // })
-  // user: User;
+  @Column
+  location: string;
+
+  @ForeignKey(() => User)
+  @Column
+  userId: number;
+
+  @BelongsTo(() => User, {
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE',
+    hooks: true,
+  })
+  user: User;
 
   @CreatedAt
   @Column
