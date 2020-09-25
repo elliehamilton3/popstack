@@ -3,7 +3,7 @@ if (process.env.DOCKEST_ATTACH_TO_PROCESS) {
   // eslint-disable-next-line no-useless-catch
   try {
     const dockestConfig = JSON.parse(process.env.DOCKEST_ATTACH_TO_PROCESS);
-    environment = dockestConfig.services.backend.environment;
+    environment = dockestConfig.services.api.environment;
   } catch (err) {
     throw err;
   }

@@ -1,7 +1,7 @@
 // eslint-disable-next-line
-export default async function backendFetch<T = any>(endpoint: string, method?: string, body?: any): Promise<T> {
+export default async function apiFetch<T = any>(endpoint: string, method?: string, body?: any): Promise<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const API_ROOT = (window as any).POPSTACK_API_HOST || process.env.API_HOST || "http://localhost:3000";
+  const API_ROOT = (window as any).POPSTACK_API_HOST || process.env.API_HOST || "https://popstack.herokuapp.com";
   const API_VERSION = 'v1';
 
   const url = [

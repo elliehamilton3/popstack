@@ -24,7 +24,7 @@ You need to have these things installed:
 
 - All tests are run using [Jest](https://jestjs.io/)
 
-To run service and integration tests from the root or the front or backend subrepositories use:
+To run service and integration tests from the root or the front or api subrepositories use:
 
 ```
 npm test

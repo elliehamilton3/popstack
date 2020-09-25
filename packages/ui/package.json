@@ -1,5 +1,5 @@
 {
-  "name": "@elliehamilton3/popstack-frontend",
+  "name": "@elliehamilton3/popstack-ui",
   "version": "1.0.0",
   "description": "Front-end for popstack",
   "main": "index.js",

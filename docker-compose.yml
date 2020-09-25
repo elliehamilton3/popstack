@@ -1,9 +1,9 @@
 version: "3.7"
 services:
-  backend:
+  api:
     image: node:13-alpine
     volumes:
-      - ./packages/backend:/backend
+      - ./packages/api:/api
     depends_on: 
       - postgres
     environment:
@@ -13,18 +13,18 @@ services:
       PGHOST: postgres
     ports:
       - "3000:3000"
-    working_dir: /backend
+    working_dir: /api
     entrypoint: npm run start:dev
 
-  frontend:
+  ui:
     image: node:13-alpine
     volumes:
-      - ./packages/frontend:/frontend
+      - ./packages/ui:/ui
     ports:
       - "8080:8080"
-    working_dir: /frontend
+    working_dir: /ui
     depends_on: 
-      - backend
+      - api
     environment:
       API_HOST: http://localhost:3000
     entrypoint: npm run start:dev
@@ -32,7 +32,7 @@ services:
   storybook:
     image: node:13-alpine
     volumes:
-      - ./packages/frontend:/storybook
+      - ./packages/ui:/storybook
     ports:
       - "9009:9009"
     working_dir: /storybook

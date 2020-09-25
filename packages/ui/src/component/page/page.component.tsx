@@ -3,7 +3,7 @@ import { Button, Typography, Grid, TextField, Box} from '@material-ui/core';
 import {PDFViewer, PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
-import backendFetch from '../../service/backendFetch.service';
+import apiFetch from '../../service/apiFetch.service';
 import CircleIcon from '../icons/circle.icon';
 import ParallelogramIcon from '../icons/parallelogram.icon';
 
@@ -83,7 +83,7 @@ export const Page: React.FunctionComponent = () => {
   );
 
   useEffect(() => {
-    backendFetch("/resume/0", "GET").then(json => setResume(json as Resume)); 
+    apiFetch("/resume/0", "GET").then(json => setResume(json as Resume)); 
   }, []);
   return (
     // eslint-disable-next-line react/jsx-indent

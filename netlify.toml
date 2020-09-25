@@ -1,5 +1,5 @@
 
 [build]
-  base = "packages/frontend/"
+  base = "packages/ui/"
   publish = "dist/"
   command = "npm run build"
