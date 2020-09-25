@@ -11,6 +11,7 @@ export default async function getHandler() {
   const educations = await Education.findAll({ where: { resumeId } });
   const jobs = await Job.findAll({ where: { resumeId } });
   return {
+    user,
     resume,
     jobs,
     educations,
