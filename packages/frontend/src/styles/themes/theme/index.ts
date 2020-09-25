@@ -2,6 +2,8 @@
 import { createMuiTheme, lighten } from '@material-ui/core/styles';
 import { FontLoader } from './fonts';
 import { CreateThemeProvider } from '../createThemeProvider';
+import '../../../assets/css/inter.css';
+
 
 const theme = createMuiTheme({
     palette: {
@@ -16,7 +18,7 @@ const theme = createMuiTheme({
         },
     },
     typography: {
-        fontFamily: 'Circular',
+        fontFamily: ['Inter', 'Helvetica', 'Arial', 'Sans-serif'].join(','),
         button: {
             textTransform: 'none',
         },
