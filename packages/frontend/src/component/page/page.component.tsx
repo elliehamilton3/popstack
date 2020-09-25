@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Button, Typography, Grid, TextField} from '@material-ui/core';
+import { Button, Typography, Grid, TextField, Box} from '@material-ui/core';
 import {PDFViewer, PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
@@ -96,34 +96,33 @@ export const Page: React.FunctionComponent = () => {
             {doc}
           </PDFViewer>
         </Grid>
-        <Grid item sm={6}>
-          <Grid container direction="column" spacing={2}>
-            <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
-            <Grid item> <CircleIcon/></Grid>
-            <Grid item> <Typography variant="h2">Personal Details</Typography></Grid>
-            <Grid item><TextField id="outlined-basic"  variant="outlined" /></Grid>
-            <Grid item><TextField id="outlined-basic1"  variant="outlined" /></Grid>
-            <Grid item> <ParallelogramIcon/></Grid>
-            <Grid item> <Typography variant="h2">Describe you and your work</Typography></Grid>
-            <Grid item> <Typography variant="subtitle1">Summarise your professional career in 2 or 3 sentences.</Typography></Grid>
-            <Grid item> <TextField
-                id="outlined-textarea"
-                placeholder="Placeholder"
-                multiline
-                variant="outlined"
-                rows={4}
-              /></Grid>
-
-
-
-            <Grid item>
-              <Button variant="outlined">
-                <PDFDownloadLink document={doc} fileName="example.pdf">
-                  {({ loading }) => (loading ? 'Loading document...' : 'Download now!')}
-                </PDFDownloadLink>
-              </Button>
-            </Grid>
+      <Grid item sm={6}>
+        <Grid container direction="column" spacing={2}>
+          <Box mt={4}/>
+          <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
+          <Grid item> <CircleIcon/></Grid>
+          <Grid item> <Typography variant="h2">Personal Details</Typography></Grid>
+          <Grid item><TextField id="outlined-basic"  variant="outlined" /></Grid>
+          <Grid item><TextField id="outlined-basic1"  variant="outlined" /></Grid>
+          <Grid item> <ParallelogramIcon/></Grid>
+          <Grid item> <Typography variant="h2">Describe you and your work</Typography></Grid>
+          <Grid item> <Typography variant="subtitle1">Summarise your professional career in 2 or 3 sentences.</Typography></Grid>
+          <Grid item> <TextField
+              id="outlined-textarea"
+              placeholder="Placeholder"
+              multiline
+              variant="outlined"
+              rows={4}
+            />
           </Grid>
+          <Grid item>
+            <Button variant="outlined">
+              <PDFDownloadLink document={doc} fileName="example.pdf">
+                {({ loading }) => (loading ? 'Loading document...' : 'Download now!')}
+              </PDFDownloadLink>
+            </Button>
+          </Grid>
+        </Grid>
         </Grid>
       </Grid>
     </ThemeProvider>
