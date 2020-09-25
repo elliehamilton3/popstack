@@ -23,10 +23,10 @@ const theme = createMuiTheme({
             textTransform: 'none',
         },
         h1: {
-            fontSize: '2rem',
+            fontSize: '1.625rem',
         },
         h2: {
-            fontSize: '1.6rem',
+            fontSize: '1.25rem',
         },
     },
     overrides: {
