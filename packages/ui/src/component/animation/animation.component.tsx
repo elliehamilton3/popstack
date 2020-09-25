@@ -69,17 +69,25 @@ export const MatterStepThree = () => {
         orangeColor = '#FF8C4C';
 
     // add floor
-    World.add(world, Bodies.rectangle(400, 600, 900, 50, { 
+    World.add(world, Bodies.rectangle(400, 600, 900, 1, { 
         isStatic: true,
         render: {
             fillStyle: 'transparent',
-            lineWidth: 1
         } 
     }));
+    World.add(world, [
+        // walls
+        Bodies.rectangle(800, 0, 1, 2000, { isStatic: true, render: {
+            fillStyle: 'transparent',
+        }  }),
+        Bodies.rectangle(0, 0, 1, 2000, { isStatic: true, render: {
+            fillStyle: 'transparent',
+        }  })
+    ]);
 
     // create a stack with varying body categories (but these bodies can all collide with each other)
     World.add(world,
-        Composites.stack(275, 100, 5, 9, 10, 10, function(x: any, y: any, column: any, row: number) {
+        Composites.stack(100, 0, 4, 7, 20, 20, function(x: any, y: any, column: any, row: number) {
             let category = redCategory,
                 color = redColor;
 
@@ -105,9 +113,9 @@ export const MatterStepThree = () => {
             case 0:
                 if (Common.random() < 0.8) {
                     return Bodies.rectangle(x, y, Common.random(25, 50), Common.random(25, 50), {      
-                            collisionFilter: {
-                                category: category
-                            },
+                            // collisionFilter: {
+                            //     category: category
+                            // },
                             render: {
                                 strokeStyle: 'transparent',
                                 opacity: 0.6,
@@ -115,9 +123,10 @@ export const MatterStepThree = () => {
                                 lineWidth: 1
                             } });
                 } else {
-                    return Bodies.rectangle(x, y, Common.random(80, 120), Common.random(25, 30), { collisionFilter: {
-                        category: category
-                    },
+                    return Bodies.rectangle(x, y, Common.random(80, 120), Common.random(25, 30), { 
+                    //     collisionFilter: {
+                    //     category: category
+                    // },
                     render: {
                         strokeStyle: 'transparent',
                         opacity: 0.6,
@@ -125,9 +134,10 @@ export const MatterStepThree = () => {
                         lineWidth: 1 }});
                 }
             case 1:
-                return Bodies.polygon(x, y, sides, Common.random(25, 50), { collisionFilter: {
-                    category: category
-                },
+                return Bodies.polygon(x, y, sides, Common.random(25, 50), { 
+                //     collisionFilter: {
+                //     category: category
+                // },
                 render: {
                     strokeStyle: 'transparent',
                     opacity: 0.6,
@@ -197,31 +207,6 @@ export const MatterStepThree = () => {
         })
     );
 
-    // add mouse control
-    const mouse = Mouse.create(render.canvas),
-        mouseConstraint = MouseConstraint.create(engine, {
-            mouse: mouse,
-            constraint: {
-                stiffness: 0.2,
-                render: {
-                    visible: false
-                }
-            }
-        });
-
-    World.add(world, mouseConstraint);
-
-    // keep the mouse in sync with rendering
-    render.mouse = mouse;
-
-    // red category objects should not be draggable with the mouse
-    mouseConstraint.collisionFilter.mask = defaultCategory | blueCategory | greenCategory | orangeCategory | yellowCategory;
-
-    // fit the render viewport to the scene
-    // Render.lookAt(render, {
-    //     min: { x: 0, y: 0 },
-    //     max: { x: 800, y: 600 }
-    // });
 
   }, [])
 
@@ -230,9 +215,11 @@ export const MatterStepThree = () => {
       window.removeEventListener("resize", handleResize)
     }
   }, [])
+
   useEffect(() => {
     if (constraints && scene) {
       const { width, height } = constraints
+      console.log(width, height)
       // Dynamically update canvas and bounds
       scene.bounds.max.x = width
       scene.bounds.max.y = height
@@ -247,6 +234,18 @@ export const MatterStepThree = () => {
         y: height + STATIC_DENSITY / 2,
       })
       Matter.Body.setVertices(floor, [
+        { x: 0, y: height },
+        { x: width, y: height },
+        { x: width, y: height + STATIC_DENSITY },
+        { x: 0, y: height + STATIC_DENSITY },
+      ])
+
+      const wallRight = scene.engine.world.bodies[1]
+      Matter.Body.setPosition(wallRight, {
+        x: width,
+      })
+
+      Matter.Body.setVertices(wallRight, [
         { x: 0, y: height },
         { x: width, y: height },
         { x: width, y: height + STATIC_DENSITY },
