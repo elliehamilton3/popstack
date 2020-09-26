@@ -43,6 +43,11 @@ const theme = createMuiTheme({
             },
             focused: {},
             notchedOutline: {}
+        },
+        MuiAppBar:{
+            root: {
+            boxShadow: "none"
+        }
         }
     }
 });
