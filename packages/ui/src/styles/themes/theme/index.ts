@@ -30,7 +30,7 @@ const theme = createMuiTheme({
         },
         subtitle1: {
             fontSize: "0.9375rem",
-            lineHeight: 1.25
+            lineHeight: 1.2
         }
     },
     overrides: {
@@ -72,6 +72,11 @@ const theme = createMuiTheme({
                 },
             }
         },
+        
+        MuiFormHelperText: {
+            contained:{marginLeft: "0px", marginTop: "0px", marginBottom: "6px"}
+        },
+        MuiFormControl: {root: {flexDirection: "column-reverse"}},
         MuiAppBar:{
             root: {
             boxShadow: "none"
