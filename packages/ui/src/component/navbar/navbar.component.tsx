@@ -2,23 +2,11 @@ import * as React from 'react';
 import {
   AppBar, Toolbar, IconButton, Grid,
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Menu, 
 } from '@material-ui/icons';
 
-const useStyles = makeStyles((theme) => ({
-  subtitle1: {
-    color: theme.palette.common.white,
-  },
-  iconButton: {
-    backgroundColor: theme.palette.primary.main,
-  },
-}));
-
 const Navbar: React.FunctionComponent = () => {
-  const classes = useStyles();
-
   return (
     // eslint-disable-next-line react/jsx-indent
     <>

@@ -83,7 +83,21 @@ const theme = createMuiTheme({
             root: {
             boxShadow: "none"
         }
-        }
+        },
+        MuiButton: {
+            outlinedSecondary:{
+                color:'#1C1A1A',
+                border: lighten('#0057FF', 0.7),
+                borderStyle: "dashed",
+                borderWidth: "1px",
+
+                "&:hover":{
+                border: lighten('#0057FF', 0.7),
+                borderStyle: "dashed",
+                borderWidth: "1px",
+                backgroundColor: lighten('#0057FF', 0.96),
+            }
+        }}
     }
 });
 

@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import { Button, Typography, Grid, TextField, Box} from '@material-ui/core';
+import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten} from '@material-ui/core';
 import {PDFViewer, PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
-import {Document as Doc, pdfjs} from "react-pdf";
+// import {Document as Doc, pdfjs} from "react-pdf";
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
 import apiFetch from '../../service/apiFetch.service';
 import CircleIcon from '../icons/circle.icon';
 import ParallelogramIcon from '../icons/parallelogram.icon';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-import samplePdf from './sample.pdf'
+// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// import samplePdf from './sample.pdf'
 import TeardropIcon from '../icons/teardrop.icon';
 import HalfCircleIcon from '../icons/halfCircle.icon';
 import SquareIcon from '../icons/square.icon';
 import RectangleIcon from '../icons/rectangle.icon';
+import AddIcon from '@material-ui/icons/Add';
 
 Font.register({
   family: 'Oswald',
@@ -25,6 +26,18 @@ const styles = StyleSheet.create({
   section: { color: 'black', textAlign: 'center', margin: 30, fontFamily: 'Oswald' },
   link: { textDecoration: "none", color:"inherit"}
 });
+
+// justify-content: space-between;
+const useStyles = makeStyles((theme) => ({
+  button: {
+    justifyContent: "space-between",
+    color: lighten(theme.palette.common.black, 0.4),
+    padding: "10px 16px"
+  },
+  icon: {
+    color: lighten(theme.palette.primary.light, 0.7),
+  }
+}));
 
 interface Resume {
   resume: {
@@ -55,6 +68,7 @@ interface Resume {
 
 export const Page: React.FunctionComponent = () => { 
   const [resume, setResume] = useState<Resume | undefined>(undefined);
+  const classes = useStyles();
   const doc = (
     <Document>
       <PDFPage size="A4" style={styles.page}>
@@ -97,12 +111,13 @@ export const Page: React.FunctionComponent = () => {
     // eslint-disable-next-line react/jsx-indent
     <ThemeProvider>
       <Navbar />
-      <Grid container spacing={3}>
+      <Grid container spacing={4}>
       <Grid item sm={6}>
         <Box bgcolor="secondary.main" p={5} style={{height: "100%"}}>
+        <Paper elevation={8} style={{height: "100%"}} >
         <PDFViewer width="100%" height="100%" style={styles.viewer}>
            {doc}
-         </PDFViewer>
+         </PDFViewer></Paper>
           </Box>
         </Grid>
       <Grid item sm={6}>
@@ -147,24 +162,31 @@ export const Page: React.FunctionComponent = () => {
           <Grid item> <TeardropIcon/></Grid>
           <Grid item> <Typography variant="h2">Employment history</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Include your last 10 years of relevant experience and dates in this section. List your most recent position first.</Typography></Grid>
+          <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add employment history</Button></Grid>
           </Grid>
 
           <Grid item container direction="column" spacing={1}>
           <Grid item> <HalfCircleIcon/></Grid>
           <Grid item> <Typography variant="h2">Education</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">If it’s relevant to your work, you can choose to include any recent educational achievements and the dates here.</Typography></Grid>
+          <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add education</Button></Grid>
+         
           </Grid>
 
           <Grid item container direction="column" spacing={1}>
           <Grid item> <RectangleIcon/></Grid>
           <Grid item> <Typography variant="h2">Websites &amp; social media links</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Include a link to your personal website or portfolio, Github repository, LinkedIn, or anything you might want potential employers to see.</Typography></Grid>
+          <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add website or link</Button></Grid>
+         
           </Grid>
 
           <Grid item container direction="column" spacing={1}>
           <Grid item> <SquareIcon/></Grid>
           <Grid item> <Typography variant="h2">Skills</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Add any skills you have that you want to highlight.</Typography></Grid>
+          <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add a skill</Button></Grid>
+         
           </Grid>
         </Grid>
         </Box>
