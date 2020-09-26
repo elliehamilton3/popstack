@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    // polyfills: './src/polyfills.js',
+    // polyfills: './src/pdf.worker.js',
     index: './src/index.tsx',
   },
 
@@ -77,6 +77,16 @@ module.exports = {
           },
         },
       },
+      {
+      test: /\.(png|svg|jpg|gif|pdf)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: './assets/[name].[ext]'
+          }
+        }
+      ]},
 
       {
         test: /\.(ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,

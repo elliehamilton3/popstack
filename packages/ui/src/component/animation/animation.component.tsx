@@ -227,7 +227,6 @@ export const MatterStepThree = () => {
   useEffect(() => {
     if (constraints && scene) {
       const { width, height } = constraints
-      console.log(width, height)
       // Dynamically update canvas and bounds
       scene.bounds.max.x = width
       scene.bounds.max.y = height

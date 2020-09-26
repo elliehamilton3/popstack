@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Typography, Grid, TextField, Box} from '@material-ui/core';
 import {PDFViewer, PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import {Document as Doc, pdfjs} from "react-pdf";
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
 import apiFetch from '../../service/apiFetch.service';
 import CircleIcon from '../icons/circle.icon';
 import ParallelogramIcon from '../icons/parallelogram.icon';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import samplePdf from './sample.pdf'
 
 Font.register({
   family: 'Oswald',
@@ -15,7 +18,8 @@ Font.register({
 const styles = StyleSheet.create({
   page: { },
   viewer: { border: 0 },
-  section: { color: 'black', textAlign: 'center', margin: 30, fontFamily: 'Oswald' }
+  section: { color: 'black', textAlign: 'center', margin: 30, fontFamily: 'Oswald' },
+  link: { textDecoration: "none", color:"inherit"}
 });
 
 interface Resume {
@@ -91,15 +95,25 @@ export const Page: React.FunctionComponent = () => {
       <Navbar />
       <Grid container spacing={3}>
       <Grid item sm={6}>
-      {/* {ReactPDF.render(<App />, `${__dirname}/example.pdf`)} */}
-          <PDFViewer width="100%" height="100%" style={styles.viewer}>
-            {doc}
-          </PDFViewer>
+        <Box bgcolor="secondary.main" p={5} style={{height: "100%"}}>
+        <PDFViewer width="100%" height="100%" style={styles.viewer}>
+           {doc}
+         </PDFViewer>
+          </Box>
         </Grid>
       <Grid item sm={6}>
         <Grid container direction="column" spacing={2}>
           <Box mt={4}/>
+          <Grid item> 
+          <Grid container  justify="space-between" alignItems="center">
           <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
+          <Grid item> <Button variant="outlined">
+              <PDFDownloadLink document={doc} fileName="example.pdf"  style={styles.link}>
+                {({ loading }) => (loading ? 'Loading document...' : 'Download')}
+              </PDFDownloadLink>
+            </Button></Grid>
+          </Grid>
+          </Grid>
           <Grid item> <CircleIcon/></Grid>
           <Grid item> <Typography variant="h2">Personal Details</Typography></Grid>
           <Grid item><TextField id="outlined-basic"  variant="outlined" /></Grid>
@@ -114,13 +128,6 @@ export const Page: React.FunctionComponent = () => {
               variant="outlined"
               rows={4}
             />
-          </Grid>
-          <Grid item>
-            <Button variant="outlined">
-              <PDFDownloadLink document={doc} fileName="example.pdf">
-                {({ loading }) => (loading ? 'Loading document...' : 'Download now!')}
-              </PDFDownloadLink>
-            </Button>
           </Grid>
         </Grid>
         </Grid>

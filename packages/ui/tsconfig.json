@@ -51,7 +51,7 @@
     "node_modules/@types",
     "*.d.ts",
     "webpack.config.js",
-    "./tests/**/*", "pathseg.js",
+    "./tests/**/*", "pathseg.js", "src/assets/files/pdfWorker.js",
   ],
   "exclude": [
     "node_modules",
