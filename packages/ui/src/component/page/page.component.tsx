@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary, Container} from '@material-ui/core';
-import { BlobProvider, PDFDownloadLink, Page as PDFPage, pdf, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
+import { BlobProvider, PDFDownloadLink, Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import { Document as Doc, Page as DocPage } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
@@ -13,8 +13,7 @@ import SquareIcon from '../icons/square.icon';
 import RectangleIcon from '../icons/rectangle.icon';
 import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { Skeleton } from '@material-ui/lab';
-
+// import { Skeleton } from '@material-ui/lab';
 
 Font.register({
   family: 'Oswald',
@@ -28,7 +27,6 @@ const styles = StyleSheet.create({
   link: { textDecoration: "none", color:"inherit"}
 });
 
-// justify-content: space-between;
 const useStyles = makeStyles((theme) => ({
   button: {
     justifyContent: "space-between",
@@ -53,10 +51,6 @@ const useStyles = makeStyles((theme) => ({
       display: "none"
     }
   },
-  loading: {
-    width: "100px",
-    height: "100px"
-  }
 }));
 
 interface Resume {
@@ -160,7 +154,6 @@ export const Page: React.FunctionComponent = () => {
             {loading ? loadingComponent  : <Doc
               file={generatedResume}
               onLoadSuccess={onDocumentLoadSuccess}
-              // loading={loadingComponent}
             >
               <DocPage pageNumber={numPages} style={{width: "0px"}}/>
             </Doc> }
