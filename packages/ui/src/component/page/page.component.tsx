@@ -38,9 +38,6 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: lighten(theme.palette.primary.light, 0.7),
   },
-  secondaryHeading: {
-    color: theme.palette.text.secondary,
-  },
 }));
 
 interface Resume {
@@ -138,16 +135,30 @@ export const Page: React.FunctionComponent = () => {
           </Grid>
           </Grid>
 
-          <Grid item container direction="column" spacing={1}>
-          <Grid item> <CircleIcon/></Grid>
-          <Grid item> <Typography variant="h2">Personal Details</Typography></Grid>
-          <Grid item><Grid container spacing={2}>
-          <Grid item sm={6}><TextField id="filled-basic" helperText="Full name" fullWidth variant="filled" /></Grid>
-          <Grid item  sm={6}><TextField id="filled-basic1" helperText="Email address" fullWidth variant="filled" /></Grid>
-          </Grid></Grid>
+          <Grid item container direction="column" spacing={2}>
+            <Grid item> <CircleIcon/></Grid>
+            <Grid item> <Typography variant="h2">Personal Details</Typography></Grid>
+            <Grid item>
+              <Grid container spacing={2} alignItems="flex-end">
+                <Grid item sm={6}><TextField id="filled-basic" helperText="First name" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic1" helperText="Last name" fullWidth variant="filled" /></Grid>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Grid container spacing={2} alignItems="flex-end">
+                <Grid item sm={6}><TextField id="filled-basic" helperText="Email address" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic1" helperText="Phone number" fullWidth variant="filled" /></Grid>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Grid container spacing={2} alignItems="flex-end">
+                <Grid item sm={6}><TextField id="filled-basic" helperText="Job title" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add custom field</Button></Grid>
+              </Grid>
+            </Grid>
           </Grid>
 
-          <Grid item container direction="column" spacing={1}>
+          <Grid item container direction="column" spacing={2}>
           <Grid item> <ParallelogramIcon/></Grid>
           <Grid item> <Typography variant="h2">Describe you and your work</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Summarise your professional career in 2 or 3 sentences.</Typography></Grid>
@@ -162,7 +173,7 @@ export const Page: React.FunctionComponent = () => {
           </Grid>
           </Grid>
 
-          <Grid item container direction="column" spacing={1}>
+          <Grid item container direction="column" spacing={2}>
           <Grid item> <TeardropIcon/></Grid>
           <Grid item> <Typography variant="h2">Employment history</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Include your last 10 years of relevant experience and dates in this section. List your most recent position first.</Typography></Grid>
@@ -170,7 +181,7 @@ export const Page: React.FunctionComponent = () => {
           <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add employment history</Button></Grid>
           </Grid>
 
-          <Grid item container direction="column" spacing={1}>
+          <Grid item container direction="column" spacing={2}>
           <Grid item> <HalfCircleIcon/></Grid>
           <Grid item> <Typography variant="h2">Education</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">If it’s relevant to your work, you can choose to include any recent educational achievements and the dates here.</Typography></Grid>
@@ -191,7 +202,7 @@ export const Page: React.FunctionComponent = () => {
                 <Typography >Central Saint Martins, London</Typography>
                 </Grid>   </Grid></Grid>
                 <Grid item>
-                <Typography className={classes.secondaryHeading}>2018 - 2020</Typography>
+                <Typography>2018 - 2020</Typography>
                 </Grid>
                 </Grid>
               </AccordionSummary>
@@ -207,7 +218,7 @@ export const Page: React.FunctionComponent = () => {
          
           </Grid>
 
-          <Grid item container direction="column" spacing={1}>
+          <Grid item container direction="column" spacing={2}>
           <Grid item> <RectangleIcon/></Grid>
           <Grid item> <Typography variant="h2">Websites &amp; social media links</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Include a link to your personal website or portfolio, Github repository, LinkedIn, or anything you might want potential employers to see.</Typography></Grid>
@@ -215,7 +226,7 @@ export const Page: React.FunctionComponent = () => {
          
           </Grid>
 
-          <Grid item container direction="column" spacing={1}>
+          <Grid item container direction="column" spacing={2}>
           <Grid item> <SquareIcon/></Grid>
           <Grid item> <Typography variant="h2">Skills</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Add any skills you have that you want to highlight.</Typography></Grid>

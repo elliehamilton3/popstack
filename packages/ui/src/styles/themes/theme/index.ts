@@ -81,7 +81,8 @@ const theme = createMuiTheme({
                         borderBottomColor: '#0057FF',
                     }
                 },
-            }
+            },
+            input: {padding: "20px 12px 10px"}
         },
         
         MuiFormHelperText: {
