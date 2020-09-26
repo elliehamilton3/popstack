@@ -40,8 +40,11 @@ const useStyles = makeStyles((theme) => ({
     "& canvas": {
       width: "100% !important",
       height: "auto !important"
+    },
+    "& div div div": {
+      display: "none"
     }
-  }
+  },
 }));
 
 interface Resume {
@@ -117,24 +120,24 @@ export const Page: React.FunctionComponent = () => {
 
   const [numPages, setNumPages] = useState(1);
  
-  function onDocumentLoadSuccess() {
-    setNumPages(1);
+  function onDocumentLoadSuccess({numPages}: any) {
+    setNumPages(numPages);
   }
 
   return (
     <ThemeProvider>
       <Navbar />
-      <Grid container spacing={4}>
-      <Grid item sm={6}>
+      <Grid container >
+      <Grid item sm={4} md={6}>
         <Box bgcolor="secondary.main" p={5} >
           <Paper elevation={8} className={classes.paper} >
             <Doc
               file={generatedResume}
               onLoadSuccess={onDocumentLoadSuccess}
             >
-              <DocPage pageNumber={numPages} />
+              <DocPage pageNumber={numPages} style={{width: "0px"}}/>
             </Doc>
-
+       
             <BlobProvider document={doc}>
               {({url}) => {
                 setGeneratedResume(url ? url : "")
@@ -142,22 +145,24 @@ export const Page: React.FunctionComponent = () => {
               }}
             </BlobProvider>
           </Paper>
-          </Box>
-        </Grid>
-      <Grid item sm={6}>
+          </Box> 
+         </Grid> 
+       <Grid item sm={4} md={6}>
       <Box p={3} pt={4}>
-        <Grid container direction="column" spacing={8}>
+        <Grid container direction="column">
+          <Box pb={4}>
           <Grid item> 
-          <Grid container  justify="space-between" alignItems="center">
-          <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
-          <Grid item> <Button variant="outlined">
-              <PDFDownloadLink document={doc} fileName="example.pdf"  style={styles.link}>
-                {({ loading }) => (loading ? 'Loading document...' : 'Download')}
-              </PDFDownloadLink>
-            </Button></Grid>
-          </Grid>
-          </Grid>
-
+          <Grid container justify="space-between" alignItems="center">
+            <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
+            <Grid item> <Button variant="outlined">
+                <PDFDownloadLink document={doc} fileName="example.pdf"  style={styles.link}>
+                  {({ loading }) => (loading ? 'Loading document...' : 'Download')}
+                </PDFDownloadLink>
+              </Button></Grid>
+            </Grid>
+          </Grid> 
+          </Box>
+          <Box pb={8}>
           <Grid item container direction="column" spacing={2}>
             <Grid item> <CircleIcon/></Grid>
             <Grid item> <Typography variant="h2">Personal Details</Typography></Grid>
@@ -180,7 +185,8 @@ export const Page: React.FunctionComponent = () => {
               </Grid>
             </Grid>
           </Grid>
-
+          </Box>
+          <Box pb={8}>
           <Grid item container direction="column" spacing={2}>
           <Grid item> <ParallelogramIcon/></Grid>
           <Grid item> <Typography variant="h2">Describe you and your work</Typography></Grid>
@@ -195,15 +201,17 @@ export const Page: React.FunctionComponent = () => {
             />
           </Grid>
           </Grid>
-
+          </Box>
+          <Box pb={8}>
           <Grid item container direction="column" spacing={2}>
           <Grid item> <TeardropIcon/></Grid>
           <Grid item> <Typography variant="h2">Employment history</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Include your last 10 years of relevant experience and dates in this section. List your most recent position first.</Typography></Grid>
-          
           <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add employment history</Button></Grid>
           </Grid>
-
+          </Box>
+          
+          <Box pb={8}>
           <Grid item container direction="column" spacing={2}>
           <Grid item> <HalfCircleIcon/></Grid>
           <Grid item> <Typography variant="h2">Education</Typography></Grid>
@@ -238,28 +246,30 @@ export const Page: React.FunctionComponent = () => {
             </Accordion>
           </Grid>
           <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add education</Button></Grid>
-         
           </Grid>
+          </Box>
 
+          <Box pb={8}>
           <Grid item container direction="column" spacing={2}>
           <Grid item> <RectangleIcon/></Grid>
           <Grid item> <Typography variant="h2">Websites &amp; social media links</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Include a link to your personal website or portfolio, Github repository, LinkedIn, or anything you might want potential employers to see.</Typography></Grid>
           <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add website or link</Button></Grid>
-         
           </Grid>
+          </Box>
 
+          <Box pb={8}>
           <Grid item container direction="column" spacing={2}>
           <Grid item> <SquareIcon/></Grid>
           <Grid item> <Typography variant="h2">Skills</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Add any skills you have that you want to highlight.</Typography></Grid>
           <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add a skill</Button></Grid>
-         
           </Grid>
+          </Box>
         </Grid>
         </Box>
-        </Grid>
-      </Grid>
+       </Grid>
+      </Grid> 
     </ThemeProvider>
   )};
 
