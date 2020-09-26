@@ -27,10 +27,12 @@ const theme = createMuiTheme({
         },
         h2: {
             fontSize: '1.25rem',
+            fontWeight: 500,
         },
         subtitle1: {
             fontSize: "0.9375rem",
-            lineHeight: 1.2
+            lineHeight: 1.2,
+            opacity: 0.7
         }
     },
     overrides: {
