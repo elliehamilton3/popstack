@@ -78,16 +78,16 @@ module.exports = {
           },
         },
       },
-      {
-      test: /\.(pdf)$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: './[name].[ext]'
-          }
-        }
-      ]},
+      // {
+      // test: /\.(pdf)$/,
+      // use: [
+      //   {
+      //     loader: 'file-loader',
+      //     options: {
+      //       name: './[name].[ext]'
+      //     }
+      //   }
+      // ]},
 
       {
         test: /\.(ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
@@ -139,8 +139,5 @@ module.exports = {
         return output;
       })(process.env)
     }),
-    new CopyWebpackPlugin({patterns: [
-      { from: './democv.pdf' },
-    ]}),
   ],
 };

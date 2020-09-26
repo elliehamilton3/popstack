@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
-import { PDFViewer, PDFDownloadLink, pdf, Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { BlobProvider, PDFDownloadLink, Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import { Document as Doc, Page as DocPage } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
 import apiFetch from '../../service/apiFetch.service';
 import CircleIcon from '../icons/circle.icon';
 import ParallelogramIcon from '../icons/parallelogram.icon';
-// import samplePdf from '../../assets/democv.pdf'  
 import TeardropIcon from '../icons/teardrop.icon';
 import HalfCircleIcon from '../icons/halfCircle.icon';
 import SquareIcon from '../icons/square.icon';
@@ -110,6 +109,8 @@ export const Page: React.FunctionComponent = () => {
     </Document>
   );
 
+  const [generatedResume, setGeneratedResume] = useState("");
+
   useEffect(() => {
     apiFetch("/resume/0", "GET").then(json => setResume(json as Resume)); 
   }, []);
@@ -126,22 +127,21 @@ export const Page: React.FunctionComponent = () => {
       <Grid container spacing={4}>
       <Grid item sm={6}>
         <Box bgcolor="secondary.main" p={5} >
-        <Paper elevation={8} className={classes.paper} >
-          <Doc
-          file="democv.pdf"
-          onLoadSuccess={onDocumentLoadSuccess}
-        >
-          <DocPage pageNumber={numPages} />
-        </Doc>
-        {/* <Doc
-          file={pdf(doc).toBlob()}
-          onLoadSuccess={onDocumentLoadSuccess}
-        >
-          <DocPage pageNumber={numPages} />
-        </Doc> */}
-        {/* {pdf(doc).toBlob()} */}
-{/* <PDFViewer>{doc}</PDFViewer> */}
-         </Paper>
+          <Paper elevation={8} className={classes.paper} >
+            <Doc
+              file={generatedResume}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
+              <DocPage pageNumber={numPages} />
+            </Doc>
+
+            <BlobProvider document={doc}>
+              {({url}) => {
+                setGeneratedResume(url ? url : "")
+                return <></>;
+              }}
+            </BlobProvider>
+          </Paper>
           </Box>
         </Grid>
       <Grid item sm={6}>
