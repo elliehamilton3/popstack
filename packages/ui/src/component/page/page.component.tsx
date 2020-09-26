@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
-import {PDFViewer, PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import { Document as Doc, Page as DocPage } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
 import apiFetch from '../../service/apiFetch.service';
 import CircleIcon from '../icons/circle.icon';
 import ParallelogramIcon from '../icons/parallelogram.icon';
-// import samplePdf from '../../assets/democv.pdf'
+// import samplePdf from '../../assets/democv.pdf'  
 import TeardropIcon from '../icons/teardrop.icon';
 import HalfCircleIcon from '../icons/halfCircle.icon';
 import SquareIcon from '../icons/square.icon';
@@ -120,7 +120,6 @@ export const Page: React.FunctionComponent = () => {
   }
 
   return (
-    // eslint-disable-next-line react/jsx-indent
     <ThemeProvider>
       <Navbar />
       <Grid container spacing={4}>
