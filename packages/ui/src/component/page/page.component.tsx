@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: "calc(100vw - 80px)",
-      minHeight: "400px",
+      minHeight: "calc(147vw - 80px)",
       "@media (min-width: 600px)":{
         width: "calc(50vw - 80px)",
         minHeight: "600px",
@@ -124,7 +124,7 @@ export const Page: React.FunctionComponent = () => {
     </Document>
   );
 
-  const [generatedResume, setGeneratedResume] = useState<string>();
+  const [generatedResume, setGeneratedResume] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -144,6 +144,7 @@ export const Page: React.FunctionComponent = () => {
   const loadingComponent =( 
       <Grid container>
         <Grid item >
+       
           {/* <Skeleton animation="wave" /> */}
         </Grid>
       </Grid>
@@ -159,13 +160,12 @@ export const Page: React.FunctionComponent = () => {
             {loading ? loadingComponent  : <Doc
               file={generatedResume}
               onLoadSuccess={onDocumentLoadSuccess}
-              loading={loadingComponent}
+              // loading={loadingComponent}
             >
               <DocPage pageNumber={numPages} style={{width: "0px"}}/>
             </Doc> }
             <BlobProvider document={doc}>
               {({url}) => {
-                console.log(url)
                 setGeneratedResume(url ? url : "")
                 return <></>;
               }}
