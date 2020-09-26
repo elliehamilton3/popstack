@@ -33,7 +33,16 @@ const theme = createMuiTheme({
             fontSize: "0.9375rem",
             lineHeight: 1.2,
             opacity: 0.7
-        }
+        },
+        body1: {
+            fontSize: "0.875rem",
+            lineHeight: 1.25,
+        },
+        body2: {
+            fontSize: "0.875rem",
+            lineHeight: 1.25,
+            fontWeight: 700
+        },
     },
     overrides: {
         MuiOutlinedInput: {
@@ -97,7 +106,16 @@ const theme = createMuiTheme({
                 borderWidth: "1px",
                 backgroundColor: lighten('#0057FF', 0.96),
             }
-        }}
+        }},
+        MuiAccordion: { 
+            root: {
+                boxShadow: "none", 
+                border: lighten('#0057FF', 0.7),
+                borderWidth: "1px",
+                borderStyle: "solid",
+                padding: "8px"
+            }
+        }
     }
 });
 

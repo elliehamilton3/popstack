@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten} from '@material-ui/core';
+import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
 import {PDFViewer, PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 // import {Document as Doc, pdfjs} from "react-pdf";
 import Navbar from '../navbar/navbar.component';
@@ -14,6 +14,7 @@ import HalfCircleIcon from '../icons/halfCircle.icon';
 import SquareIcon from '../icons/square.icon';
 import RectangleIcon from '../icons/rectangle.icon';
 import AddIcon from '@material-ui/icons/Add';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 Font.register({
   family: 'Oswald',
@@ -36,7 +37,10 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     color: lighten(theme.palette.primary.light, 0.7),
-  }
+  },
+  secondaryHeading: {
+    color: theme.palette.text.secondary,
+  },
 }));
 
 interface Resume {
@@ -162,6 +166,7 @@ export const Page: React.FunctionComponent = () => {
           <Grid item> <TeardropIcon/></Grid>
           <Grid item> <Typography variant="h2">Employment history</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Include your last 10 years of relevant experience and dates in this section. List your most recent position first.</Typography></Grid>
+          
           <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add employment history</Button></Grid>
           </Grid>
 
@@ -169,6 +174,35 @@ export const Page: React.FunctionComponent = () => {
           <Grid item> <HalfCircleIcon/></Grid>
           <Grid item> <Typography variant="h2">Education</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">If it’s relevant to your work, you can choose to include any recent educational achievements and the dates here.</Typography></Grid>
+          <Grid item>
+          <Accordion>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon className={classes.icon}/>}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Grid container justify="space-between" alignItems="center">
+                <Grid item >
+                  <Grid container  direction="column">
+                  <Grid item >
+                <Typography variant="body2">BA (Hons) Fine Art</Typography>
+                </Grid>
+                <Grid item >
+                <Typography >Central Saint Martins, London</Typography>
+                </Grid>   </Grid></Grid>
+                <Grid item>
+                <Typography className={classes.secondaryHeading}>2018 - 2020</Typography>
+                </Grid>
+                </Grid>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
+                  sit amet blandit leo lobortis eget.
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </Grid>
           <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add education</Button></Grid>
          
           </Grid>
