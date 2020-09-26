@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
-import { PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { PDFViewer, PDFDownloadLink, pdf, Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import { Document as Doc, Page as DocPage } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
@@ -113,6 +113,7 @@ export const Page: React.FunctionComponent = () => {
   useEffect(() => {
     apiFetch("/resume/0", "GET").then(json => setResume(json as Resume)); 
   }, []);
+
   const [numPages, setNumPages] = useState(1);
  
   function onDocumentLoadSuccess() {
@@ -132,6 +133,14 @@ export const Page: React.FunctionComponent = () => {
         >
           <DocPage pageNumber={numPages} />
         </Doc>
+        {/* <Doc
+          file={pdf(doc).toBlob()}
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
+          <DocPage pageNumber={numPages} />
+        </Doc> */}
+        {/* {pdf(doc).toBlob()} */}
+{/* <PDFViewer>{doc}</PDFViewer> */}
          </Paper>
           </Box>
         </Grid>
