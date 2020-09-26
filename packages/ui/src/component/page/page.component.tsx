@@ -124,29 +124,14 @@ export const Page: React.FunctionComponent = () => {
     </Document>
   );
 
-  const MyDoc = (
-    <Document>
-      <Page>
-      <Text>Text</Text>
-      </Page>
-    </Document>
-  );
-
   const [generatedResume, setGeneratedResume] = useState<string>();
   const [loading, setLoading] = useState(true);
 
-  
-  // console.log(pdf(MyDoc).toBlob(), "-----")  
   useEffect(() => {
     apiFetch("/resume/0", "GET").then(json => {
+      console.log("resume")
       setResume(json as Resume)
-      const a = (<BlobProvider document={doc}>
-        {({url}) => {
-          setGeneratedResume(url ? url : "")
-          setLoading(false)
-          return <></>;
-        }}
-      </BlobProvider>)
+      setLoading(false)
     }); 
     
   }, []);
@@ -159,7 +144,7 @@ export const Page: React.FunctionComponent = () => {
   const loadingComponent =( 
       <Grid container>
         <Grid item >
-          <Skeleton animation="wave" />
+          {/* <Skeleton animation="wave" /> */}
         </Grid>
       </Grid>
     );
@@ -168,7 +153,7 @@ export const Page: React.FunctionComponent = () => {
     <ThemeProvider>
       <Navbar />
       <Grid container >
-      <Grid item xs={4} sm={6}>
+      <Grid item xs={12} sm={6}>
         <Box bgcolor="secondary.main" p={5} >
           <Paper elevation={8} className={classes.paper} >
             {loading ? loadingComponent  : <Doc
@@ -178,11 +163,18 @@ export const Page: React.FunctionComponent = () => {
             >
               <DocPage pageNumber={numPages} style={{width: "0px"}}/>
             </Doc> }
+            <BlobProvider document={doc}>
+              {({url}) => {
+                console.log(url)
+                setGeneratedResume(url ? url : "")
+                return <></>;
+              }}
+            </BlobProvider>
        
           </Paper>
           </Box> 
          </Grid> 
-       <Grid item xs={4} sm={6}>
+       <Grid item xs={12} sm={6}>
       <Box p={3} pt={4}>
         <Grid container direction="column">
           <Box pb={4}>
