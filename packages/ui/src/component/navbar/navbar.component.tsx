@@ -8,8 +8,6 @@ import {
 
 const Navbar: React.FunctionComponent = () => {
   return (
-    // eslint-disable-next-line react/jsx-indent
-    <>
     <AppBar position="static" color="transparent">
       <Toolbar>
 
@@ -57,8 +55,6 @@ const Navbar: React.FunctionComponent = () => {
         </Grid>
       </Toolbar>
     </AppBar>
-    </>
-    // eslint-disable-next-line @typescript-eslint/indent
   );
 };
 

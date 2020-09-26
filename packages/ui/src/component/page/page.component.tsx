@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
 import {PDFViewer, PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
-// import {Document as Doc, pdfjs} from "react-pdf";
+import { Document as Doc } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
 import apiFetch from '../../service/apiFetch.service';
 import CircleIcon from '../icons/circle.icon';
 import ParallelogramIcon from '../icons/parallelogram.icon';
-// pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-// import samplePdf from './sample.pdf'
+import samplePdf from './democv.pdf'
 import TeardropIcon from '../icons/teardrop.icon';
 import HalfCircleIcon from '../icons/halfCircle.icon';
 import SquareIcon from '../icons/square.icon';
@@ -116,9 +115,11 @@ export const Page: React.FunctionComponent = () => {
       <Grid item sm={6}>
         <Box bgcolor="secondary.main" p={5} style={{height: "100%"}}>
         <Paper elevation={8} style={{height: "100%"}} >
-        <PDFViewer width="100%" height="100%" style={styles.viewer}>
+          <Doc file={'/assets/democv.pdf'}/>
+        {/* <PDFViewer width="100%" height="100%" style={styles.viewer}>
            {doc}
-         </PDFViewer></Paper>
+         </PDFViewer> */}
+         </Paper>
           </Box>
         </Grid>
       <Grid item sm={6}>
@@ -146,13 +147,13 @@ export const Page: React.FunctionComponent = () => {
             </Grid>
             <Grid item>
               <Grid container spacing={2} alignItems="flex-end">
-                <Grid item sm={6}><TextField id="filled-basic" helperText="Email address" fullWidth variant="filled" /></Grid>
-                <Grid item sm={6}><TextField id="filled-basic1" helperText="Phone number" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic2" helperText="Email address" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic3" helperText="Phone number" fullWidth variant="filled" /></Grid>
               </Grid>
             </Grid>
             <Grid item>
               <Grid container spacing={2} alignItems="flex-end">
-                <Grid item sm={6}><TextField id="filled-basic" helperText="Job title" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic4" helperText="Job title" fullWidth variant="filled" /></Grid>
                 <Grid item sm={6}><Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add custom field</Button></Grid>
               </Grid>
             </Grid>
