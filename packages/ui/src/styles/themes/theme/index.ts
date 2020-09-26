@@ -28,6 +28,10 @@ const theme = createMuiTheme({
         h2: {
             fontSize: '1.25rem',
         },
+        subtitle1: {
+            fontSize: "0.9375rem",
+            lineHeight: 1.25
+        }
     },
     overrides: {
         MuiOutlinedInput: {
@@ -43,6 +47,30 @@ const theme = createMuiTheme({
             },
             focused: {},
             notchedOutline: {}
+        },
+        MuiFilledInput: {
+            root: {
+                backgroundColor: lighten('#0057FF', 0.95),
+                borderBottomColor: '#0057FF',
+                '&:hover': {
+                    backgroundColor: lighten('#0057FF', 0.90),
+                    
+                },
+                '&$focused': {
+                    backgroundColor: lighten('#0057FF', 0.90),
+                 }
+            },
+            focused: {},
+            underline:{
+                 '&::before': {
+                    borderBottomColor: '#0057FF',
+                },
+                '&:hover': {
+                    '&::before': {
+                        borderBottomColor: '#0057FF',
+                    }
+                },
+            }
         },
         MuiAppBar:{
             root: {
