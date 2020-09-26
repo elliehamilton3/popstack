@@ -127,6 +127,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: `${__dirname}/src/index.ejs`,
       inject: 'body',
+      favicon: "./src/assets/favicon.svg"
     }),
     new webpack.DefinePlugin({
       'process.env': ((envs) => {

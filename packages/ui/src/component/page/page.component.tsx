@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
-import { BlobProvider, PDFDownloadLink, Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary, Container} from '@material-ui/core';
+import { BlobProvider, PDFDownloadLink, Page as PDFPage, pdf, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import { Document as Doc, Page as DocPage } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
@@ -13,6 +13,8 @@ import SquareIcon from '../icons/square.icon';
 import RectangleIcon from '../icons/rectangle.icon';
 import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Skeleton } from '@material-ui/lab';
+
 
 Font.register({
   family: 'Oswald',
@@ -37,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
     color: lighten(theme.palette.primary.light, 0.7),
   },
   paper: {
+    width: "calc(100vw - 80px)",
+      minHeight: "400px",
+      "@media (min-width: 600px)":{
+        width: "calc(50vw - 80px)",
+        minHeight: "600px",
+      },
     "& canvas": {
       width: "100% !important",
       height: "auto !important"
@@ -45,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
       display: "none"
     }
   },
+  loading: {
+    width: "100px",
+    height: "100px"
+  }
 }));
 
 interface Resume {
@@ -112,10 +124,31 @@ export const Page: React.FunctionComponent = () => {
     </Document>
   );
 
-  const [generatedResume, setGeneratedResume] = useState("");
+  const MyDoc = (
+    <Document>
+      <Page>
+      <Text>Text</Text>
+      </Page>
+    </Document>
+  );
 
+  const [generatedResume, setGeneratedResume] = useState<string>();
+  const [loading, setLoading] = useState(true);
+
+  
+  // console.log(pdf(MyDoc).toBlob(), "-----")  
   useEffect(() => {
-    apiFetch("/resume/0", "GET").then(json => setResume(json as Resume)); 
+    apiFetch("/resume/0", "GET").then(json => {
+      setResume(json as Resume)
+      const a = (<BlobProvider document={doc}>
+        {({url}) => {
+          setGeneratedResume(url ? url : "")
+          setLoading(false)
+          return <></>;
+        }}
+      </BlobProvider>)
+    }); 
+    
   }, []);
 
   const [numPages, setNumPages] = useState(1);
@@ -123,31 +156,33 @@ export const Page: React.FunctionComponent = () => {
   function onDocumentLoadSuccess({numPages}: any) {
     setNumPages(numPages);
   }
+  const loadingComponent =( 
+      <Grid container>
+        <Grid item >
+          <Skeleton animation="wave" />
+        </Grid>
+      </Grid>
+    );
 
   return (
     <ThemeProvider>
       <Navbar />
       <Grid container >
-      <Grid item sm={4} md={6}>
+      <Grid item xs={4} sm={6}>
         <Box bgcolor="secondary.main" p={5} >
           <Paper elevation={8} className={classes.paper} >
-            <Doc
+            {loading ? loadingComponent  : <Doc
               file={generatedResume}
               onLoadSuccess={onDocumentLoadSuccess}
+              loading={loadingComponent}
             >
               <DocPage pageNumber={numPages} style={{width: "0px"}}/>
-            </Doc>
+            </Doc> }
        
-            <BlobProvider document={doc}>
-              {({url}) => {
-                setGeneratedResume(url ? url : "")
-                return <></>;
-              }}
-            </BlobProvider>
           </Paper>
           </Box> 
          </Grid> 
-       <Grid item sm={4} md={6}>
+       <Grid item xs={4} sm={6}>
       <Box p={3} pt={4}>
         <Grid container direction="column">
           <Box pb={4}>
