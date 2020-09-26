@@ -3,6 +3,7 @@
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -78,12 +79,12 @@ module.exports = {
         },
       },
       {
-      test: /\.(png|svg|jpg|gif|pdf)$/,
+      test: /\.(pdf)$/,
       use: [
         {
           loader: 'file-loader',
           options: {
-            name: './assets/[name].[ext]'
+            name: './[name].[ext]'
           }
         }
       ]},
@@ -138,5 +139,8 @@ module.exports = {
         return output;
       })(process.env)
     }),
+    new CopyWebpackPlugin({patterns: [
+      { from: './democv.pdf' },
+    ]}),
   ],
 };

@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
 import {PDFViewer, PDFDownloadLink,  Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
-import { Document as Doc } from 'react-pdf/dist/esm/entry.webpack';
+import { Document as Doc, Page as DocPage } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
 import apiFetch from '../../service/apiFetch.service';
 import CircleIcon from '../icons/circle.icon';
 import ParallelogramIcon from '../icons/parallelogram.icon';
-import samplePdf from './democv.pdf'
+import samplePdf from '../../assets/democv.pdf'
 import TeardropIcon from '../icons/teardrop.icon';
 import HalfCircleIcon from '../icons/halfCircle.icon';
 import SquareIcon from '../icons/square.icon';
@@ -37,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: lighten(theme.palette.primary.light, 0.7),
   },
+  paper: {
+    "& canvas": {
+      width: "100% !important",
+      height: "auto !important"
+    }
+  }
 }));
 
 interface Resume {
@@ -107,18 +113,28 @@ export const Page: React.FunctionComponent = () => {
   useEffect(() => {
     apiFetch("/resume/0", "GET").then(json => setResume(json as Resume)); 
   }, []);
+  const [numPages, setNumPages] = useState(1);
+  const [pageNumber, setPageNumber] = useState(1);
+ 
+  function onDocumentLoadSuccess() {
+    setNumPages(1);
+  }
   return (
     // eslint-disable-next-line react/jsx-indent
     <ThemeProvider>
       <Navbar />
       <Grid container spacing={4}>
       <Grid item sm={6}>
-        <Box bgcolor="secondary.main" p={5} style={{height: "100%"}}>
-        <Paper elevation={8} style={{height: "100%"}} >
-          <Doc file={'/assets/democv.pdf'}/>
-        {/* <PDFViewer width="100%" height="100%" style={styles.viewer}>
-           {doc}
-         </PDFViewer> */}
+        <Box bgcolor="secondary.main" p={5} >
+        <Paper elevation={8} className={classes.paper} >
+          {/* <PDFDocumentWrapper>  */}
+          <Doc
+          file="democv.pdf"
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
+          <DocPage pageNumber={pageNumber} />
+        </Doc>
+        {/* </PDFDocumentWrapper> */}
          </Paper>
           </Box>
         </Grid>
