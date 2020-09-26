@@ -7,7 +7,7 @@ import { ThemeProvider } from '../../styles/theme';
 import apiFetch from '../../service/apiFetch.service';
 import CircleIcon from '../icons/circle.icon';
 import ParallelogramIcon from '../icons/parallelogram.icon';
-import samplePdf from '../../assets/democv.pdf'
+// import samplePdf from '../../assets/democv.pdf'
 import TeardropIcon from '../icons/teardrop.icon';
 import HalfCircleIcon from '../icons/halfCircle.icon';
 import SquareIcon from '../icons/square.icon';
@@ -114,11 +114,11 @@ export const Page: React.FunctionComponent = () => {
     apiFetch("/resume/0", "GET").then(json => setResume(json as Resume)); 
   }, []);
   const [numPages, setNumPages] = useState(1);
-  const [pageNumber, setPageNumber] = useState(1);
  
   function onDocumentLoadSuccess() {
     setNumPages(1);
   }
+
   return (
     // eslint-disable-next-line react/jsx-indent
     <ThemeProvider>
@@ -127,14 +127,12 @@ export const Page: React.FunctionComponent = () => {
       <Grid item sm={6}>
         <Box bgcolor="secondary.main" p={5} >
         <Paper elevation={8} className={classes.paper} >
-          {/* <PDFDocumentWrapper>  */}
           <Doc
           file="democv.pdf"
           onLoadSuccess={onDocumentLoadSuccess}
         >
-          <DocPage pageNumber={pageNumber} />
+          <DocPage pageNumber={numPages} />
         </Doc>
-        {/* </PDFDocumentWrapper> */}
          </Paper>
           </Box>
         </Grid>
