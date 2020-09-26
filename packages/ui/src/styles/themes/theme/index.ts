@@ -95,6 +95,9 @@ const theme = createMuiTheme({
         }
         },
         MuiButton: {
+            outlined: {
+                border: '1px solid #1C1A1A'
+            },
             outlinedSecondary:{
                 color:'#1C1A1A',
                 border: lighten('#0057FF', 0.7),
@@ -106,7 +109,7 @@ const theme = createMuiTheme({
                 borderStyle: "dashed",
                 borderWidth: "1px",
                 backgroundColor: lighten('#0057FF', 0.96),
-            }
+            },
         }},
         MuiAccordion: { 
             root: {
