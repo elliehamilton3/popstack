@@ -272,9 +272,9 @@ export const Page1: React.FunctionComponent = () => {
           <Grid container justify="space-between" alignItems="center">
             <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
             <Grid item> <Button variant="outlined">
-                <PDFDownloadLink document={doc} fileName="example.pdf"  style={styles.link}>
+            {resume && <PDFDownloadLink document={doc} fileName="example.pdf"  style={styles.link}>
                   {({ loading }) => (loading ? 'Loading document...' : 'Download')}
-                </PDFDownloadLink>
+                </PDFDownloadLink>}
               </Button></Grid>
             </Grid>
           </Grid> 
