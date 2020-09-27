@@ -13,7 +13,7 @@ export default async function postHandler() {
   });
   const userId = user && user.id;
   const resume = await Resume.create({
-    bio: 'about me blah blah.',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae viverra leo, vitae elementum nibh. Vivamus et pharetra eros, sed blandit mauris.',
     title: 'Senior Person',
     location: 'Somewhere, Country',
     userId,
