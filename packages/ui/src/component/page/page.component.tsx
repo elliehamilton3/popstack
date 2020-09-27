@@ -151,9 +151,10 @@ export const Page: React.FunctionComponent = () => {
       <Grid item xs={12} sm={6}>
         <Box bgcolor="secondary.main" p={5} >
           <Paper elevation={8} className={classes.paper} >
-            {!resume ? loadingComponent  : <Doc
+            {!generatedResume ? loadingComponent  : <Doc
               file={generatedResume}
               onLoadSuccess={onDocumentLoadSuccess}
+              loading={loadingComponent}
             >
               <DocPage pageNumber={numPages} style={{width: "0px"}}/>
             </Doc> }
