@@ -29,6 +29,13 @@ Font.register({
   src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf'
 });
 
+Font.register({
+  family: 'Vollkorn-Medium',
+  format: "truetype",
+  src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2AnGuGQ.ttf'
+});
+
+
 const styles = StyleSheet.create({
   link: { textDecoration: "none", color:"inherit"},
   body: {
@@ -62,7 +69,7 @@ const styles = StyleSheet.create({
 const Heading = styled.Text`
   font-size: 23px;
   padding-bottom: 26px;
-  font-family: 'Vollkorn-Bold';
+  font-family: 'Vollkorn-Medium';
 `;
 
 const Subtitle = styled.Text`
@@ -101,14 +108,15 @@ const useStyles = makeStyles((theme) => ({
       minHeight: "calc(147vw - 80px)",
       "@media (min-width: 600px)":{
         width: "calc(50vw - 80px)",
-        minHeight: "670px",
+        minHeight: "586px",
       },
    
   },
   pdfStyles: {
     "& canvas": {
       width: "100% !important",
-      height: "auto !important"
+      height: "auto !important",
+      borderRadius: "4px"
     },
     "& div div div": {
       display: "none"
