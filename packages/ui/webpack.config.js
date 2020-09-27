@@ -62,7 +62,7 @@ module.exports = {
           options: {
             limit: 50000,
             mimetype: 'image/png',
-            name: './assets/image/[name].[hash].[ext]',
+            name: './src/assets/image/[name].[hash].[ext]',
           },
         },
       },
@@ -74,21 +74,10 @@ module.exports = {
           options: {
             limit: 50000,
             mimetype: 'image/jpeg',
-            name: './assets/image/[name].[hash].[ext]',
+            name: './src/assets/image/[name].[hash].[ext]',
           },
         },
       },
-      // {
-      // test: /\.(pdf)$/,
-      // use: [
-      //   {
-      //     loader: 'file-loader',
-      //     options: {
-      //       name: './[name].[ext]'
-      //     }
-      //   }
-      // ]},
-
       {
         test: /\.(ttf|otf)(\?v=\d+\.\d+\.\d+)?$/,
         use: {
@@ -96,7 +85,7 @@ module.exports = {
           options: {
             limit: 50000,
             mimetype: 'application/font-ttf',
-            name: './assets/font/[name].[hash].[ext]',
+            name: './src/assets/font/[name].[ext]',
           },
         },
       },
@@ -109,7 +98,7 @@ module.exports = {
           options: {
             limit: 50000,
             mimetype: 'application/font-woff',
-            name: './assets/font/[name].[hash].[ext]',
+            name: './src/assets/font/[name].[hash].[ext]',
           },
         },
       },

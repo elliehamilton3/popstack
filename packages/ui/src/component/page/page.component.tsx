@@ -17,10 +17,11 @@ import { Skeleton } from '@material-ui/lab';
 import styled from '@react-pdf/styled-components';
 import moment from 'moment';
 
-// Font.register({
-//   family: 'Vollkorn',
-//   src: '../../assets/font/vollkorn/Vollkorn-Regular.ttf'
-// });
+Font.register({
+  family: 'Vollkorn',
+  format: "truetype",
+  src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf'
+});
 
 const styles = StyleSheet.create({
   link: { textDecoration: "none", color:"inherit"},
@@ -69,23 +70,11 @@ const Body = styled.Text`
 `;
 
 const PPage = styled.Page`
-  padding: 50px;
+  padding: 49px;
   padding-top: 0px;
-  font-family: 'Times-Roman';
+  padding-right: 61px;
+  font-family: 'Vollkorn';
 `;
-
-// const Section = styled.View`
-//   display: "flex";
-//   flexDirection: "row";
-// `;
-
-// const LeftSection = styled.View`
-// flex: 1;
-// `;
-
-// const RightSection = styled.View`
-// flex: 1;
-// `;
 
 const useStyles = makeStyles((theme) => ({
   button: {
