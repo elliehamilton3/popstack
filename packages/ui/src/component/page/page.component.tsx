@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
-import { BlobProvider, PDFDownloadLink, Page as PDFPage, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { BlobProvider, PDFDownloadLink, Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import { Document as Doc, Page as DocPage } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
@@ -14,20 +14,57 @@ import RectangleIcon from '../icons/rectangle.icon';
 import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Skeleton } from '@material-ui/lab';
+import styled from '@react-pdf/styled-components';
+import moment from 'moment';
 
 // Font.register({
-//   family: 'Oswald',
-//   src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
+//   family: 'Vollkorn',
+//   src: '../../assets/font/vollkorn/Vollkorn-Regular.ttf'
 // });
 
 const styles = StyleSheet.create({
-  page: { },
-  viewer: { border: 0 },
-  section: { color: 'black', textAlign: 'center', margin: 30, 
-  // fontFamily: 'Oswald' 
-},
-  link: { textDecoration: "none", color:"inherit"}
+  link: { textDecoration: "none", color:"inherit"},
+  body: {
+    display: "flex",
+    flexDirection: "row",
+    paddingBottom: "40px",
+    borderBottom: "2px solid black"
+  },
+  text1: {
+    flex: 2,
+  },
+  text: {
+    flex: 4,
+    paddingRight: "70px"
+  },
 });
+
+const Heading = styled.Text`
+  font-size: 23px;
+  padding-bottom: 26px;
+`;
+
+const Body = styled.Text`
+  font-size: 9px;
+`;
+
+const PPage = styled.Page`
+  padding: 50px;
+  font-family: 'Times-Roman';
+`;
+
+// const Section = styled.View`
+//   display: "flex";
+//   flexDirection: "row";
+// `;
+
+// const LeftSection = styled.View`
+// flex: 1;
+// `;
+
+// const RightSection = styled.View`
+// flex: 1;
+// `;
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -85,42 +122,54 @@ interface Resume {
   };
 }
 
-export const Page: React.FunctionComponent = () => { 
+export const Page1: React.FunctionComponent = () => { 
   const [resume, setResume] = useState<Resume | undefined>(undefined);
   const classes = useStyles();
   const doc = (
     <Document>
-      
-       <PDFPage size="A4" style={styles.page}>
-          <View style={styles.section}>
-            <Text>{resume && resume.user.name}</Text>
-            <Text>{resume && resume.user.email}</Text>
-              <Text>{resume && resume.user.phoneNumber}</Text>
+       <PPage size="A4">
+          <View style={styles.body} >
+            <View style={styles.text}>
+            <Heading>{resume && resume.user.name}</Heading>
+            <Body>{resume && resume.resume.bio}</Body>
             </View>
-            <View style={styles.section}>
-              <Text>{resume && resume.resume.title}</Text>
-              <Text>{resume && resume.resume.location}</Text>
-              <Text>{resume && resume.resume.bio}</Text>
+            <View style={styles.text1}>
+              <Body>{resume && resume.resume.title}</Body>
+              <Body>{resume && resume.user.email}</Body>
+              <Body>{resume && resume.user.phoneNumber}</Body>
+              <Body>{resume && resume.resume.location}</Body>
             </View>
+            </View>
+            {/* <View style={styles.body} > */}
             {resume && resume.jobs.map((job, i) => (
-              <View style={styles.section} key={i}>
-                <Text>{job.title}</Text>
-                <Text>{job.company}</Text>
-                <Text>{job.location}</Text>
-                <Text>{job.description}</Text>
-                <Text>{job.dateFrom}</Text>
-                <Text>{job.dateTo}</Text>
+              <View key={i} style={styles.body}>
+                <View style={styles.text}>
+                <Body>{job.title}</Body>
+                <Body>{job.company}</Body>
+                <Body>{job.location}</Body>
+                <Body>{job.description}</Body>
+                </View>
+              <View style={styles.text1}>
+                <Body>{moment(job.dateFrom).format('MMMM YYYY')} - {moment(job.dateTo).format('MMMM YYYY')}</Body>
+                </View>
               </View>
+
             ))}
+            {/* </View>
+            <View style={styles.body} > */}
             {resume && resume.educations.map((education, i) => (
-              <View style={styles.section} key={i}>
-                <Text>{education.place}</Text>
-                <Text>{education.yearFrom}</Text>
-                <Text>{education.yearTo}</Text>
-                <Text>{education.info}</Text>
+              <View key={i} style={styles.body}>
+                <View style={styles.text}>
+                <Body>{education.place}</Body>
+                <Body>{education.info}</Body>
+                </View>
+                <View style={styles.text1}>
+                <Body>{education.yearFrom} - {education.yearTo}</Body>
+              </View>
               </View>
             ))}
-      </PDFPage> 
+                {/* </View> */}
+      </PPage> 
     </Document>
   );
 
@@ -128,7 +177,7 @@ export const Page: React.FunctionComponent = () => {
 
   useEffect(() => {
     apiFetch("/resume/0", "GET").then(json => {
-      // setResume(json as Resume)
+      setResume(json as Resume)
     });  
   }, []);
 
@@ -307,4 +356,4 @@ export const Page: React.FunctionComponent = () => {
     </ThemeProvider>
   )};
 
-export default Page;
+export default Page1;
