@@ -15,15 +15,17 @@ import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import { Skeleton } from '@material-ui/lab';
 
-Font.register({
-  family: 'Oswald',
-  src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
-});
+// Font.register({
+//   family: 'Oswald',
+//   src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
+// });
 
 const styles = StyleSheet.create({
   page: { },
   viewer: { border: 0 },
-  section: { color: 'black', textAlign: 'center', margin: 30, fontFamily: 'Oswald' },
+  section: { color: 'black', textAlign: 'center', margin: 30, 
+  // fontFamily: 'Oswald' 
+},
   link: { textDecoration: "none", color:"inherit"}
 });
 
@@ -85,49 +87,47 @@ export const Page: React.FunctionComponent = () => {
   const classes = useStyles();
   const doc = (
     <Document>
-      <PDFPage size="A4" style={styles.page}>
-      <View style={styles.section}>
-          <Text>{resume && resume.user.name}</Text>
-          <Text>{resume && resume.user.email}</Text>
-          <Text>{resume && resume.user.phoneNumber}</Text>
-        </View>
-        <View style={styles.section}>
-          <Text>{resume && resume.resume.title}</Text>
-          <Text>{resume && resume.resume.location}</Text>
-          <Text>{resume && resume.resume.bio}</Text>
-        </View>
-        {resume && resume.jobs.map((job, i) => (
-          <View style={styles.section} key={i}>
-            <Text>{job.title}</Text>
-            <Text>{job.company}</Text>
-            <Text>{job.location}</Text>
-            <Text>{job.description}</Text>
-            <Text>{job.dateFrom}</Text>
-            <Text>{job.dateTo}</Text>
-          </View>
-        ))}
-        {resume && resume.educations.map((education, i) => (
-          <View style={styles.section} key={i}>
-            <Text>{education.place}</Text>
-            <Text>{education.yearFrom}</Text>
-            <Text>{education.yearTo}</Text>
-            <Text>{education.info}</Text>
-          </View>
-        ))}
-      </PDFPage>
+      
+       <PDFPage size="A4" style={styles.page}>
+          <View style={styles.section}>
+            <Text>{resume && resume.user.name}</Text>
+            <Text>{resume && resume.user.email}</Text>
+              <Text>{resume && resume.user.phoneNumber}</Text>
+            </View>
+            <View style={styles.section}>
+              <Text>{resume && resume.resume.title}</Text>
+              <Text>{resume && resume.resume.location}</Text>
+              <Text>{resume && resume.resume.bio}</Text>
+            </View>
+            {resume && resume.jobs.map((job, i) => (
+              <View style={styles.section} key={i}>
+                <Text>{job.title}</Text>
+                <Text>{job.company}</Text>
+                <Text>{job.location}</Text>
+                <Text>{job.description}</Text>
+                <Text>{job.dateFrom}</Text>
+                <Text>{job.dateTo}</Text>
+              </View>
+            ))}
+            {resume && resume.educations.map((education, i) => (
+              <View style={styles.section} key={i}>
+                <Text>{education.place}</Text>
+                <Text>{education.yearFrom}</Text>
+                <Text>{education.yearTo}</Text>
+                <Text>{education.info}</Text>
+              </View>
+            ))}
+      </PDFPage> 
     </Document>
   );
 
   const [generatedResume, setGeneratedResume] = useState("");
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     apiFetch("/resume/0", "GET").then(json => {
-      console.log("resume")
       setResume(json as Resume)
-      setLoading(false)
-    }); 
-    
+      console.log("resume", json, resume)
+    });  
   }, []);
 
   const [numPages, setNumPages] = useState(1);
@@ -151,18 +151,18 @@ export const Page: React.FunctionComponent = () => {
       <Grid item xs={12} sm={6}>
         <Box bgcolor="secondary.main" p={5} >
           <Paper elevation={8} className={classes.paper} >
-            {loading ? loadingComponent  : <Doc
+            {!resume ? loadingComponent  : <Doc
               file={generatedResume}
               onLoadSuccess={onDocumentLoadSuccess}
             >
               <DocPage pageNumber={numPages} style={{width: "0px"}}/>
             </Doc> }
-            <BlobProvider document={doc}>
+            {resume && <BlobProvider document={doc}>
               {({url}) => {
                 setGeneratedResume(url ? url : "")
                 return <></>;
               }}
-            </BlobProvider>
+            </BlobProvider>}
        
           </Paper>
           </Box> 
