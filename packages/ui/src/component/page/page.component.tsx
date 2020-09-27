@@ -13,7 +13,7 @@ import SquareIcon from '../icons/square.icon';
 import RectangleIcon from '../icons/rectangle.icon';
 import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// import { Skeleton } from '@material-ui/lab';
+import { Skeleton } from '@material-ui/lab';
 
 // Font.register({
 //   family: 'Oswald',
@@ -53,6 +53,13 @@ const useStyles = makeStyles((theme) => ({
       display: "none"
     }
   },
+  loading: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%"
+  }
 }));
 
 interface Resume {
@@ -125,8 +132,7 @@ export const Page: React.FunctionComponent = () => {
 
   useEffect(() => {
     apiFetch("/resume/0", "GET").then(json => {
-      setResume(json as Resume)
-      console.log("resume", json, resume)
+      // setResume(json as Resume)
     });  
   }, []);
 
@@ -138,8 +144,7 @@ export const Page: React.FunctionComponent = () => {
   const loadingComponent =( 
       <Grid container>
         <Grid item >
-       
-          {/* <Skeleton animation="wave" /> */}
+          <Skeleton animation="wave" variant="rect" className={classes.loading}/>
         </Grid>
       </Grid>
     );
