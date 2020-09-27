@@ -31,10 +31,12 @@ const styles = StyleSheet.create({
   },
   text1: {
     flex: 3,
+    lineHeight: "14px"
   },
   text: {
     flex: 5,
-    paddingRight: "70px"
+    paddingRight: "70px",
+    lineHeight: "14px"
   },
   box: {
     flex: 3,
@@ -99,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
       minHeight: "calc(147vw - 80px)",
       "@media (min-width: 600px)":{
         width: "calc(50vw - 80px)",
-        minHeight: "600px",
+        minHeight: "670px",
       },
    
   },
