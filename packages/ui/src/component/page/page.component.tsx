@@ -31,11 +31,19 @@ const styles = StyleSheet.create({
     borderBottom: "2px solid black"
   },
   text1: {
-    flex: 2,
+    flex: 3,
   },
   text: {
-    flex: 4,
+    flex: 5,
     paddingRight: "70px"
+  },
+  box: {
+    flex: 3,
+    backgroundColor: "#FFB7D5",
+    height: "95",
+    maxWidth: "86",
+    position: "relative",
+    left: "-72"
   },
 });
 
@@ -44,12 +52,19 @@ const Heading = styled.Text`
   padding-bottom: 26px;
 `;
 
+const Subtitle = styled.Text`
+  text-transform: uppercase;
+  padding-bottom:15px;
+  font-size: 9px;
+`;
+
 const Body = styled.Text`
   font-size: 9px;
 `;
 
 const PPage = styled.Page`
   padding: 50px;
+  padding-top: 0px;
   font-family: 'Times-Roman';
 `;
 
@@ -128,6 +143,12 @@ export const Page1: React.FunctionComponent = () => {
   const doc = (
     <Document>
        <PPage size="A4">
+       <View style={styles.body} >
+            <View style={styles.text}>
+            </View>
+            <View style={styles.box}>
+            </View>
+            </View>
           <View style={styles.body} >
             <View style={styles.text}>
             <Heading>{resume && resume.user.name}</Heading>
@@ -140,12 +161,11 @@ export const Page1: React.FunctionComponent = () => {
               <Body>{resume && resume.resume.location}</Body>
             </View>
             </View>
-            {/* <View style={styles.body} > */}
+            <Subtitle>Work Experience</Subtitle>
             {resume && resume.jobs.map((job, i) => (
               <View key={i} style={styles.body}>
                 <View style={styles.text}>
-                <Body>{job.title}</Body>
-                <Body>{job.company}</Body>
+                <Body>{job.title} at {job.company}</Body>
                 <Body>{job.location}</Body>
                 <Body>{job.description}</Body>
                 </View>
@@ -155,8 +175,7 @@ export const Page1: React.FunctionComponent = () => {
               </View>
 
             ))}
-            {/* </View>
-            <View style={styles.body} > */}
+            <Subtitle>Education</Subtitle>
             {resume && resume.educations.map((education, i) => (
               <View key={i} style={styles.body}>
                 <View style={styles.text}>
