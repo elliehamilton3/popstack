@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
         width: "calc(50vw - 80px)",
         minHeight: "600px",
       },
+   
+  },
+  pdfStyles: {
     "& canvas": {
       width: "100% !important",
       height: "auto !important"
@@ -52,13 +55,6 @@ const useStyles = makeStyles((theme) => ({
     "& div div div": {
       display: "none"
     }
-  },
-  loading: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%"
   }
 }));
 
@@ -142,11 +138,23 @@ export const Page: React.FunctionComponent = () => {
     setNumPages(numPages);
   }
   const loadingComponent =( 
-      <Grid container>
+    <Box p={4}>
+        <Grid container>
         <Grid item >
-          <Skeleton animation="wave" variant="rect" className={classes.loading}/>
+          <Typography variant="h1">
+            <Skeleton width="200px"/>
+          </Typography>
+          <Typography variant="h2">
+            <Skeleton width="120px"/>
+          </Typography>
+          <Typography variant="body1">
+            <Skeleton width="80px"/>
+          </Typography>
+     
         </Grid>
       </Grid>
+      </Box>
+    
     );
 
   return (
@@ -155,7 +163,7 @@ export const Page: React.FunctionComponent = () => {
       <Grid container >
       <Grid item xs={12} sm={6}>
         <Box bgcolor="secondary.main" p={5} >
-          <Paper elevation={8} className={classes.paper} >
+          <Paper elevation={8} className={`${classes.paper} ${generatedResume && classes.pdfStyles}`} >
             {!generatedResume ? loadingComponent  : <Doc
               file={generatedResume}
               onLoadSuccess={onDocumentLoadSuccess}
