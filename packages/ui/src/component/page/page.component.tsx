@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     paddingBottom: "40px",
-    borderBottom: "2px solid black"
   },
   text1: {
     flex: 3,
@@ -45,6 +44,10 @@ const styles = StyleSheet.create({
     position: "relative",
     left: "-72"
   },
+  border: {
+    backgroundColor: "#0C0C0C",
+    height: "1",
+  },
 });
 
 const Heading = styled.Text`
@@ -55,6 +58,7 @@ const Heading = styled.Text`
 const Subtitle = styled.Text`
   text-transform: uppercase;
   padding-bottom:15px;
+  padding-top:21px;
   font-size: 9px;
 `;
 
@@ -146,8 +150,7 @@ export const Page1: React.FunctionComponent = () => {
        <View style={styles.body} >
             <View style={styles.text}>
             </View>
-            <View style={styles.box}>
-            </View>
+            <View style={styles.box} />
             </View>
           <View style={styles.body} >
             <View style={styles.text}>
@@ -161,6 +164,7 @@ export const Page1: React.FunctionComponent = () => {
               <Body>{resume && resume.resume.location}</Body>
             </View>
             </View>
+            <View style={styles.border} />
             <Subtitle>Work Experience</Subtitle>
             {resume && resume.jobs.map((job, i) => (
               <View key={i} style={styles.body}>
@@ -175,6 +179,7 @@ export const Page1: React.FunctionComponent = () => {
               </View>
 
             ))}
+             <View style={styles.border} />
             <Subtitle>Education</Subtitle>
             {resume && resume.educations.map((education, i) => (
               <View key={i} style={styles.body}>
