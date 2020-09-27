@@ -23,6 +23,12 @@ Font.register({
   src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf'
 });
 
+Font.register({
+  family: 'Vollkorn-Bold',
+  format: "truetype",
+  src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf'
+});
+
 const styles = StyleSheet.create({
   link: { textDecoration: "none", color:"inherit"},
   body: {
@@ -56,6 +62,7 @@ const styles = StyleSheet.create({
 const Heading = styled.Text`
   font-size: 23px;
   padding-bottom: 26px;
+  font-family: 'Vollkorn-Bold';
 `;
 
 const Subtitle = styled.Text`
@@ -67,6 +74,10 @@ const Subtitle = styled.Text`
 
 const Body = styled.Text`
   font-size: 9px;
+`;
+const BodyBold = styled.Text`
+  font-size: 9px;
+  font-family: 'Vollkorn-Bold';
 `;
 
 const PPage = styled.Page`
@@ -160,7 +171,7 @@ export const Page1: React.FunctionComponent = () => {
             {resume && resume.jobs.map((job, i) => (
               <View key={i} style={styles.body}>
                 <View style={styles.text}>
-                <Body>{job.title} at {job.company}</Body>
+                <BodyBold>{job.title} at {job.company}</BodyBold>
                 <Body>{job.location}</Body>
                 <Body>{job.description}</Body>
                 </View>
@@ -175,7 +186,7 @@ export const Page1: React.FunctionComponent = () => {
             {resume && resume.educations.map((education, i) => (
               <View key={i} style={styles.body}>
                 <View style={styles.text}>
-                <Body>{education.place}</Body>
+                <BodyBold>{education.place}</BodyBold>
                 <Body>{education.info}</Body>
                 </View>
                 <View style={styles.text1}>
