@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
-import { BlobProvider, PDFDownloadLink, Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { BlobProvider, pdf } from '@react-pdf/renderer';
 import { Document as Doc, Page as DocPage } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
 import { ThemeProvider } from '../../styles/theme';
@@ -14,87 +14,8 @@ import RectangleIcon from '../icons/rectangle.icon';
 import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Skeleton } from '@material-ui/lab';
-import styled from '@react-pdf/styled-components';
-import moment from 'moment';
-
-// Font.register({
-//   family: 'Vollkorn',
-//   format: "truetype",
-//   src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf'
-// });
-
-// Font.register({
-//   family: 'Vollkorn-Bold',
-//   format: "truetype",
-//   src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf'
-// });
-
-// Font.register({
-//   family: 'Vollkorn-Medium',
-//   format: "truetype",
-//   src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2AnGuGQ.ttf'
-// });
-
-
-const styles = StyleSheet.create({
-  link: { textDecoration: "none", color:"inherit"},
-  body: {
-    display: "flex",
-    flexDirection: "row",
-    paddingBottom: "40px",
-  },
-  text1: {
-    flex: 3,
-    lineHeight: "14px"
-  },
-  text: {
-    flex: 5,
-    paddingRight: "70px",
-    lineHeight: "14px"
-  },
-  box: {
-    flex: 3,
-    backgroundColor: "#FFB7D5",
-    height: "95",
-    maxWidth: "86",
-    position: "relative",
-    left: "-72"
-  },
-  border: {
-    backgroundColor: "#0C0C0C",
-    height: "1",
-  },
-});
-
-const Heading = styled.Text`
-  font-size: 23px;
-  padding-bottom: 26px;
-`;
-// font-family: 'Vollkorn-Medium';
-
-const Subtitle = styled.Text`
-  text-transform: uppercase;
-  padding-bottom:15px;
-  padding-top:21px;
-  font-size: 9px;
-`;
-
-const Body = styled.Text`
-  font-size: 9px;
-`;
-const BodyBold = styled.Text`
-  font-size: 9px;
-`;
-
-// font-family: 'Vollkorn-Bold';
-
-const PPage = styled.Page`
-  padding: 49px;
-  padding-top: 0px;
-  padding-right: 61px;
-`;
-
-// font-family: 'Vollkorn';
+import PdfDocument from './pdfDocument.component';
+import { saveAs } from 'file-saver';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -126,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-interface Resume {
+export interface Resume {
   resume: {
     bio: string;
     title: string;
@@ -153,60 +74,20 @@ interface Resume {
   };
 }
 
+const generatePdfDocument = async (documentData: Resume) => {
+  const blob = await pdf((
+      <PdfDocument
+          {...documentData}
+      />
+  )).toBlob();
+  console.log(blob)
+  saveAs(blob, 'democv.pdf');
+};
+
+
 export const Page1: React.FunctionComponent = () => { 
   const [resume, setResume] = useState<Resume | undefined>(undefined);
   const classes = useStyles();
-  const doc = resume ? (
-    <Document>
-       <PPage size="A4">
-            <View style={styles.body} >
-            <View style={styles.text}>
-            </View>
-            <View style={styles.box} />
-            </View>
-          <View style={styles.body} >
-            <View style={styles.text}>
-            <Heading>{resume.user.name}</Heading>
-            <Body>{resume.resume.bio}</Body>
-          </View>
-            <View style={styles.text1}>
-              <Body>{resume.resume.title}</Body>
-              <Body>{resume.user.email}</Body>
-              <Body>{resume.user.phoneNumber}</Body>
-              <Body>{resume.resume.location}</Body>
-            </View>
-            </View>
-            <View style={styles.border} />
-            <Subtitle>Work Experience</Subtitle>
-            {resume.jobs.map((job, i) => (
-              <View key={i} style={styles.body}>
-                <View style={styles.text}>
-                <BodyBold>{job.title} at {job.company}</BodyBold>
-                <Body>{job.location}</Body>
-                <Body>{job.description}</Body>
-                </View>
-              <View style={styles.text1}>
-                <Body>{moment(job.dateFrom).format('MMMM YYYY')} - {moment(job.dateTo).format('MMMM YYYY')}</Body>
-                </View>
-              </View>
-
-            ))}
-             <View style={styles.border} />
-            <Subtitle>Education</Subtitle>
-            {resume.educations.map((education, i) => (
-              <View key={i} style={styles.body}>
-                <View style={styles.text}>
-                <BodyBold>{education.place}</BodyBold>
-                <Body>{education.info}</Body>
-                </View>
-                <View style={styles.text1}>
-                <Body>{education.yearFrom} - {education.yearTo}</Body>
-              </View>
-              </View>
-            ))}
-      </PPage> 
-    </Document>
-  ) :  <Document />;
 
   const [generatedResume, setGeneratedResume] = useState("");
 
@@ -256,7 +137,7 @@ export const Page1: React.FunctionComponent = () => {
             >
               <DocPage pageNumber={numPages} style={{width: "0px"}}/>
             </Doc> }
-            {resume && <BlobProvider document={doc}>
+            {resume && <BlobProvider document={<PdfDocument {...resume}/>}>
               {({url}) => {
                 setGeneratedResume(url ? url : "")
                 return <></>;
@@ -274,9 +155,7 @@ export const Page1: React.FunctionComponent = () => {
           <Grid container justify="space-between" alignItems="center">
             <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
             <Grid item> 
-                <PDFDownloadLink document={doc} fileName="example.pdf"  style={styles.link}>
-                    {({ loading }) => (<Button variant="outlined" disabled={loading && !resume}>Download</Button>)}
-                </PDFDownloadLink>
+                <Button variant="outlined" disabled={!resume} onClick={() => generatePdfDocument(resume!)}>Download</Button>
               </Grid>
             </Grid>
           </Grid> 
