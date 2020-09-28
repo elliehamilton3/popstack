@@ -17,23 +17,23 @@ import { Skeleton } from '@material-ui/lab';
 import styled from '@react-pdf/styled-components';
 import moment from 'moment';
 
-Font.register({
-  family: 'Vollkorn',
-  format: "truetype",
-  src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf'
-});
+// Font.register({
+//   family: 'Vollkorn',
+//   format: "truetype",
+//   src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf'
+// });
 
-Font.register({
-  family: 'Vollkorn-Bold',
-  format: "truetype",
-  src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf'
-});
+// Font.register({
+//   family: 'Vollkorn-Bold',
+//   format: "truetype",
+//   src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf'
+// });
 
-Font.register({
-  family: 'Vollkorn-Medium',
-  format: "truetype",
-  src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2AnGuGQ.ttf'
-});
+// Font.register({
+//   family: 'Vollkorn-Medium',
+//   format: "truetype",
+//   src: 'https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2AnGuGQ.ttf'
+// });
 
 
 const styles = StyleSheet.create({
@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
 const Heading = styled.Text`
   font-size: 23px;
   padding-bottom: 26px;
-  font-family: 'Vollkorn-Medium';
 `;
+// font-family: 'Vollkorn-Medium';
 
 const Subtitle = styled.Text`
   text-transform: uppercase;
@@ -84,15 +84,17 @@ const Body = styled.Text`
 `;
 const BodyBold = styled.Text`
   font-size: 9px;
-  font-family: 'Vollkorn-Bold';
 `;
+
+// font-family: 'Vollkorn-Bold';
 
 const PPage = styled.Page`
   padding: 49px;
   padding-top: 0px;
   padding-right: 61px;
-  font-family: 'Vollkorn';
 `;
+
+// font-family: 'Vollkorn';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -154,29 +156,29 @@ interface Resume {
 export const Page1: React.FunctionComponent = () => { 
   const [resume, setResume] = useState<Resume | undefined>(undefined);
   const classes = useStyles();
-  const doc = (
+  const doc = resume ? (
     <Document>
        <PPage size="A4">
-       <View style={styles.body} >
+            <View style={styles.body} >
             <View style={styles.text}>
             </View>
             <View style={styles.box} />
             </View>
           <View style={styles.body} >
             <View style={styles.text}>
-            <Heading>{resume && resume.user.name}</Heading>
-            <Body>{resume && resume.resume.bio}</Body>
-            </View>
+            <Heading>{resume.user.name}</Heading>
+            <Body>{resume.resume.bio}</Body>
+          </View>
             <View style={styles.text1}>
-              <Body>{resume && resume.resume.title}</Body>
-              <Body>{resume && resume.user.email}</Body>
-              <Body>{resume && resume.user.phoneNumber}</Body>
-              <Body>{resume && resume.resume.location}</Body>
+              <Body>{resume.resume.title}</Body>
+              <Body>{resume.user.email}</Body>
+              <Body>{resume.user.phoneNumber}</Body>
+              <Body>{resume.resume.location}</Body>
             </View>
             </View>
             <View style={styles.border} />
             <Subtitle>Work Experience</Subtitle>
-            {resume && resume.jobs.map((job, i) => (
+            {resume.jobs.map((job, i) => (
               <View key={i} style={styles.body}>
                 <View style={styles.text}>
                 <BodyBold>{job.title} at {job.company}</BodyBold>
@@ -191,7 +193,7 @@ export const Page1: React.FunctionComponent = () => {
             ))}
              <View style={styles.border} />
             <Subtitle>Education</Subtitle>
-            {resume && resume.educations.map((education, i) => (
+            {resume.educations.map((education, i) => (
               <View key={i} style={styles.body}>
                 <View style={styles.text}>
                 <BodyBold>{education.place}</BodyBold>
@@ -202,16 +204,16 @@ export const Page1: React.FunctionComponent = () => {
               </View>
               </View>
             ))}
-                {/* </View> */}
       </PPage> 
     </Document>
-  );
+  ) :  <Document />;
 
   const [generatedResume, setGeneratedResume] = useState("");
 
   useEffect(() => {
     apiFetch("/resume/0", "GET").then(json => {
       setResume(json as Resume)
+      console.log("resume")
     });  
   }, []);
 
@@ -271,11 +273,11 @@ export const Page1: React.FunctionComponent = () => {
           <Grid item> 
           <Grid container justify="space-between" alignItems="center">
             <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
-            <Grid item> <Button variant="outlined">
-            {resume && <PDFDownloadLink document={doc} fileName="example.pdf"  style={styles.link}>
-                  {({ loading }) => (loading ? 'Loading document...' : 'Download')}
-                </PDFDownloadLink>}
-              </Button></Grid>
+            <Grid item> 
+                <PDFDownloadLink document={doc} fileName="example.pdf"  style={styles.link}>
+                    {({ loading }) => (<Button variant="outlined" disabled={loading && !resume}>Download</Button>)}
+                </PDFDownloadLink>
+              </Grid>
             </Grid>
           </Grid> 
           </Box>
