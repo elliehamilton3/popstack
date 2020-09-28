@@ -80,7 +80,6 @@ const generatePdfDocument = async (documentData: Resume) => {
           {...documentData}
       />
   )).toBlob();
-  console.log(blob)
   saveAs(blob, 'democv.pdf');
 };
 
@@ -97,6 +96,13 @@ export const Page1: React.FunctionComponent = () => {
       console.log("resume")
     });  
   }, []);
+
+  const updateResume = () => {
+    apiFetch("/resume/0", "PATCH", {firstName: "name", lastName: "name"}).then(json => {
+      setResume(json as Resume)
+    });  
+  }
+  
 
   const [numPages, setNumPages] = useState(1);
  
@@ -128,9 +134,10 @@ export const Page1: React.FunctionComponent = () => {
       <Navbar />
       <Grid container >
       <Grid item xs={12} sm={6}>
-        <Box bgcolor="secondary.main" p={5} >
+        <Box bgcolor="#333333" p={5} >
           <Paper elevation={8} className={`${classes.paper} ${generatedResume && classes.pdfStyles}`} >
-            {!generatedResume ? loadingComponent  : <Doc
+            {!generatedResume ? loadingComponent  : 
+            <Doc
               file={generatedResume}
               onLoadSuccess={onDocumentLoadSuccess}
               loading={loadingComponent}
@@ -156,6 +163,9 @@ export const Page1: React.FunctionComponent = () => {
             <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
             <Grid item> 
                 <Button variant="outlined" disabled={!resume} onClick={() => generatePdfDocument(resume!)}>Download</Button>
+              </Grid>
+              <Grid item> 
+                <Button variant="outlined" onClick={() => updateResume()}>Update</Button>
               </Grid>
             </Grid>
           </Grid> 

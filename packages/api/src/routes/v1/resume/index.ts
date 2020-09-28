@@ -5,7 +5,7 @@ import withThrowFailAction from '../../../services/withThrowFailAction.service';
 import postHandler from './POST.handler';
 import getHandler from './GET.handler';
 // import putHandler from './PUT.handler';
-// import patchHandler from './PATCH.handler';
+import patchHandler from './PATCH.handler';
 // import deleteHandler from './DELETE.handler';
 
 export default [
@@ -19,9 +19,9 @@ export default [
       tags: ['api'],
       description:
         'Create resume',
-      // validate: {
-      //   payload: Joi.object({}).unknown(),
-      // },
+      validate: {
+        payload: Joi.object({}).unknown(),
+      },
     },
   },
   {
@@ -55,20 +55,24 @@ export default [
   //     },
   //   },
   // },
-  // {
-  //   method: 'PATCH',
-  //   path: '/{resumeId}',
-  //   options: {
-  //     auth: false,
-  //     id: 'PATCH/resume/{resumeId}',
-  //     handler: patchHandler,
-  //     tags: ['api'],
-  //     description:
-  //       'Patch resume info by resumeId',
-  //     validate: Joi.object({}).unknown(),
-  //     payload: Joi.object({}).unknown(),
-  //   },
-  // },
+  {
+    method: 'PATCH',
+    path: '/{resumeId}',
+    options: {
+      auth: false,
+      id: 'PATCH/resume/{resumeId}',
+      handler: patchHandler,
+      tags: ['api'],
+      description:
+        'Patch resume info by resumeId',
+      validate: {
+        payload: Joi.object({
+          firstName: Joi.string(),
+          lastName: Joi.string(),
+        }),
+      },
+    },
+  },
   // {
   //   method: 'DELETE',
   //   path: '/{resumeId}',
