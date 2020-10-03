@@ -1,9 +1,7 @@
-import * as React from 'react';
-import { MatterStepThree } from '../component/animation/animation.component';
+import * as React from "react";
+import { MatterStepThree } from "../component/animation/animation.component";
 export const IndexView: React.FunctionComponent = () => {
-  return (
-    <MatterStepThree />
-  );
+  return <MatterStepThree />;
 };
 
 export default IndexView;

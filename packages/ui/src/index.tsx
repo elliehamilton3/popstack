@@ -1,10 +1,10 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { Router } from 'react-router';
-import { historyInit } from './service/historyInit.service';
-import { AppView } from './view/app.view';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { Router } from "react-router";
+import { historyInit } from "./service/historyInit.service";
+import { AppView } from "./view/app.view";
 
 const app = {
   init: () => {
@@ -14,7 +14,7 @@ const app = {
       <Router history={browserHistory}>
         <AppView />
       </Router>,
-      document.getElementById('appRoot'),
+      document.getElementById("appRoot")
     );
   },
 };

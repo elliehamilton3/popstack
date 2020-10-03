@@ -1,19 +1,21 @@
 // eslint-disable-next-line
-export default async function apiFetch<T = any>(endpoint: string, method?: string, body?: any): Promise<T> {
+export default async function apiFetch<T = any>(
+  endpoint: string,
+  method?: string,
+  body?: any
+): Promise<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const API_ROOT = (window as any).POPSTACK_API_HOST || process.env.API_HOST || "https://popstack.herokuapp.com";
-  const API_VERSION = 'v1';
+  const API_ROOT =
+    (window as any).POPSTACK_API_HOST ||
+    process.env.API_HOST ||
+    "https://popstack.herokuapp.com";
+  const API_VERSION = "v1";
 
-  const url = [
-    API_ROOT,
-    '/',
-    API_VERSION,
-    endpoint
-  ].join('');
+  const url = [API_ROOT, "/", API_VERSION, endpoint].join("");
 
   const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
+    Accept: "application/json",
+    "Content-Type": "application/json",
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any;
 

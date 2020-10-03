@@ -5,7 +5,6 @@
 // import circle from '../icons/circle.svg'
 // import $ from "jquery";
 
-
 // export const MatterStepThree = () => {
 //   const boxRef = useRef(null)
 //   const canvasRef = useRef(null)
@@ -26,7 +25,7 @@
 
 //     const engine = Engine.create({})
 //     const world = engine.world
-   
+
 //     // create renderer
 //     const render = Render.create({
 //         element: document.body,
@@ -48,7 +47,7 @@
 //         circle
 //         // <CircleIcon key={"circle"}/> ,
 //         // <Parallelogram key={"para"} />
-//         // 'iconmonstr-check-mark-8-icon', 
+//         // 'iconmonstr-check-mark-8-icon',
 //         // 'iconmonstr-paperclip-2-icon',
 //         // 'iconmonstr-puzzle-icon',
 //         // 'iconmonstr-user-icon'
@@ -67,7 +66,7 @@
 //                     // $(data).find('path').each(function(i: any, path: any) {
 //                         const points = Svg.pathToVertices(path, 30);
 //                         vertexSets.push(Vertices.scale(points, 0.4, 0.4));
-//                     // }); 
+//                     // });
 
 //                     World.add(world, Bodies.fromVertices(100 + i * 150, 200 + i * 50, vertexSets, {
 //                         render: {
@@ -76,7 +75,7 @@
 //                             lineWidth: 1
 //                         }
 //                     }, true));
-//                 // });       
+//                 // });
 //             })(i);
 //         }
 

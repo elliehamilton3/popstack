@@ -1,10 +1,8 @@
-import * as React from 'react';
-import {
-  BrowserRouter, Route, Switch, Redirect,
-} from 'react-router-dom';
+import * as React from "react";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import { IndexView } from './index.view';
-import { ResumeView } from './resume.view';
+import { IndexView } from "./index.view";
+import { ResumeView } from "./resume.view";
 
 export const AppView: React.FunctionComponent = () => (
   <BrowserRouter>
