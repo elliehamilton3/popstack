@@ -30,6 +30,11 @@ const styles = StyleSheet.create({
       flexDirection: "row",
       paddingBottom: "40px",
     },
+    header: {
+      display: "flex",
+      flexDirection: "row",
+      paddingBottom: "6px",
+    },
     text1: {
       flex: 3,
       lineHeight: "14px"
@@ -86,11 +91,10 @@ export const PdfDocument: React.FunctionComponent<Resume> = ({user, resume, educ
     return (
     <Document>
     <PPage size="A4">
-         <View style={styles.body} >
-         <View style={styles.text}>
-         </View>
-         <View style={styles.box} />
-         </View>
+         <View style={styles.header} >
+          <View style={styles.text} />
+          <View style={styles.box} />
+        </View>
        <View style={styles.body} >
          <View style={styles.text}>
          <Heading>{user.firstName} {user.lastName}</Heading>
