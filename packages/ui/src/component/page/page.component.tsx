@@ -186,13 +186,13 @@ export const Page1: React.FunctionComponent = () => {
             </Grid>
             <Grid item>
               <Grid container spacing={2} alignItems="flex-end">
-                <Grid item sm={6}><TextField id="filled-basic2" helperText="Email address" fullWidth variant="filled" /></Grid>
-                <Grid item sm={6}><TextField id="filled-basic3" helperText="Phone number" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic2" name="email" helperText="Email address" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic3" name="phoneNumber" type="number" helperText="Phone number" fullWidth variant="filled" /></Grid>
               </Grid>
             </Grid>
             <Grid item>
               <Grid container spacing={2} alignItems="flex-end">
-                <Grid item sm={6}><TextField id="filled-basic4" helperText="Job title" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic4" name="title" helperText="Job title" fullWidth variant="filled" /></Grid>
                 <Grid item sm={6}><Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add custom field</Button></Grid>
               </Grid>
             </Grid>

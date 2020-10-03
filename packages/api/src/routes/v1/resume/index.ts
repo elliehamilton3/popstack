@@ -67,8 +67,11 @@ export default [
         'Patch resume info by resumeId',
       validate: {
         payload: Joi.object({
-          firstName: Joi.string(),
-          lastName: Joi.string(),
+          firstName: Joi.string().allow(''),
+          lastName: Joi.string().allow(''),
+          email: Joi.string().allow(''),
+          phoneNumber: Joi.number().allow(''),
+          title: Joi.string().allow(''),
         }),
       },
     },
