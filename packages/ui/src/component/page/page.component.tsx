@@ -46,6 +46,11 @@ const useStyles = makeStyles((theme) => ({
     "& div div div": {
       display: "none"
     }
+  },
+  closedAccordion: {
+    border: lighten('#0057FF', 0.7),
+    borderStyle: "dashed",
+    borderWidth: "1px",
   }
 }));
 
@@ -261,7 +266,7 @@ export const Page1: React.FunctionComponent = () => {
             </Accordion>
           </Grid>
           <Grid item>
-          <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
+          <Accordion expanded={expanded} className={`${!expanded && classes.closedAccordion}`} onChange={() => setExpanded(!expanded)}>
             <AccordionSummary
                 expandIcon={expanded ?<RemoveIcon className={classes.icon}/>:<AddIcon className={classes.icon}/>}
                 aria-controls="panel1a-content"
