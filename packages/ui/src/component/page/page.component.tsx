@@ -14,7 +14,7 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@material-ui/core";
-import { BlobProvider, pdf } from "@react-pdf/renderer";
+import { BlobProvider } from "@react-pdf/renderer";
 import {
   Document as Doc,
   Page as DocPage,
@@ -32,9 +32,9 @@ import AddIcon from "@material-ui/icons/Add";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { Skeleton } from "@material-ui/lab";
-import PdfDocument from "./pdfDocument.component";
-import { saveAs } from "file-saver";
+import PdfDocument, { generatePdfDocument } from "./pdfDocument.component";
 import { getFormValues } from "../../helper/getFormValues";
+import { Resume } from "../../interface/resume.interface";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -69,39 +69,6 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: "1px",
   },
 }));
-
-export interface Resume {
-  resume: {
-    bio: string;
-    title: string;
-    location: string;
-  };
-  educations: {
-    place: string;
-    yearFrom: number;
-    yearTo: number;
-    info: string;
-  }[];
-  jobs: {
-    company: string;
-    title: string;
-    location: string;
-    description: string;
-    dateFrom: Date;
-    dateTo: Date;
-  }[];
-  user: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-  };
-}
-
-const generatePdfDocument = async (documentData: Resume) => {
-  const blob = await pdf(<PdfDocument {...documentData} />).toBlob();
-  saveAs(blob, "cv.pdf");
-};
 
 export const Page1: React.FunctionComponent = () => {
   const [resume, setResume] = useState<Resume | undefined>(undefined);
@@ -191,7 +158,6 @@ export const Page1: React.FunctionComponent = () => {
                   <Grid item>
                     <Grid container justify="space-between" alignItems="center">
                       <Grid item>
-                        {" "}
                         <Typography variant="h1">Your Resumé</Typography>
                       </Grid>
                       <Grid item>
@@ -218,11 +184,9 @@ export const Page1: React.FunctionComponent = () => {
                 <Box pb={8}>
                   <Grid item container direction="column" spacing={2}>
                     <Grid item>
-                      {" "}
                       <CircleIcon />
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="h2">Personal Details</Typography>
                     </Grid>
                     <Grid item>
@@ -299,23 +263,19 @@ export const Page1: React.FunctionComponent = () => {
                 <Box pb={8}>
                   <Grid item container direction="column" spacing={2}>
                     <Grid item>
-                      {" "}
                       <ParallelogramIcon />
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="h2">
                         Describe you and your work
                       </Typography>
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="subtitle1">
                         Summarise your professional career in 2 or 3 sentences.
                       </Typography>
                     </Grid>
                     <Grid item>
-                      {" "}
                       <TextField
                         name="bio"
                         fullWidth
@@ -330,15 +290,12 @@ export const Page1: React.FunctionComponent = () => {
                 <Box pb={8}>
                   <Grid item container direction="column" spacing={2}>
                     <Grid item>
-                      {" "}
                       <TeardropIcon />
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="h2">Employment history</Typography>
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="subtitle1">
                         Include your last 10 years of relevant experience and
                         dates in this section. List your most recent position
@@ -346,7 +303,6 @@ export const Page1: React.FunctionComponent = () => {
                       </Typography>
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Button
                         color="secondary"
                         variant="outlined"
@@ -363,15 +319,12 @@ export const Page1: React.FunctionComponent = () => {
                 <Box pb={8}>
                   <Grid item container direction="column" spacing={2}>
                     <Grid item>
-                      {" "}
                       <HalfCircleIcon />
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="h2">Education</Typography>
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="subtitle1">
                         If it’s relevant to your work, you can choose to include
                         any recent educational achievements and the dates here.
@@ -402,7 +355,7 @@ export const Page1: React.FunctionComponent = () => {
                                   <Typography>
                                     Central Saint Martins, London
                                   </Typography>
-                                </Grid>{" "}
+                                </Grid>
                               </Grid>
                             </Grid>
                             <Grid item>
@@ -470,7 +423,6 @@ export const Page1: React.FunctionComponent = () => {
                               />
                             </Grid>
                             <Grid item sm={12}>
-                              {" "}
                               <TextField
                                 name="description"
                                 fullWidth
@@ -578,7 +530,6 @@ export const Page1: React.FunctionComponent = () => {
                               />
                             </Grid>
                             <Grid item sm={12}>
-                              {" "}
                               <TextField
                                 name="description"
                                 fullWidth
@@ -600,17 +551,14 @@ export const Page1: React.FunctionComponent = () => {
                 <Box pb={8}>
                   <Grid item container direction="column" spacing={2}>
                     <Grid item>
-                      {" "}
                       <RectangleIcon />
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="h2">
                         Websites &amp; social media links
                       </Typography>
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="subtitle1">
                         Include a link to your personal website or portfolio,
                         Github repository, LinkedIn, or anything you might want
@@ -618,7 +566,6 @@ export const Page1: React.FunctionComponent = () => {
                       </Typography>
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Button
                         color="secondary"
                         variant="outlined"
@@ -635,21 +582,17 @@ export const Page1: React.FunctionComponent = () => {
                 <Box pb={8}>
                   <Grid item container direction="column" spacing={2}>
                     <Grid item>
-                      {" "}
                       <SquareIcon />
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="h2">Skills</Typography>
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Typography variant="subtitle1">
                         Add any skills you have that you want to highlight.
                       </Typography>
                     </Grid>
                     <Grid item>
-                      {" "}
                       <Button
                         color="secondary"
                         variant="outlined"

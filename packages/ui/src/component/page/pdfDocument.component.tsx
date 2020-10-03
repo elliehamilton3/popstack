@@ -1,8 +1,9 @@
 import React from "react";
-import { View, Document, StyleSheet, Font } from "@react-pdf/renderer";
-import { Resume } from "./page.component";
+import { View, Document, StyleSheet, Font, pdf } from "@react-pdf/renderer";
+import { Resume } from "../../interface/resume.interface";
 import styled from "@react-pdf/styled-components";
 import moment from "moment";
+import { saveAs } from "file-saver";
 
 Font.register({
   family: "Vollkorn",
@@ -88,6 +89,11 @@ const PPage = styled.Page`
   font-family: "Vollkorn";
 `;
 
+export const generatePdfDocument = async (documentData: Resume) => {
+  const blob = await pdf(<PdfDocument {...documentData} />).toBlob();
+  saveAs(blob, "cv.pdf");
+};
+
 export const PdfDocument: React.FunctionComponent<Resume> = ({
   user,
   resume,
@@ -117,7 +123,7 @@ export const PdfDocument: React.FunctionComponent<Resume> = ({
         </View>
         <View style={styles.border} />
         <Subtitle>Work Experience</Subtitle>
-        {jobs.map((job, i) => (
+        {jobs.map((job: { title: any; company: any; location: any; description: any; dateFrom: moment.MomentInput; dateTo: moment.MomentInput; }, i: string | number | null | undefined) => (
           <View key={i} style={styles.body}>
             <View style={styles.text}>
               <BodyBold>
@@ -136,7 +142,7 @@ export const PdfDocument: React.FunctionComponent<Resume> = ({
         ))}
         <View style={styles.border} />
         <Subtitle>Education</Subtitle>
-        {educations.map((education, i) => (
+        {educations.map((education: { place: any; info: any; yearFrom: any; yearTo: any; }, i: string | number | null | undefined) => (
           <View key={i} style={styles.body}>
             <View style={styles.text}>
               <BodyBold>{education.place}</BodyBold>
