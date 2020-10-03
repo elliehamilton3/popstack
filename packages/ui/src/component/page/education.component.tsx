@@ -28,6 +28,77 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const AccordionDetailsForm = (
+  <AccordionDetails>
+  <Grid container spacing={2} alignItems="flex-end">
+    <Grid item sm={12}>
+      <TextField
+        id="filled-basic"
+        name="institution"
+        helperText="Institution"
+        fullWidth
+        variant="filled"
+      />
+    </Grid>
+    <Grid item sm={12}>
+      <TextField
+        id="filled-basic1"
+        name="qualification"
+        helperText="Qualification"
+        fullWidth
+        variant="filled"
+      />
+    </Grid>
+    <Grid item sm={4}>
+      <TextField
+        id="filled-basic1"
+        name="startDate"
+        helperText="Start date"
+        fullWidth
+        variant="filled"
+      />
+    </Grid>
+    <Grid item sm={4}>
+      <TextField
+        id="filled-basic1"
+        name="endDate"
+        helperText="End date"
+        fullWidth
+        variant="filled"
+      />
+    </Grid>
+    <Grid item sm={4}>
+      <FormControlLabel
+        control={
+          <Checkbox checked={true} name="checkedA" color="primary" />
+        }
+        label="Currently studying"
+      />
+    </Grid>
+    <Grid item sm={12}>
+      <TextField
+        id="filled-basic1"
+        name="location"
+        helperText="Location"
+        fullWidth
+        variant="filled"
+      />
+    </Grid>
+    <Grid item sm={12}>
+      <TextField
+        name="description"
+        fullWidth
+        helperText="Description"
+        id="filled-textarea"
+        multiline
+        variant="filled"
+        rows={3}
+      />
+    </Grid>
+  </Grid>
+</AccordionDetails>
+)
+
 const EducationSection: React.FunctionComponent = () => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
@@ -62,74 +133,7 @@ const EducationSection: React.FunctionComponent = () => {
               </Grid>
             </Grid>
           </AccordionSummary>
-          <AccordionDetails>
-            <Grid container spacing={2} alignItems="flex-end">
-              <Grid item sm={12}>
-                <TextField
-                  id="filled-basic"
-                  name="institution"
-                  helperText="Institution"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={12}>
-                <TextField
-                  id="filled-basic1"
-                  name="qualification"
-                  helperText="Qualification"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={4}>
-                <TextField
-                  id="filled-basic1"
-                  name="startDate"
-                  helperText="Start date"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={4}>
-                <TextField
-                  id="filled-basic1"
-                  name="endDate"
-                  helperText="End date"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={4}>
-                <FormControlLabel
-                  control={
-                    <Checkbox checked={true} name="checkedA" color="primary" />
-                  }
-                  label="Currently studying"
-                />
-              </Grid>
-              <Grid item sm={12}>
-                <TextField
-                  id="filled-basic1"
-                  name="location"
-                  helperText="Location"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={12}>
-                <TextField
-                  name="description"
-                  fullWidth
-                  helperText="Description"
-                  id="filled-textarea"
-                  multiline
-                  variant="filled"
-                  rows={3}
-                />
-              </Grid>
-            </Grid>
-          </AccordionDetails>
+          {AccordionDetailsForm}
         </Accordion>
       </Grid>
       <Grid item>
@@ -159,74 +163,7 @@ const EducationSection: React.FunctionComponent = () => {
               </Grid>
             </Grid>
           </AccordionSummary>
-          <AccordionDetails>
-            <Grid container spacing={2} alignItems="flex-end">
-              <Grid item sm={12}>
-                <TextField
-                  id="filled-basic"
-                  name="institution"
-                  helperText="Institution"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={12}>
-                <TextField
-                  id="filled-basic1"
-                  name="qualification"
-                  helperText="Qualification"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={4}>
-                <TextField
-                  id="filled-basic1"
-                  name="startDate"
-                  helperText="Start date"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={4}>
-                <TextField
-                  id="filled-basic1"
-                  name="endDate"
-                  helperText="End date"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={4}>
-                <FormControlLabel
-                  control={
-                    <Checkbox checked={true} name="checkedA" color="primary" />
-                  }
-                  label="Currently studying"
-                />
-              </Grid>
-              <Grid item sm={12}>
-                <TextField
-                  id="filled-basic1"
-                  name="location"
-                  helperText="Location"
-                  fullWidth
-                  variant="filled"
-                />
-              </Grid>
-              <Grid item sm={12}>
-                <TextField
-                  name="description"
-                  fullWidth
-                  helperText="Description"
-                  id="filled-textarea"
-                  multiline
-                  variant="filled"
-                  rows={3}
-                />
-              </Grid>
-            </Grid>
-          </AccordionDetails>
+          {AccordionDetailsForm}
         </Accordion>
       </Grid>
     </ResumeSection>
