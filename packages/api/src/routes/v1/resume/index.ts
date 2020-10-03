@@ -73,7 +73,7 @@ export default [
           phoneNumber: Joi.number().allow(''),
           title: Joi.string().allow(''),
           bio: Joi.string().allow(''),
-        }),
+        }).unknown(),
       },
     },
   },
