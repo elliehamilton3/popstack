@@ -214,7 +214,6 @@ export const Page1: React.FunctionComponent = () => {
               name="bio"
               fullWidth
               id="filled-textarea"
-              placeholder="Placeholder"
               multiline
               variant="filled"
               rows={4}
