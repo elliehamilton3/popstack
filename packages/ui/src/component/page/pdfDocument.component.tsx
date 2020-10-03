@@ -1,5 +1,5 @@
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { View, Document, StyleSheet, Font } from '@react-pdf/renderer';
 import {Resume} from './page.component'
 import styled from '@react-pdf/styled-components';
 import moment from 'moment';
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   `;
 
 
-export const PdfDocument: React.FunctionComponent<Resume> = ({user,resume, educations, jobs}: Resume) => { 
+export const PdfDocument: React.FunctionComponent<Resume> = ({user, resume, educations, jobs}: Resume) => { 
     return (
     <Document>
     <PPage size="A4">
@@ -93,7 +93,7 @@ export const PdfDocument: React.FunctionComponent<Resume> = ({user,resume, educa
          </View>
        <View style={styles.body} >
          <View style={styles.text}>
-         <Heading>{user.name}</Heading>
+         <Heading>{user.firstName} {user.lastName}</Heading>
          <Body>{resume.bio}</Body>
        </View>
          <View style={styles.text1}>

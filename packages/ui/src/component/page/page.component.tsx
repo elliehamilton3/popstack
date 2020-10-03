@@ -68,7 +68,8 @@ export interface Resume {
     dateTo: Date;
   }[];
   user: {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phoneNumber: string;
   };
@@ -82,23 +83,86 @@ const generatePdfDocument = async (documentData: Resume) => {
   )).toBlob();
   saveAs(blob, 'democv.pdf');
 };
+/* eslint-disable */
+function parseDotNotation(str: string, val: any, obj: { [x: string]: any; }) {
+  let currentObj = obj,
+      keys = str.split("."),
+      i, l = Math.max(1, keys.length - 1),
+      key;
+
+  for (i = 0; i < l; ++i) {
+      key = keys[i];
+      currentObj[key] = currentObj[key] || {};
+      currentObj = currentObj[key];
+  }
+  
+  currentObj[keys[i]] = val;
+  delete obj[str];
+}
+
+function convertDotNotationToObject(obj: { [x: string]: any; }) {
+  for (const key in obj) {
+      if (key.indexOf(".") !== -1)
+      {
+          parseDotNotation(key, obj[key], obj);
+      }            
+  }
+  return obj;
+}
+
+function serializeArray(form: HTMLFormElement) {
+  const arr: any[] = [];
+  Array.prototype.slice.call(form.elements).forEach((field: any) => {
+    if (!field.name || field.disabled || ['file', 'reset', 'submit', 'button'].indexOf(field.type) > -1) return;
+    if (field.type === 'select-multiple') {
+      Array.prototype.slice.call(field.options).forEach((option: any) => {
+        if (!option.selected) return;
+        arr.push({
+          name: field.name,
+          value: option.value,
+        });
+      });
+      return;
+    }
+    if (['checkbox', 'radio'].indexOf(field.type) > -1 && !field.checked) return;
+    arr.push({
+      name: field.name,
+      value: field.value,
+    });
+  });
+  return arr;
+}
+
+function getFormValues(form: HTMLFormElement) {
+  const serializedArray = serializeArray(form);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const output = {} as any;
+
+  serializedArray.forEach((item) => {
+    output[item.name] = item.value;
+  });
+
+  return convertDotNotationToObject(output);
+}
 
 
 export const Page1: React.FunctionComponent = () => { 
   const [resume, setResume] = useState<Resume | undefined>(undefined);
   const classes = useStyles();
+  const formRef = React.useRef<HTMLFormElement>(null);
 
   const [generatedResume, setGeneratedResume] = useState("");
 
   useEffect(() => {
     apiFetch("/resume/0", "GET").then(json => {
       setResume(json as Resume)
-      console.log("resume")
     });  
   }, []);
 
   const updateResume = () => {
-    apiFetch("/resume/0", "PATCH", {firstName: "name", lastName: "name"}).then(json => {
+    const form = formRef.current as HTMLFormElement;
+    const formData = getFormValues(form);
+    apiFetch("/resume/0", "PATCH", formData).then(json => {
       setResume(json as Resume)
     });  
   }
@@ -157,6 +221,7 @@ export const Page1: React.FunctionComponent = () => {
        <Grid item xs={12} sm={6}>
       <Box p={3} pt={4}>
         <Grid container direction="column">
+        <form ref={formRef} noValidate autoComplete="off">
           <Box pb={4}>
           <Grid item> 
           <Grid container justify="space-between" alignItems="center">
@@ -176,8 +241,8 @@ export const Page1: React.FunctionComponent = () => {
             <Grid item> <Typography variant="h2">Personal Details</Typography></Grid>
             <Grid item>
               <Grid container spacing={2} alignItems="flex-end">
-                <Grid item sm={6}><TextField id="filled-basic" helperText="First name" fullWidth variant="filled" /></Grid>
-                <Grid item sm={6}><TextField id="filled-basic1" helperText="Last name" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic" name="firstName" helperText="First name" fullWidth variant="filled" /></Grid>
+                <Grid item sm={6}><TextField id="filled-basic1" name="lastName" helperText="Last name" fullWidth variant="filled" /></Grid>
               </Grid>
             </Grid>
             <Grid item>
@@ -274,6 +339,7 @@ export const Page1: React.FunctionComponent = () => {
           <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add a skill</Button></Grid>
           </Grid>
           </Box>
+          </form>
         </Grid>
         </Box>
        </Grid>

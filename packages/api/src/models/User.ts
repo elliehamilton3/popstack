@@ -13,7 +13,10 @@ export default class User extends Model<User> {
   authId: string;
 
   @Column
-  name: string;
+  firstName: string;
+
+  @Column
+  lastName: string;
 
   @Column
   email: string;

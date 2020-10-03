@@ -7,7 +7,8 @@ export default async function postHandler() {
   const user = await User.create({
     userUuid: '0001',
     authId: '0001',
-    name: 'Example Person',
+    firstName: 'Example',
+    lastName: 'Person',
     email: 'email@test.com',
     phoneNumber: '0123123123',
   });

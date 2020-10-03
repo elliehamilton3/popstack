@@ -19,9 +19,9 @@ export default [
       tags: ['api'],
       description:
         'Create resume',
-      validate: {
-        payload: Joi.object({}).unknown(),
-      },
+      // validate: {
+      //   payload: Joi.object({}).unknown(),
+      // },
     },
   },
   {
