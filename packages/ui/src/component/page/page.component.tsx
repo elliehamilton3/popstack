@@ -116,6 +116,7 @@ export const Page1: React.FunctionComponent = () => {
   const [numPages, setNumPages] = useState(1);
   const [expanded, setExpanded] = useState(false);
  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function onDocumentLoadSuccess({numPages}: any) {
     setNumPages(numPages);
   }
@@ -173,7 +174,14 @@ export const Page1: React.FunctionComponent = () => {
           <Grid container justify="space-between" alignItems="center">
             <Grid item> <Typography variant="h1">Your Resumé</Typography></Grid>
             <Grid item> 
-                <Button variant="outlined" disabled={!resume} onClick={() => generatePdfDocument(resume!)}>Download</Button>
+                <Button 
+                variant="outlined" 
+                disabled={!resume} 
+                          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                onClick={() => generatePdfDocument(resume!)}
+                >
+                  Download
+                  </Button>
               </Grid>
               <Grid item> 
                 <Button variant="outlined" onClick={() => updateResume()}>Update</Button>

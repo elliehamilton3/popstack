@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from "react"
 import Matter from "matter-js"
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const MatterStepThree = () => {
   const boxRef = useRef<any>(null)
   const canvasRef = useRef<any>(null)
@@ -47,14 +48,6 @@ export const MatterStepThree = () => {
     setContraints(boxRef.current.getBoundingClientRect())
     setScene(render)
     window.addEventListener("resize", handleResize)
-    
-    // define our categories (as bit fields, there are up to 32 available)
-    const defaultCategory = 0x0001,
-        redCategory = 0x0002,
-        greenCategory = 0x0004,
-        blueCategory = 0x0008,
-        orangeCategory = 0x0010,
-        yellowCategory = 0x0012;
 
     const redColor = '#FFB7D5',
         blueColor = '#62CFF1',
@@ -81,25 +74,7 @@ export const MatterStepThree = () => {
 
     // create a stack with varying body categories (but these bodies can all collide with each other)
     World.add(world,
-        Composites.stack(100, 0, 4, 7, 20, 20, function(x: any, y: any, column: any, row: number) {
-            let category = redCategory,
-                color = redColor;
-
-            if (row > 8) {
-                category = yellowCategory;
-                color = yellowColor;
-            } 
-           else if (row > 6) {
-                category = orangeCategory;
-                color = orangeColor;
-            } 
-            else if (row > 4) {
-                category = blueCategory;
-                color = blueColor;
-            } else if (row > 2) {
-                category = greenCategory;
-                color = greenColor;
-            }
+        Composites.stack(100, 0, 4, 7, 20, 20, function(x: any, y: any) {
 
             const sides = Math.round(Common.random(1, 8));
 
@@ -107,9 +82,6 @@ export const MatterStepThree = () => {
             case 0:
                 if (Common.random() < 0.8) {
                     return Bodies.rectangle(x, y, Common.random(25, 80), Common.random(25, 80), {      
-                            // collisionFilter: {
-                            //     category: category
-                            // },
                             render: {
                                 strokeStyle: 'transparent',
                                 opacity: 0.7,
@@ -119,9 +91,6 @@ export const MatterStepThree = () => {
                 } 
                 else if (Common.random() < 0.6) {
                     return Bodies.trapezoid(x, y, Common.random(25, 80), Common.random(25, 80), Common.random(0, 1), {      
-                            // collisionFilter: {
-                            //     category: category
-                            // },
                             render: {
                                 strokeStyle: 'transparent',
                                 opacity: 0.8,
@@ -130,9 +99,6 @@ export const MatterStepThree = () => {
                             } });
                 } else {
                     return Bodies.rectangle(x, y, Common.random(80, 120), Common.random(25, 30), { 
-                    //     collisionFilter: {
-                    //     category: category
-                    // },
                     render: {
                         strokeStyle: 'transparent',
                         opacity: Common.random(0.6, 1),
@@ -141,9 +107,6 @@ export const MatterStepThree = () => {
                 }
             case 1:
                 return Bodies.polygon(x, y, sides, Common.random(25, 80), { 
-                //     collisionFilter: {
-                //     category: category
-                // },
                 render: {
                     strokeStyle: 'transparent',
                     opacity: 0.6,

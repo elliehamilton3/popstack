@@ -1,21 +1,21 @@
 {
-    "search.exclude": {
-      "**/packages/**/dist": true
+  "search.exclude": {
+    "**/packages/**/dist": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.packageManager": "npm",
+  "eslint.workingDirectories": [
+    {
+      "pattern": "packages/*",
+      "changeProcessCWD": true
     },
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true
-    },
-    "eslint.packageManager": "npm",
-    "eslint.workingDirectories": [
-      {
-        "pattern": "packages/*",
-        "changeProcessCWD": true
-      },
-    ],
-    "eslint.validate": [
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact"
-    ]
-  }
+  ],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
+}
