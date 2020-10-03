@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Skeleton } from '@material-ui/lab';
 import PdfDocument from './pdfDocument.component';
 import { saveAs } from 'file-saver';
+import {getFormValues} from '../../helper/getFormValues'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -83,68 +84,6 @@ const generatePdfDocument = async (documentData: Resume) => {
   )).toBlob();
   saveAs(blob, 'democv.pdf');
 };
-/* eslint-disable */
-function parseDotNotation(str: string, val: any, obj: { [x: string]: any; }) {
-  let currentObj = obj,
-      keys = str.split("."),
-      i, l = Math.max(1, keys.length - 1),
-      key;
-
-  for (i = 0; i < l; ++i) {
-      key = keys[i];
-      currentObj[key] = currentObj[key] || {};
-      currentObj = currentObj[key];
-  }
-  
-  currentObj[keys[i]] = val;
-  delete obj[str];
-}
-
-function convertDotNotationToObject(obj: { [x: string]: any; }) {
-  for (const key in obj) {
-      if (key.indexOf(".") !== -1)
-      {
-          parseDotNotation(key, obj[key], obj);
-      }            
-  }
-  return obj;
-}
-
-function serializeArray(form: HTMLFormElement) {
-  const arr: any[] = [];
-  Array.prototype.slice.call(form.elements).forEach((field: any) => {
-    if (!field.name || field.disabled || ['file', 'reset', 'submit', 'button'].indexOf(field.type) > -1) return;
-    if (field.type === 'select-multiple') {
-      Array.prototype.slice.call(field.options).forEach((option: any) => {
-        if (!option.selected) return;
-        arr.push({
-          name: field.name,
-          value: option.value,
-        });
-      });
-      return;
-    }
-    if (['checkbox', 'radio'].indexOf(field.type) > -1 && !field.checked) return;
-    arr.push({
-      name: field.name,
-      value: field.value,
-    });
-  });
-  return arr;
-}
-
-function getFormValues(form: HTMLFormElement) {
-  const serializedArray = serializeArray(form);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const output = {} as any;
-
-  serializedArray.forEach((item) => {
-    output[item.name] = item.value;
-  });
-
-  return convertDotNotationToObject(output);
-}
-
 
 export const Page1: React.FunctionComponent = () => { 
   const [resume, setResume] = useState<Resume | undefined>(undefined);
