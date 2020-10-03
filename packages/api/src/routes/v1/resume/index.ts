@@ -72,6 +72,7 @@ export default [
           email: Joi.string().allow(''),
           phoneNumber: Joi.number().allow(''),
           title: Joi.string().allow(''),
+          bio: Joi.string().allow(''),
         }),
       },
     },

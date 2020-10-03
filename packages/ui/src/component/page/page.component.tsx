@@ -204,6 +204,7 @@ export const Page1: React.FunctionComponent = () => {
           <Grid item> <Typography variant="h2">Describe you and your work</Typography></Grid>
           <Grid item> <Typography variant="subtitle1">Summarise your professional career in 2 or 3 sentences.</Typography></Grid>
           <Grid item> <TextField
+              name="bio"
               fullWidth
               id="filled-textarea"
               placeholder="Placeholder"

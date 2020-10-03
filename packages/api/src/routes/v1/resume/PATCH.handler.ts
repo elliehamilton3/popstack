@@ -16,6 +16,7 @@ export default async function patchHandler({ payload }: any) {
 
   await Resume.update({
     title: payload.title,
+    bio: payload.bio,
   }, { where: { userId } });
   const resume = await Resume.findOne({ where: { userId } });
   const resumeId = resume && resume.id;
