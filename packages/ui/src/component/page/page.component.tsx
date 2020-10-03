@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary} from '@material-ui/core';
+import { Button, Typography, Grid, TextField, Box, Paper, makeStyles,lighten, Accordion, AccordionDetails, AccordionSummary, Checkbox, FormControlLabel} from '@material-ui/core';
 import { BlobProvider, pdf } from '@react-pdf/renderer';
 import { Document as Doc, Page as DocPage } from 'react-pdf/dist/esm/entry.webpack';
 import Navbar from '../navbar/navbar.component';
@@ -255,6 +255,48 @@ export const Page1: React.FunctionComponent = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
                   sit amet blandit leo lobortis eget.
                 </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </Grid>
+          <Grid item>
+          <Accordion expanded>
+            <AccordionSummary
+                expandIcon={<ExpandMoreIcon className={classes.icon}/>}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Grid container justify="space-between" alignItems="center">
+                <Grid item >
+                  <Grid container  direction="column">
+                  <Grid item >
+                    <Typography variant="body2">Enter Education</Typography>
+                  </Grid>
+                 </Grid></Grid>
+            
+                </Grid>
+              </AccordionSummary>
+              <AccordionDetails>
+              <Grid container spacing={2} alignItems="flex-end">
+                <Grid item sm={12}><TextField id="filled-basic" name="institution" helperText="Institution" fullWidth variant="filled" /></Grid>
+                <Grid item sm={12}><TextField id="filled-basic1" name="qualification" helperText="Qualification" fullWidth variant="filled" /></Grid>
+                <Grid item sm={4}><TextField id="filled-basic1" name="startDate" helperText="Start date" fullWidth variant="filled" /></Grid>
+                <Grid item sm={4}><TextField id="filled-basic1" name="endDate" helperText="End date" fullWidth variant="filled" /></Grid>
+                <Grid item sm={4}><FormControlLabel
+                  control={<Checkbox checked={true} name="checkedA" color="primary" />}
+                  label="Currently studying"
+                /></Grid>
+                <Grid item sm={12}><TextField id="filled-basic1" name="location" helperText="Location" fullWidth variant="filled" /></Grid>
+                <Grid item sm={12}> <TextField
+                  name="description"
+                  fullWidth
+                  helperText="Description" 
+                  id="filled-textarea"
+                  multiline
+                  variant="filled"
+                  rows={3}
+                />
+              </Grid>
+              </Grid>
               </AccordionDetails>
             </Accordion>
           </Grid>
