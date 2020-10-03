@@ -35,6 +35,7 @@ import { Skeleton } from "@material-ui/lab";
 import PdfDocument, { generatePdfDocument } from "./pdfDocument.component";
 import { getFormValues } from "../../helper/getFormValues";
 import { Resume } from "../../interface/resume.interface";
+import ResumeSection from "./resumeSection.component";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -181,430 +182,368 @@ export const Page1: React.FunctionComponent = () => {
                     </Grid>
                   </Grid>
                 </Box>
-                <Box pb={8}>
-                  <Grid item container direction="column" spacing={2}>
-                    <Grid item>
-                      <CircleIcon />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h2">Personal Details</Typography>
-                    </Grid>
-                    <Grid item>
-                      <Grid container spacing={2} alignItems="flex-end">
-                        <Grid item sm={6}>
-                          <TextField
-                            id="filled-basic"
-                            name="firstName"
-                            helperText="First name"
-                            fullWidth
-                            variant="filled"
-                          />
-                        </Grid>
-                        <Grid item sm={6}>
-                          <TextField
-                            id="filled-basic1"
-                            name="lastName"
-                            helperText="Last name"
-                            fullWidth
-                            variant="filled"
-                          />
-                        </Grid>
+                <ResumeSection
+                  icon={<CircleIcon />}
+                  heading="Personal Details"
+                  subtitle="Summarise your professional career in 2 or 3 sentences."
+                >
+                  <Grid item>
+                    <Grid container spacing={2} alignItems="flex-end">
+                      <Grid item sm={6}>
+                        <TextField
+                          id="filled-basic"
+                          name="firstName"
+                          helperText="First name"
+                          fullWidth
+                          variant="filled"
+                        />
                       </Grid>
-                    </Grid>
-                    <Grid item>
-                      <Grid container spacing={2} alignItems="flex-end">
-                        <Grid item sm={6}>
-                          <TextField
-                            id="filled-basic2"
-                            name="email"
-                            helperText="Email address"
-                            fullWidth
-                            variant="filled"
-                          />
-                        </Grid>
-                        <Grid item sm={6}>
-                          <TextField
-                            id="filled-basic3"
-                            name="phoneNumber"
-                            type="number"
-                            helperText="Phone number"
-                            fullWidth
-                            variant="filled"
-                          />
-                        </Grid>
-                      </Grid>
-                    </Grid>
-                    <Grid item>
-                      <Grid container spacing={2} alignItems="flex-end">
-                        <Grid item sm={6}>
-                          <TextField
-                            id="filled-basic4"
-                            name="title"
-                            helperText="Job title"
-                            fullWidth
-                            variant="filled"
-                          />
-                        </Grid>
-                        <Grid item sm={6}>
-                          <Button
-                            color="secondary"
-                            variant="outlined"
-                            className={classes.button}
-                            fullWidth
-                            endIcon={<AddIcon className={classes.icon} />}
-                          >
-                            Add custom field
-                          </Button>
-                        </Grid>
+                      <Grid item sm={6}>
+                        <TextField
+                          id="filled-basic1"
+                          name="lastName"
+                          helperText="Last name"
+                          fullWidth
+                          variant="filled"
+                        />
                       </Grid>
                     </Grid>
                   </Grid>
-                </Box>
-                <Box pb={8}>
-                  <Grid item container direction="column" spacing={2}>
-                    <Grid item>
-                      <ParallelogramIcon />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h2">
-                        Describe you and your work
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1">
-                        Summarise your professional career in 2 or 3 sentences.
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <TextField
-                        name="bio"
-                        fullWidth
-                        id="filled-textarea"
-                        multiline
-                        variant="filled"
-                        rows={4}
-                      />
+                  <Grid item>
+                    <Grid container spacing={2} alignItems="flex-end">
+                      <Grid item sm={6}>
+                        <TextField
+                          id="filled-basic2"
+                          name="email"
+                          helperText="Email address"
+                          fullWidth
+                          variant="filled"
+                        />
+                      </Grid>
+                      <Grid item sm={6}>
+                        <TextField
+                          id="filled-basic3"
+                          name="phoneNumber"
+                          type="number"
+                          helperText="Phone number"
+                          fullWidth
+                          variant="filled"
+                        />
+                      </Grid>
                     </Grid>
                   </Grid>
-                </Box>
-                <Box pb={8}>
-                  <Grid item container direction="column" spacing={2}>
-                    <Grid item>
-                      <TeardropIcon />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h2">Employment history</Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1">
-                        Include your last 10 years of relevant experience and
-                        dates in this section. List your most recent position
-                        first.
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Button
-                        color="secondary"
-                        variant="outlined"
-                        className={classes.button}
-                        fullWidth
-                        endIcon={<AddIcon className={classes.icon} />}
-                      >
-                        Add employment history
-                      </Button>
+                  <Grid item>
+                    <Grid container spacing={2} alignItems="flex-end">
+                      <Grid item sm={6}>
+                        <TextField
+                          id="filled-basic4"
+                          name="title"
+                          helperText="Job title"
+                          fullWidth
+                          variant="filled"
+                        />
+                      </Grid>
+                      <Grid item sm={6}>
+                        <Button
+                          color="secondary"
+                          variant="outlined"
+                          className={classes.button}
+                          fullWidth
+                          endIcon={<AddIcon className={classes.icon} />}
+                        >
+                          Add custom field
+                        </Button>
+                      </Grid>
                     </Grid>
                   </Grid>
-                </Box>
+                </ResumeSection>
 
-                <Box pb={8}>
-                  <Grid item container direction="column" spacing={2}>
-                    <Grid item>
-                      <HalfCircleIcon />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h2">Education</Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1">
-                        If it’s relevant to your work, you can choose to include
-                        any recent educational achievements and the dates here.
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Accordion>
-                        <AccordionSummary
-                          expandIcon={
-                            <ExpandMoreIcon className={classes.icon} />
-                          }
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
-                        >
-                          <Grid
-                            container
-                            justify="space-between"
-                            alignItems="center"
-                          >
-                            <Grid item>
-                              <Grid container direction="column">
-                                <Grid item>
-                                  <Typography variant="body2">
-                                    BA (Hons) Fine Art
-                                  </Typography>
-                                </Grid>
-                                <Grid item>
-                                  <Typography>
-                                    Central Saint Martins, London
-                                  </Typography>
-                                </Grid>
-                              </Grid>
-                            </Grid>
-                            <Grid item>
-                              <Typography>2018 - 2020</Typography>
-                            </Grid>
-                          </Grid>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Grid container spacing={2} alignItems="flex-end">
-                            <Grid item sm={12}>
-                              <TextField
-                                id="filled-basic"
-                                name="institution"
-                                helperText="Institution"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={12}>
-                              <TextField
-                                id="filled-basic1"
-                                name="qualification"
-                                helperText="Qualification"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={4}>
-                              <TextField
-                                id="filled-basic1"
-                                name="startDate"
-                                helperText="Start date"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={4}>
-                              <TextField
-                                id="filled-basic1"
-                                name="endDate"
-                                helperText="End date"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={4}>
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={true}
-                                    name="checkedA"
-                                    color="primary"
-                                  />
-                                }
-                                label="Currently studying"
-                              />
-                            </Grid>
-                            <Grid item sm={12}>
-                              <TextField
-                                id="filled-basic1"
-                                name="location"
-                                helperText="Location"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={12}>
-                              <TextField
-                                name="description"
-                                fullWidth
-                                helperText="Description"
-                                id="filled-textarea"
-                                multiline
-                                variant="filled"
-                                rows={3}
-                              />
-                            </Grid>
-                          </Grid>
-                        </AccordionDetails>
-                      </Accordion>
-                    </Grid>
-                    <Grid item>
-                      <Accordion
-                        expanded={expanded}
-                        className={`${!expanded && classes.closedAccordion}`}
-                        onChange={() => setExpanded(!expanded)}
+                <ResumeSection
+                  icon={<ParallelogramIcon />}
+                  heading="Describe you and your work"
+                  subtitle="Summarise your professional career in 2 or 3 sentences."
+                >
+                  <TextField
+                    name="bio"
+                    fullWidth
+                    id="filled-textarea"
+                    multiline
+                    variant="filled"
+                    rows={4}
+                  />
+                </ResumeSection>
+
+                <ResumeSection
+                  icon={<TeardropIcon />}
+                  heading="Employment history"
+                  subtitle="Include your last 10 years of relevant experience and
+                  dates in this section. List your most recent position
+                  first."
+                >
+                  <Button
+                    color="secondary"
+                    variant="outlined"
+                    className={classes.button}
+                    fullWidth
+                    endIcon={<AddIcon className={classes.icon} />}
+                  >
+                    Add employment history
+                  </Button>
+                </ResumeSection>
+
+                <ResumeSection
+                  icon={<HalfCircleIcon />}
+                  heading="Education"
+                  subtitle="If it’s relevant to your work, you can choose to include
+                  any recent educational achievements and the dates here."
+                >
+                  <Grid item>
+                    <Accordion>
+                      <AccordionSummary
+                        expandIcon={<ExpandMoreIcon className={classes.icon} />}
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
                       >
-                        <AccordionSummary
-                          expandIcon={
-                            expanded ? (
-                              <RemoveIcon className={classes.icon} />
-                            ) : (
-                              <AddIcon className={classes.icon} />
-                            )
-                          }
-                          aria-controls="panel1a-content"
-                          id="panel1a-header"
+                        <Grid
+                          container
+                          justify="space-between"
+                          alignItems="center"
                         >
-                          <Grid
-                            container
-                            justify="space-between"
-                            alignItems="center"
-                          >
-                            <Grid item>
-                              <Grid container direction="column">
-                                <Grid item>
-                                  <Typography variant="body2">
-                                    Add Education
-                                  </Typography>
-                                </Grid>
+                          <Grid item>
+                            <Grid container direction="column">
+                              <Grid item>
+                                <Typography variant="body2">
+                                  BA (Hons) Fine Art
+                                </Typography>
+                              </Grid>
+                              <Grid item>
+                                <Typography>
+                                  Central Saint Martins, London
+                                </Typography>
                               </Grid>
                             </Grid>
                           </Grid>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Grid container spacing={2} alignItems="flex-end">
-                            <Grid item sm={12}>
-                              <TextField
-                                id="filled-basic"
-                                name="institution"
-                                helperText="Institution"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={12}>
-                              <TextField
-                                id="filled-basic1"
-                                name="qualification"
-                                helperText="Qualification"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={4}>
-                              <TextField
-                                id="filled-basic1"
-                                name="startDate"
-                                helperText="Start date"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={4}>
-                              <TextField
-                                id="filled-basic1"
-                                name="endDate"
-                                helperText="End date"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={4}>
-                              <FormControlLabel
-                                control={
-                                  <Checkbox
-                                    checked={true}
-                                    name="checkedA"
-                                    color="primary"
-                                  />
-                                }
-                                label="Currently studying"
-                              />
-                            </Grid>
-                            <Grid item sm={12}>
-                              <TextField
-                                id="filled-basic1"
-                                name="location"
-                                helperText="Location"
-                                fullWidth
-                                variant="filled"
-                              />
-                            </Grid>
-                            <Grid item sm={12}>
-                              <TextField
-                                name="description"
-                                fullWidth
-                                helperText="Description"
-                                id="filled-textarea"
-                                multiline
-                                variant="filled"
-                                rows={3}
-                              />
+                          <Grid item>
+                            <Typography>2018 - 2020</Typography>
+                          </Grid>
+                        </Grid>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Grid container spacing={2} alignItems="flex-end">
+                          <Grid item sm={12}>
+                            <TextField
+                              id="filled-basic"
+                              name="institution"
+                              helperText="Institution"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={12}>
+                            <TextField
+                              id="filled-basic1"
+                              name="qualification"
+                              helperText="Qualification"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={4}>
+                            <TextField
+                              id="filled-basic1"
+                              name="startDate"
+                              helperText="Start date"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={4}>
+                            <TextField
+                              id="filled-basic1"
+                              name="endDate"
+                              helperText="End date"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={4}>
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={true}
+                                  name="checkedA"
+                                  color="primary"
+                                />
+                              }
+                              label="Currently studying"
+                            />
+                          </Grid>
+                          <Grid item sm={12}>
+                            <TextField
+                              id="filled-basic1"
+                              name="location"
+                              helperText="Location"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={12}>
+                            <TextField
+                              name="description"
+                              fullWidth
+                              helperText="Description"
+                              id="filled-textarea"
+                              multiline
+                              variant="filled"
+                              rows={3}
+                            />
+                          </Grid>
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Grid>
+                  <Grid item>
+                    <Accordion
+                      expanded={expanded}
+                      className={`${!expanded && classes.closedAccordion}`}
+                      onChange={() => setExpanded(!expanded)}
+                    >
+                      <AccordionSummary
+                        expandIcon={
+                          expanded ? (
+                            <RemoveIcon className={classes.icon} />
+                          ) : (
+                            <AddIcon className={classes.icon} />
+                          )
+                        }
+                        aria-controls="panel1a-content"
+                        id="panel1a-header"
+                      >
+                        <Grid
+                          container
+                          justify="space-between"
+                          alignItems="center"
+                        >
+                          <Grid item>
+                            <Grid container direction="column">
+                              <Grid item>
+                                <Typography variant="body2">
+                                  Add Education
+                                </Typography>
+                              </Grid>
                             </Grid>
                           </Grid>
-                        </AccordionDetails>
-                      </Accordion>
-                    </Grid>
-                    {/* <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add education</Button></Grid> */}
+                        </Grid>
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Grid container spacing={2} alignItems="flex-end">
+                          <Grid item sm={12}>
+                            <TextField
+                              id="filled-basic"
+                              name="institution"
+                              helperText="Institution"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={12}>
+                            <TextField
+                              id="filled-basic1"
+                              name="qualification"
+                              helperText="Qualification"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={4}>
+                            <TextField
+                              id="filled-basic1"
+                              name="startDate"
+                              helperText="Start date"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={4}>
+                            <TextField
+                              id="filled-basic1"
+                              name="endDate"
+                              helperText="End date"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={4}>
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={true}
+                                  name="checkedA"
+                                  color="primary"
+                                />
+                              }
+                              label="Currently studying"
+                            />
+                          </Grid>
+                          <Grid item sm={12}>
+                            <TextField
+                              id="filled-basic1"
+                              name="location"
+                              helperText="Location"
+                              fullWidth
+                              variant="filled"
+                            />
+                          </Grid>
+                          <Grid item sm={12}>
+                            <TextField
+                              name="description"
+                              fullWidth
+                              helperText="Description"
+                              id="filled-textarea"
+                              multiline
+                              variant="filled"
+                              rows={3}
+                            />
+                          </Grid>
+                        </Grid>
+                      </AccordionDetails>
+                    </Accordion>
                   </Grid>
-                </Box>
+                </ResumeSection>
 
-                <Box pb={8}>
-                  <Grid item container direction="column" spacing={2}>
-                    <Grid item>
-                      <RectangleIcon />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h2">
-                        Websites &amp; social media links
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1">
-                        Include a link to your personal website or portfolio,
-                        Github repository, LinkedIn, or anything you might want
-                        potential employers to see.
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Button
-                        color="secondary"
-                        variant="outlined"
-                        className={classes.button}
-                        fullWidth
-                        endIcon={<AddIcon className={classes.icon} />}
-                      >
-                        Add website or link
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Box>
+                <ResumeSection
+                  icon={<RectangleIcon />}
+                  heading="Websites &amp; social media links"
+                  subtitle="Include a link to your personal website or portfolio,
+                  Github repository, LinkedIn, or anything you might want
+                  potential employers to see."
+                >
+                  <Button
+                    color="secondary"
+                    variant="outlined"
+                    className={classes.button}
+                    fullWidth
+                    endIcon={<AddIcon className={classes.icon} />}
+                  >
+                    Add website or link
+                  </Button>
+                </ResumeSection>
 
-                <Box pb={8}>
-                  <Grid item container direction="column" spacing={2}>
-                    <Grid item>
-                      <SquareIcon />
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h2">Skills</Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="subtitle1">
-                        Add any skills you have that you want to highlight.
-                      </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Button
-                        color="secondary"
-                        variant="outlined"
-                        className={classes.button}
-                        fullWidth
-                        endIcon={<AddIcon className={classes.icon} />}
-                      >
-                        Add a skill
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Box>
+                <ResumeSection
+                  icon={<SquareIcon />}
+                  heading="Skills"
+                  subtitle="Add any skills you have that you want to highlight."
+                >
+                  <Button
+                    color="secondary"
+                    variant="outlined"
+                    className={classes.button}
+                    fullWidth
+                    endIcon={<AddIcon className={classes.icon} />}
+                  >
+                    Add a skill
+                  </Button>
+                </ResumeSection>
               </form>
             </Grid>
           </Box>

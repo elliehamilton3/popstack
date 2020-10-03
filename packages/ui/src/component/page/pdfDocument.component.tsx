@@ -123,38 +123,55 @@ export const PdfDocument: React.FunctionComponent<Resume> = ({
         </View>
         <View style={styles.border} />
         <Subtitle>Work Experience</Subtitle>
-        {jobs.map((job: { title: any; company: any; location: any; description: any; dateFrom: moment.MomentInput; dateTo: moment.MomentInput; }, i: string | number | null | undefined) => (
-          <View key={i} style={styles.body}>
-            <View style={styles.text}>
-              <BodyBold>
-                {job.title} at {job.company}
-              </BodyBold>
-              <Body>{job.location}</Body>
-              <Body>{job.description}</Body>
+        {jobs.map(
+          (
+            job: {
+              title: any;
+              company: any;
+              location: any;
+              description: any;
+              dateFrom: moment.MomentInput;
+              dateTo: moment.MomentInput;
+            },
+            i: string | number | null | undefined
+          ) => (
+            <View key={i} style={styles.body}>
+              <View style={styles.text}>
+                <BodyBold>
+                  {job.title} at {job.company}
+                </BodyBold>
+                <Body>{job.location}</Body>
+                <Body>{job.description}</Body>
+              </View>
+              <View style={styles.text1}>
+                <Body>
+                  {moment(job.dateFrom).format("MMMM YYYY")} -{" "}
+                  {moment(job.dateTo).format("MMMM YYYY")}
+                </Body>
+              </View>
             </View>
-            <View style={styles.text1}>
-              <Body>
-                {moment(job.dateFrom).format("MMMM YYYY")} -{" "}
-                {moment(job.dateTo).format("MMMM YYYY")}
-              </Body>
-            </View>
-          </View>
-        ))}
+          )
+        )}
         <View style={styles.border} />
         <Subtitle>Education</Subtitle>
-        {educations.map((education: { place: any; info: any; yearFrom: any; yearTo: any; }, i: string | number | null | undefined) => (
-          <View key={i} style={styles.body}>
-            <View style={styles.text}>
-              <BodyBold>{education.place}</BodyBold>
-              <Body>{education.info}</Body>
+        {educations.map(
+          (
+            education: { place: any; info: any; yearFrom: any; yearTo: any },
+            i: string | number | null | undefined
+          ) => (
+            <View key={i} style={styles.body}>
+              <View style={styles.text}>
+                <BodyBold>{education.place}</BodyBold>
+                <Body>{education.info}</Body>
+              </View>
+              <View style={styles.text1}>
+                <Body>
+                  {education.yearFrom} - {education.yearTo}
+                </Body>
+              </View>
             </View>
-            <View style={styles.text1}>
-              <Body>
-                {education.yearFrom} - {education.yearTo}
-              </Body>
-            </View>
-          </View>
-        ))}
+          )
+        )}
       </PPage>
     </Document>
   );
