@@ -13,6 +13,7 @@ import SquareIcon from '../icons/square.icon';
 import RectangleIcon from '../icons/rectangle.icon';
 import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import RemoveIcon from '@material-ui/icons/Remove';
 import { Skeleton } from '@material-ui/lab';
 import PdfDocument from './pdfDocument.component';
 import { saveAs } from 'file-saver';
@@ -108,6 +109,7 @@ export const Page1: React.FunctionComponent = () => {
   
 
   const [numPages, setNumPages] = useState(1);
+  const [expanded, setExpanded] = useState(false);
  
   function onDocumentLoadSuccess({numPages}: any) {
     setNumPages(numPages);
@@ -259,9 +261,9 @@ export const Page1: React.FunctionComponent = () => {
             </Accordion>
           </Grid>
           <Grid item>
-          <Accordion expanded>
+          <Accordion expanded={expanded} onChange={() => setExpanded(!expanded)}>
             <AccordionSummary
-                expandIcon={<ExpandMoreIcon className={classes.icon}/>}
+                expandIcon={expanded ?<RemoveIcon className={classes.icon}/>:<AddIcon className={classes.icon}/>}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
               >
@@ -269,7 +271,7 @@ export const Page1: React.FunctionComponent = () => {
                 <Grid item >
                   <Grid container  direction="column">
                   <Grid item >
-                    <Typography variant="body2">Enter Education</Typography>
+                    <Typography variant="body2">Add Education</Typography>
                   </Grid>
                  </Grid></Grid>
             
@@ -300,7 +302,7 @@ export const Page1: React.FunctionComponent = () => {
               </AccordionDetails>
             </Accordion>
           </Grid>
-          <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add education</Button></Grid>
+          {/* <Grid item> <Button color="secondary" variant="outlined" className={classes.button} fullWidth endIcon={<AddIcon className={classes.icon}/>}>Add education</Button></Grid> */}
           </Grid>
           </Box>
 
