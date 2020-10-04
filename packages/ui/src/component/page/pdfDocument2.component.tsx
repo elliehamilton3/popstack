@@ -135,7 +135,7 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             <Body>{resume.title}</Body>
             <Body>{user.email}</Body>
             <Body>{user.phoneNumber}</Body>
-            <Body>{resume.location}</Body>
+            <Body style={{paddingTop: "20px"}}>{resume.location}</Body>
           </View>
         </View>
         <View style={{...styles.body, paddingRight: "0", position: "relative", top: '-100px'}}>
