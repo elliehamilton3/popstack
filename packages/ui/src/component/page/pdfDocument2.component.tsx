@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
   bio :{
     border: "1 solid #0C0C0C",
     borderRight: 0,
-    padding: "28px",
+    padding: "34px",
     paddingRight: "104px",
     paddingTop: "104px"
   },
@@ -146,6 +146,7 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             <Body>{resume.bio}</Body>
           </View>
         </View>
+        <View style={{position: "relative", top: "-140px"}}>
         <View style={styles.body}>
         <Subtitle>Work Experience</Subtitle>
         </View>
@@ -197,6 +198,7 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
               {/* </>
           )
         )}  */}
+        </View>
         </View>
       </PPage>
     </Document>
