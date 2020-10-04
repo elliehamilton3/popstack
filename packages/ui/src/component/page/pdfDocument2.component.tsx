@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     lineHeight: "14px",
   },
   box: {
-    marginTop: "30px",
+    marginTop: "100px",
     flex: 3,
     backgroundColor: "#FFD84C",
     maxHeight: "42",
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     borderRight: 0,
     padding: "28px",
     paddingRight: "104px",
+    paddingTop: "104px"
   },
   education: {
     border: "1 solid #0C0C0C",
@@ -137,7 +138,7 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             <Body>{resume.location}</Body>
           </View>
         </View>
-        <View style={{...styles.body, paddingRight: "0"}}>
+        <View style={{...styles.body, paddingRight: "0", position: "relative", top: '-100px'}}>
           <View style={styles.text2}>
             <View style={styles.box} />
           </View>
