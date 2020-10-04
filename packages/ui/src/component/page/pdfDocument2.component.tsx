@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
   body: {
     display: "flex",
     flexDirection: "row",
-    paddingBottom: "40px",
+    padding: "60px",
+    paddingBottom: "16px",
   },
   header: {
     display: "flex",
@@ -60,6 +61,29 @@ const styles = StyleSheet.create({
     backgroundColor: "#0C0C0C",
     height: "1",
   },
+  info: {
+    border: "1 solid #0C0C0C",
+    padding: "35px",
+    display: "flex",
+    flexDirection: "row",
+    paddingBottom: "16px",
+    margin: "0 24px",
+    borderTop: "0px"
+  },
+  bio :{
+    border: "1 solid #0C0C0C",
+    padding: "30px",
+  },
+  education: {
+    border: "1 solid #0C0C0C",
+    padding: "35px",
+    display: "flex",
+    flexDirection: "row",
+    paddingBottom: "16px",
+    paddingLeft: "60px",
+    margin: "0px 24px 0px 0px",
+    borderLeft: "0px"
+  }
 });
 
 const Heading = styled.Text`
@@ -81,8 +105,6 @@ const BodyBold = styled.Text`
 `;
 
 const PPage = styled.Page`
-  padding: 60px;
-  padding-top: 46px;
   font-family: "Karla";
 `;
 
@@ -96,7 +118,7 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
   return (
     <Document>
       <PPage size="A4">
-        <View style={styles.body}>
+      <View style={styles.info}>
           <View style={styles.text}>
             <Heading>
               {user.firstName}
@@ -117,10 +139,14 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             <View style={styles.box} />
           </View>
           <View style={styles.text3}>
+          {/* <View style={styles.bio}> */}
             <Body>{resume.bio}</Body>
+          {/* </View> */}
           </View>
         </View>
+        <View style={styles.body}>
         <Subtitle>Work Experience</Subtitle>
+        </View>
         {jobs.map(
           (
             job: {
@@ -150,24 +176,26 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             </View>
           )
         )}
-        {educations.map(
+        <View style={styles.education}>
+        {/* {educations.map(
           (
             education: { place: any; info: any; yearFrom: any; yearTo: any },
             i: string | number | null | undefined
           ) => (
-            <View key={i} style={styles.body}>
+            <> */}
               <View style={styles.text2}>
-                <Subtitle>{i ===0 && "Education"}</Subtitle>
+                <Subtitle>{"Education"}</Subtitle>
               </View>
               <View style={styles.text3}>
-                <Body>{education.info} at {education.place}</Body>
+                <Body>{educations[0].info} at {educations[0].place}</Body>
                 <Body>
-                  {education.yearFrom} - {education.yearTo}
+                  {educations[0].yearFrom} - {educations[0].yearTo}
                 </Body>
               </View>
-            </View>
+              {/* </>
           )
-        )} 
+        )}  */}
+        </View>
       </PPage>
     </Document>
   );

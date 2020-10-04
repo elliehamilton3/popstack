@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Page1: React.FunctionComponent = () => {
   const [resume, setResume] = useState<Resume | undefined>(undefined);
-  const [resumeStyle, setResumeStyle] = useState<1 | 2>(1);
+  const [resumeStyle, setResumeStyle] = useState<1 | 2>(2);
   const [checked, setChecked] = useState(false);
   const classes = useStyles();
   const formRef = React.useRef<HTMLFormElement>(null);
