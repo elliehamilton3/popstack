@@ -5,24 +5,17 @@ import styled from "@react-pdf/styled-components";
 import moment from "moment";
 
 Font.register({
-  family: "Vollkorn",
+  family: "Karla",
   format: "truetype",
   src:
-    "https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2MHGuGQ.ttf",
+    "https://fonts.gstatic.com/s/karla/v13/qkBbXvYC6trAT4RS.ttf",
 });
 
 Font.register({
-  family: "Vollkorn-Bold",
+  family: "Karla-Bold",
   format: "truetype",
   src:
-    "https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df27nauGQ.ttf",
-});
-
-Font.register({
-  family: "Vollkorn-Medium",
-  format: "truetype",
-  src:
-    "https://fonts.gstatic.com/s/vollkorn/v12/0ybgGDoxxrvAnPhYGzMlQLzuMasz6Df2AnGuGQ.ttf",
+    "https://fonts.gstatic.com/s/karla/v13/qkBWXvYC6trAT7zuC_m-.ttf",
 });
 
 const styles = StyleSheet.create({
@@ -38,21 +31,30 @@ const styles = StyleSheet.create({
     paddingBottom: "6px",
   },
   text1: {
-    flex: 3,
+    flex: 1,
     lineHeight: "14px",
   },
   text: {
-    flex: 5,
+    flex: 3,
     paddingRight: "70px",
+    paddingTop: "20px",
+    lineHeight: "14px",
+  },
+  text2: {
+    flex: 45,
+    lineHeight: "14px",
+    // paddingRight: "70px",
+  },
+  text3: {
+    flex: 55,
     lineHeight: "14px",
   },
   box: {
     flex: 3,
-    backgroundColor: "red",
-    height: "95",
-    maxWidth: "86",
-    position: "relative",
-    left: "-72",
+    backgroundColor: "#FFD84C",
+    height: "42",
+    width: "42",
+    borderRadius: "21"
   },
   border: {
     backgroundColor: "#0C0C0C",
@@ -61,16 +63,13 @@ const styles = StyleSheet.create({
 });
 
 const Heading = styled.Text`
-  font-size: 23px;
-  padding-bottom: 26px;
-  font-family: "Vollkorn-Medium";
+  font-size: 20px;
 `;
 
 const Subtitle = styled.Text`
-  text-transform: uppercase;
-  padding-bottom: 15px;
-  padding-top: 21px;
   font-size: 9px;
+  font-family: "Karla-Bold";
+  padding-bottom: 10px;
 `;
 
 const Body = styled.Text`
@@ -78,14 +77,13 @@ const Body = styled.Text`
 `;
 const BodyBold = styled.Text`
   font-size: 9px;
-  font-family: "Vollkorn-Bold";
+  font-family: "Karla-Bold";
 `;
 
 const PPage = styled.Page`
-  padding: 49px;
-  padding-top: 0px;
-  padding-right: 61px;
-  font-family: "Vollkorn";
+  padding: 60px;
+  padding-top: 46px;
+  font-family: "Karla";
 `;
 
 
@@ -98,16 +96,14 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
   return (
     <Document>
       <PPage size="A4">
-        <View style={styles.header}>
-          <View style={styles.text} />
-          <View style={styles.box} />
-        </View>
         <View style={styles.body}>
           <View style={styles.text}>
             <Heading>
-              {user.firstName} {user.lastName}
+              {user.firstName}
             </Heading>
-            <Body>{resume.bio}</Body>
+            <Heading>
+              {user.lastName}
+            </Heading>
           </View>
           <View style={styles.text1}>
             <Body>{resume.title}</Body>
@@ -116,7 +112,14 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             <Body>{resume.location}</Body>
           </View>
         </View>
-        <View style={styles.border} />
+        <View style={styles.body}>
+          <View style={styles.text2}>
+            <View style={styles.box} />
+          </View>
+          <View style={styles.text3}>
+            <Body>{resume.bio}</Body>
+          </View>
+        </View>
         <Subtitle>Work Experience</Subtitle>
         {jobs.map(
           (
@@ -131,42 +134,40 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             i: string | number | null | undefined
           ) => (
             <View key={i} style={styles.body}>
-              <View style={styles.text}>
+              <View style={styles.text2}>
                 <BodyBold>
                   {job.title} at {job.company}
                 </BodyBold>
-                <Body>{job.location}</Body>
-                <Body>{job.description}</Body>
-              </View>
-              <View style={styles.text1}>
+              
                 <Body>
-                  {moment(job.dateFrom).format("MMMM YYYY")} -{" "}
+                  {moment(job.dateFrom).format("MMMM YYYY")} - 
                   {moment(job.dateTo).format("MMMM YYYY")}
                 </Body>
+              </View>
+              <View style={styles.text3}>
+              <Body>{job.description}</Body>
               </View>
             </View>
           )
         )}
-        <View style={styles.border} />
-        <Subtitle>Education</Subtitle>
         {educations.map(
           (
             education: { place: any; info: any; yearFrom: any; yearTo: any },
             i: string | number | null | undefined
           ) => (
             <View key={i} style={styles.body}>
-              <View style={styles.text}>
-                <BodyBold>{education.place}</BodyBold>
-                <Body>{education.info}</Body>
+              <View style={styles.text2}>
+                <Subtitle>{i ===0 && "Education"}</Subtitle>
               </View>
-              <View style={styles.text1}>
+              <View style={styles.text3}>
+                <Body>{education.info} at {education.place}</Body>
                 <Body>
                   {education.yearFrom} - {education.yearTo}
                 </Body>
               </View>
             </View>
           )
-        )}
+        )} 
       </PPage>
     </Document>
   );
