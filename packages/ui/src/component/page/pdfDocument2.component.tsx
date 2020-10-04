@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   box: {
     flex: 3,
-    backgroundColor: "#FFB7D5",
+    backgroundColor: "red",
     height: "95",
     maxWidth: "86",
     position: "relative",
@@ -89,7 +89,7 @@ const PPage = styled.Page`
 `;
 
 
-const PdfDocument: React.FunctionComponent<Resume> = ({
+const PdfDocument2: React.FunctionComponent<Resume> = ({
   user,
   resume,
   educations,
@@ -172,4 +172,4 @@ const PdfDocument: React.FunctionComponent<Resume> = ({
   );
 };
 
-export default PdfDocument;
+export default PdfDocument2;

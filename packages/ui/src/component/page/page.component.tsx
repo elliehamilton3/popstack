@@ -7,6 +7,7 @@ import {
   Box,
   makeStyles,
   lighten,
+  Switch
 } from "@material-ui/core";
 import Navbar from "../navbar/navbar.component";
 import { ThemeProvider } from "../../styles/theme";
@@ -16,11 +17,10 @@ import ParallelogramIcon from "../icons/parallelogram.icon";
 import TeardropIcon from "../icons/teardrop.icon";
 import SquareIcon from "../icons/square.icon";
 import RectangleIcon from "../icons/rectangle.icon";
-import { generatePdfDocument } from "./pdfDocument.component";
 import { getFormValues } from "../../helper/getFormValues";
 import { Resume } from "../../interface/resume.interface";
 import ResumeSection from "./resumeSection.component";
-import ResumePreview from "./resumePreview.component";
+import ResumePreview, {generatePdfDocument} from "./resumePreview.component";
 import PersonalDetailsSection from "./personalDetails.component";
 import EducationSection from "./education.component";
 
@@ -37,6 +37,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const Page1: React.FunctionComponent = () => {
   const [resume, setResume] = useState<Resume | undefined>(undefined);
+  const [resumeStyle, setResumeStyle] = useState<1 | 2>(1);
+  const [checked, setChecked] = useState(false);
   const classes = useStyles();
   const formRef = React.useRef<HTMLFormElement>(null);
 
@@ -53,13 +55,17 @@ export const Page1: React.FunctionComponent = () => {
       setResume(json as Resume);
     });
   };
+  const handleChange = () => {
+    setChecked(!checked);
+    setResumeStyle(checked ? 2 : 1)
+  };
 
   return (
     <ThemeProvider>
       <Navbar />
       <Grid container>
         <Grid item xs={12} sm={6}>
-          <ResumePreview resume={resume} />
+          <ResumePreview resume={resume} resumeStyle={resumeStyle}/>
         </Grid>
         <Grid item xs={12} sm={6}>
           <Box p={3} pt={4}>
@@ -76,7 +82,7 @@ export const Page1: React.FunctionComponent = () => {
                           variant="outlined"
                           disabled={!resume}
                           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                          onClick={() => generatePdfDocument(resume!)}
+                          onClick={() => generatePdfDocument(resume!, resumeStyle)}
                         >
                           Download
                         </Button>
@@ -88,6 +94,14 @@ export const Page1: React.FunctionComponent = () => {
                         >
                           Update
                         </Button>
+                      </Grid>
+                      <Grid item>
+                      <Switch
+                        checked={checked}
+                        onChange={handleChange}
+                        name="checkedA"
+                        inputProps={{ 'aria-label': 'secondary checkbox' }}
+                      />
                       </Grid>
                     </Grid>
                   </Grid>
