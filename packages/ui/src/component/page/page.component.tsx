@@ -57,7 +57,7 @@ export const Page1: React.FunctionComponent = () => {
   };
   const handleChange = () => {
     setChecked(!checked);
-    setResumeStyle(checked ? 2 : 1)
+    setResumeStyle(!checked ? 2 : 1)
   };
 
   return (

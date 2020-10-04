@@ -57,15 +57,6 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
   const [generatedResume, setGeneratedResume] = useState<string>();
   const [numPages, setNumPages] = useState(1);
   
-  const setPdf = () => {
-    if(resumeStyle === 2) {
-      pdf(<PdfDocument2 {...resume!} />).toBuffer().then(bufferToUrl)
-    }
-    else if(resumeStyle === 1) {
-      pdf(<PdfDocument {...resume!} />).toBuffer().then(bufferToUrl)
-    }
-  
-  };
   const bufferToUrl = async (buffer: any) => {
       const stream = buffer.pipe(blobStream());
 
@@ -80,7 +71,14 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
   }
 
   useEffect(() => {
-    if(resume) setPdf()  
+    if(resume) {
+      if(resumeStyle === 2) {
+        pdf(<PdfDocument2 {...resume!} />).toBuffer().then(bufferToUrl)
+      }
+      else if(resumeStyle === 1) {
+        pdf(<PdfDocument {...resume!} />).toBuffer().then(bufferToUrl)
+      }
+    }  
   }, [resumeStyle, resume]);
 
 
