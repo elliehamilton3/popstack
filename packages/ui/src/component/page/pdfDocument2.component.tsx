@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     border: "1 solid #0C0C0C",
     borderRight: 0,
     padding: "28px",
-    paddingRight: "94px",
+    paddingRight: "104px",
   },
   education: {
     border: "1 solid #0C0C0C",
