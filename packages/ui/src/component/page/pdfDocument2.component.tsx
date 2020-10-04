@@ -51,9 +51,10 @@ const styles = StyleSheet.create({
     lineHeight: "14px",
   },
   box: {
+    marginTop: "30px",
     flex: 3,
     backgroundColor: "#FFD84C",
-    height: "42",
+    maxHeight: "42",
     width: "42",
     borderRadius: "21"
   },
@@ -72,7 +73,9 @@ const styles = StyleSheet.create({
   },
   bio :{
     border: "1 solid #0C0C0C",
-    padding: "30px",
+    borderRight: 0,
+    padding: "28px",
+    paddingRight: "94px",
   },
   education: {
     border: "1 solid #0C0C0C",
@@ -134,14 +137,12 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             <Body>{resume.location}</Body>
           </View>
         </View>
-        <View style={styles.body}>
+        <View style={{...styles.body, paddingRight: "0"}}>
           <View style={styles.text2}>
             <View style={styles.box} />
           </View>
-          <View style={styles.text3}>
-          {/* <View style={styles.bio}> */}
+          <View style={{...styles.text3, ...styles.bio}}>
             <Body>{resume.bio}</Body>
-          {/* </View> */}
           </View>
         </View>
         <View style={styles.body}>
@@ -159,7 +160,7 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             },
             i: string | number | null | undefined
           ) => (
-            <View key={i} style={styles.body}>
+            <View key={i} style={{...styles.body, paddingTop: "0px"}}>
               <View style={styles.text2}>
                 <BodyBold>
                   {job.title} at {job.company}
