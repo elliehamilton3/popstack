@@ -1,15 +1,17 @@
+export interface Education {
+  place: string;
+  yearFrom: number;
+  yearTo: number;
+  info: string;
+}
+
 export interface Resume {
   resume: {
     bio: string;
     title: string;
     location: string;
   };
-  educations: {
-    place: string;
-    yearFrom: number;
-    yearTo: number;
-    info: string;
-  }[];
+  educations: Education[];
   jobs: {
     company: string;
     title: string;

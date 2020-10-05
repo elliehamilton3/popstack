@@ -22,7 +22,7 @@ import { Resume } from "../../interface/resume.interface";
 import ResumeSection from "./resumeSection.component";
 import ResumePreview, {generatePdfDocument} from "./resumePreview.component";
 import PersonalDetailsSection from "./personalDetails.component";
-import EducationSection from "./education.component";
+import EducationSection from "./educationSection.component";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -142,7 +142,7 @@ export const Page1: React.FunctionComponent = () => {
                   </Button>
                 </ResumeSection>
 
-                <EducationSection />
+                <EducationSection educations={resume?.educations}/>
                 
                 <ResumeSection
                   icon={<RectangleIcon />}
