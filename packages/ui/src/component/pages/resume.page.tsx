@@ -19,10 +19,10 @@ import SquareIcon from "../icons/square.icon";
 import RectangleIcon from "../icons/rectangle.icon";
 import { getFormValues } from "../../helper/getFormValues";
 import { Resume } from "../../interface/resume.interface";
-import ResumeSection from "./resumeSection.component";
-import ResumePreview, {generatePdfDocument} from "./resumePreview.component";
-import PersonalDetailsSection from "./personalDetails.component";
-import EducationSection from "./educationSection.component";
+import ResumeSection from "../resume/resumeSection.component";
+import ResumePreview, {generatePdfDocument} from "../resume/resumePreview.component";
+import PersonalDetailsSection from "../resume/personalDetails.component";
+import EducationSection from "../resume/educationSection.component";
 
 const useStyles = makeStyles((theme) => ({
   button: {

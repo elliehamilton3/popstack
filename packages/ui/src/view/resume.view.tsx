@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Page1 } from "../component/page/page.component";
+import { Page1 } from "../component/pages/resume.page";
 
-export const ResumeView: React.FunctionComponent = () => <Page1 />;
+const ResumeView: React.FunctionComponent = () => <Page1 />;
 
 export default ResumeView;

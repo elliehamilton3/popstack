@@ -1,7 +1,7 @@
 import * as React from "react";
-import { MatterStepThree } from "../component/animation/animation.component";
-export const IndexView: React.FunctionComponent = () => {
-  return <MatterStepThree />;
+import LandingPage from "../component/pages/landing.page";
+const IndexView: React.FunctionComponent = () => {
+  return <LandingPage />;
 };
 
 export default IndexView;

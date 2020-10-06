@@ -22,10 +22,17 @@ const theme = createMuiTheme({
       textTransform: "none",
     },
     h1: {
-      fontSize: "1.625rem",
+      fontSize: "2.625rem",
+      lineHeight: "1.2",
+      fontWeight: 700,
     },
     h2: {
-      fontSize: "1.25rem",
+      fontSize: "1.75rem",
+      fontWeight: 500,
+    },
+    h3: {
+      fontSize: "1.375rem",
+      lineHeight: "1.25",
       fontWeight: 500,
     },
     subtitle1: {
@@ -92,6 +99,11 @@ const theme = createMuiTheme({
         boxShadow: "none",
       },
     },
+    MuiToolbar: { 
+      root: {
+      backgroundColor: "#1C1A1A",
+      color: "#FFB7D5"
+    }},
     MuiButton: {
       outlined: {
         border: "1px solid #1C1A1A",
