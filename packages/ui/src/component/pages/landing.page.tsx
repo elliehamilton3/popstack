@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   shapes:{
     position: "absolute",
-    top: "calc(488px - 26vw)",
+    top: "calc(530px - 25vw)",
     left: 0,
     width: "100%",
     height: "100%",
@@ -60,7 +60,7 @@ export const Page1: React.FunctionComponent = () => {
     <ThemeProvider>
       <Box className={classes.box}>
       <Navbar />
-      <Box className={classes.section1} py={15}>
+      <Box className={classes.section1} pt={15} pb={21}>
       <Box className={classes.shapes}>
       <svg viewBox="0 0 1175 2061" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path opacity="0.9" d="M801.389 298.347C799.767 297.778 798.689 296.236 798.713 294.517L800.054 197.559C800.092 194.826 802.798 192.935 805.377 193.84L896.882 225.925C898.505 226.494 899.582 228.036 899.558 229.755L898.217 326.713C898.18 329.445 895.473 331.336 892.894 330.432L801.389 298.347Z" fill="#26C58C"/>
@@ -129,8 +129,8 @@ export const Page1: React.FunctionComponent = () => {
           <Typography variant="body1">Whether you're a copywriter, an engineer or a product designer, we've got all the bells and whistles to help you be successful with your job hunt. Add any sections that are relevant to your work, and remove anything that isn’t.</Typography>
         </Box>
         </Grid>
-        <Grid item>
-        <svg width="274" height="274" viewBox="0 0 274 274" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Grid item sm={4}>
+        <svg viewBox="0 0 274 274" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="137" cy="137" r="137" fill="white"/>
           </svg>
 
@@ -139,7 +139,13 @@ export const Page1: React.FunctionComponent = () => {
       </Box>
       <Box className={classes.section3} p={5}>
       <Grid container spacing={3}>
-        <Grid item sm={5}/>
+        <Grid item sm={1}/>
+        <Grid item sm={4}>
+        <svg viewBox="0 0 244 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="122" cy="73" rx="122" ry="73" fill="#0C0C0C"/>
+        </svg>
+
+        </Grid>
         <Grid item sm={6}>
         <Box py={7} px={11} >
           <Typography variant="h3">Create multiple resumes and cover letters</Typography>
