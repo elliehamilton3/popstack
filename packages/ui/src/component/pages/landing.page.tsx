@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "352px", 
     height: "40vw", 
     position: "relative",
-    top: "-100px"
+    top: "-100px",
+    borderRadius: "20px"
   },
   section3: {
     backgroundColor: "#FFB7D5"
@@ -104,7 +105,7 @@ export const Page1: React.FunctionComponent = () => {
        <Box className={classes.section2} p={5}>
       <Grid container spacing={3} className={classes.content}>
         <Grid item sm={1}>
-          <Paper className={classes.resumePaper} style={{marginLeft: "-40px", borderRadius: "0 4px 4px 0"}}/>
+          <Paper className={classes.resumePaper} style={{marginLeft: "-40px", borderRadius: "0 20px 20px 0"}}/>
         </Grid>
         <Grid item sm={4}>
         <Paper className={classes.resumePaper}/>
@@ -118,7 +119,7 @@ export const Page1: React.FunctionComponent = () => {
            </Box>
         </Grid>
         <Grid item sm={1}>
-          <Paper className={classes.resumePaper} style={{marginRight: "-40px",  borderRadius: "4px 0 0 4px"}}/>
+          <Paper className={classes.resumePaper} style={{marginRight: "-40px",  borderRadius: "20px 0 0 20px"}}/>
         </Grid>
         </Grid>
       </Box>
