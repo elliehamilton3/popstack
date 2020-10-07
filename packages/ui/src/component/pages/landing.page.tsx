@@ -164,12 +164,14 @@ export const Page1: React.FunctionComponent = () => {
         </Grid>
         <Grid item sm={6}>
         <Box py={7} px={11} >
+          
           <Typography variant="h3">Super easy to update</Typography>
           <Typography variant="body1">Time for a change? All you need to do is log back in and update your info before you look for the next job – it's that easy.</Typography>
         </Box>
         </Grid>
       </Grid>
       </Box> 
+      <Box className={classes.section1} height="300px" />
       </Box>
     </ThemeProvider> 
   );
