@@ -23,13 +23,14 @@ import ResumeSection from "./resumeSection.component";
 export interface IPersonalDetailsProps {
   firstName?: string;
   lastName?: string;
-  email: string;
-  phoneNumber: number;
-  title: string;
+  email?: string;
+  phoneNumber?: number;
+  title?: string;
 }
 
-const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = ({firstName, lastName, email, phoneNumber, title}: IPersonalDetailsProps) => {
+const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = ({firstName, lastName, email, title}: IPersonalDetailsProps) => {
   // const classes = useStyles();
+  console.log(firstName, "=======")
   return (
     <ResumeSection
       icon={<CircleIcon />}
@@ -40,22 +41,22 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
         <Grid container spacing={2} alignItems="flex-end">
           <Grid item sm={6}>
             <TextField
-              id="filled-basic"
+              id="firstName"
               name="firstName"
               helperText="First name"
               fullWidth
               variant="filled"
-              defaultValue={firstName}
+              placeholder={firstName}
             />
           </Grid>
           <Grid item sm={6}>
             <TextField
-              id="filled-basic1"
+              id="lastName"
               name="lastName"
               helperText="Last name"
               fullWidth
               variant="filled"
-              defaultValue={lastName}
+              placeholder={lastName}
             />
           </Grid>
         </Grid>
@@ -64,23 +65,23 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
         <Grid container spacing={2} alignItems="flex-end">
           <Grid item sm={6}>
             <TextField
-              id="filled-basic2"
+              id="email"
               name="email"
               helperText="Email address"
               fullWidth
               variant="filled"
-              defaultValue={email}
+              placeholder={email && email}
             />
           </Grid>
           <Grid item sm={6}>
             <TextField
-              id="filled-basic3"
+              id="phoneNumber"
               name="phoneNumber"
               type="number"
               helperText="Phone number"
               fullWidth
               variant="filled"
-              defaultValue={phoneNumber}
+              // placeholder={phoneNumber && phoneNumber}
             />
           </Grid>
         </Grid>
@@ -89,12 +90,12 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
         <Grid container spacing={2} alignItems="flex-end">
           <Grid item sm={6}>
             <TextField
-              id="filled-basic4"
+              id="title"
               name="title"
               helperText="Job title"
               fullWidth
               variant="filled"
-              defaultValue={title}
+              placeholder={title}
             />
           </Grid>
           {/* <Grid item sm={6}>
