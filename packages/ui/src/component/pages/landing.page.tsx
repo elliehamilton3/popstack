@@ -102,7 +102,7 @@ export const Page1: React.FunctionComponent = () => {
         </Grid>
       </Box>
        <Box className={classes.section2} p={5}>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={classes.content}>
         <Grid item sm={1}>
           <Paper className={classes.resumePaper} style={{marginLeft: "-40px", borderRadius: "0 4px 4px 0"}}/>
         </Grid>
@@ -111,9 +111,11 @@ export const Page1: React.FunctionComponent = () => {
           </Grid>
         <Grid item sm={6}>
         <Box py={7} px={11} className={classes.innerBox} borderRadius="4px">
-          <Typography variant="h3">Beautiful resumes</Typography>
-          <Typography variant="body1">Our professionally designed resume templates take the hard work out of getting you and your work ready to be noticed. Customisable, easy to use and you can instantly export to PDF.</Typography>
-        </Box>
+        <Grid container direction="column" spacing={3}>
+          <Grid item><Typography variant="h3">Beautiful resumes</Typography></Grid>
+          <Grid item><Typography variant="body1">Our professionally designed resume templates take the hard work out of getting you and your work ready to be noticed. Customisable, easy to use and you can instantly export to PDF.</Typography></Grid>
+          </Grid>
+           </Box>
         </Grid>
         <Grid item sm={1}>
           <Paper className={classes.resumePaper} style={{marginRight: "-40px",  borderRadius: "4px 0 0 4px"}}/>
@@ -121,13 +123,15 @@ export const Page1: React.FunctionComponent = () => {
         </Grid>
       </Box>
       <Box className={classes.section1} p={5}>
-      <Grid container spacing={3} alignItems="center">
+      <Grid container spacing={3} alignItems="center" className={classes.content}>
      
         <Grid item sm={6}>
         <Box py={7} px={11} >
-          <Typography variant="h3">Designed for professionals</Typography>
-          <Typography variant="body1">Whether you're a copywriter, an engineer or a product designer, we've got all the bells and whistles to help you be successful with your job hunt. Add any sections that are relevant to your work, and remove anything that isn’t.</Typography>
-        </Box>
+        <Grid container direction="column" spacing={3}>
+          <Grid item><Typography variant="h3">Designed for professionals</Typography></Grid>
+          <Grid item><Typography variant="body1">Whether you're a copywriter, an engineer or a product designer, we've got all the bells and whistles to help you be successful with your job hunt. Add any sections that are relevant to your work, and remove anything that isn’t.</Typography></Grid>
+          </Grid>
+           </Box>
         </Grid>
         <Grid item sm={4}>
         <svg viewBox="0 0 274 274" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -137,8 +141,8 @@ export const Page1: React.FunctionComponent = () => {
         </Grid>
       </Grid>
       </Box>
-      <Box className={classes.section3} p={5}>
-      <Grid container spacing={3}>
+      <Box className={classes.section3} p={5} >
+      <Grid container spacing={3} className={classes.content}>
         <Grid item sm={1}/>
         <Grid item sm={4}>
         <svg viewBox="0 0 244 146" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -148,28 +152,37 @@ export const Page1: React.FunctionComponent = () => {
         </Grid>
         <Grid item sm={6}>
         <Box py={7} px={11} >
-          <Typography variant="h3">Create multiple resumes and cover letters</Typography>
-          <Typography variant="body1">Applying for a handful of jobs at the same time? Create as many CV's and cover letters as you need.</Typography>
-        </Box>
+        <Grid container direction="column" spacing={3}>
+          <Grid item><Typography variant="h3">Create multiple resumes and cover letters</Typography></Grid>
+          <Grid item><Typography variant="body1">Applying for a handful of jobs at the same time? Create as many CV's and cover letters as you need.</Typography></Grid>
+          </Grid>
+         </Box>
         </Grid>
       </Grid>
       </Box>
       <Box className={classes.section4} p={5}>
-      <Grid container spacing={3}>
-        <Grid item sm={6}>
-        <Box py={7} px={11} >
-          <Typography variant="h3">Custom fields</Typography>
-          <Typography variant="body1">With the ability to add custom fields and rename any of the sections, you have complete control over your resume..</Typography>
-        </Box>
+      <Box py={7} px={11} >
+      <Grid container spacing={3} className={classes.content}>
+
+        <Grid item sm={5}>
+  
+          <Grid container direction="column" spacing={3}>
+          <Grid item><Typography variant="h3">Custom fields</Typography></Grid>
+          <Grid item><Typography variant="body1">With the ability to add custom fields and rename any of the sections, you have complete control over your resume.</Typography></Grid>
+          </Grid>
+
         </Grid>
-        <Grid item sm={6}>
-        <Box py={7} px={11} >
-          
-          <Typography variant="h3">Super easy to update</Typography>
-          <Typography variant="body1">Time for a change? All you need to do is log back in and update your info before you look for the next job – it's that easy.</Typography>
-        </Box>
+        <Grid item sm={1}/>
+
+        <Grid item sm={5}>
+
+          <Grid container direction="column" spacing={3}>
+          <Grid item><Typography variant="h3">Super easy to update</Typography></Grid>
+          <Grid item><Typography variant="body1">Time for a change? All you need to do is log back in and update your info before you look for the next job – it's that easy.</Typography></Grid>
+          </Grid>
         </Grid>
       </Grid>
+      </Box>
       </Box> 
       <Box className={classes.section1} height="300px" />
       </Box>
