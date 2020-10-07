@@ -7,9 +7,8 @@ export interface IEducationFormProps {
 }
 
 const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
-  education
+  education: {place, info, yearFrom, yearTo}
 }: IEducationFormProps) => {
-  console.log(education.place, "=====")
   return (
     <AccordionDetails>
     <Grid container spacing={2} alignItems="flex-end">
@@ -20,7 +19,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           helperText="Institution"
           fullWidth
           variant="filled"
-          defaultValue={education.place}
+          defaultValue={place}
         />
       </Grid>
       <Grid item sm={12}>
@@ -30,7 +29,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           helperText="Qualification"
           fullWidth
           variant="filled"
-          defaultValue={education.info}
+          defaultValue={info}
         />
       </Grid>
       <Grid item sm={4}>
@@ -41,7 +40,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           fullWidth
           variant="filled"
           type="number"
-          defaultValue={education.yearFrom.toString()}
+          defaultValue={yearFrom !== 0 && yearFrom.toString()}
         />
       </Grid>
       <Grid item sm={4}>
@@ -52,7 +51,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           fullWidth
           variant="filled"
           type="number"
-          defaultValue={education.yearTo.toString()}
+          defaultValue={yearTo !== 0 &&yearTo.toString()}
         />
       </Grid>
       <Grid item sm={4}>
