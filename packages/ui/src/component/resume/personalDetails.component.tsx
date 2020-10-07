@@ -1,28 +1,28 @@
 import {
-  Button,
+  // Button,
   Grid,
   TextField,
-  makeStyles,
-  lighten,
+  // makeStyles,
+  // lighten,
 } from "@material-ui/core";
 import React from "react";
 import CircleIcon from "../icons/circle.icon";
-import AddIcon from "@material-ui/icons/Add";
+// import AddIcon from "@material-ui/icons/Add";
 import ResumeSection from "./resumeSection.component";
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    justifyContent: "space-between",
-    color: lighten(theme.palette.common.black, 0.4),
-    padding: "10px 16px",
-  },
-  icon: {
-    color: lighten(theme.palette.primary.light, 0.7),
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   button: {
+//     justifyContent: "space-between",
+//     color: lighten(theme.palette.common.black, 0.4),
+//     padding: "10px 16px",
+//   },
+//   icon: {
+//     color: lighten(theme.palette.primary.light, 0.7),
+//   },
+// }));
 
 const PersonalDetailsSection: React.FunctionComponent = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <ResumeSection
       icon={<CircleIcon />}
@@ -85,7 +85,7 @@ const PersonalDetailsSection: React.FunctionComponent = () => {
               variant="filled"
             />
           </Grid>
-          <Grid item sm={6}>
+          {/* <Grid item sm={6}>
             <Button
               color="secondary"
               variant="outlined"
@@ -95,7 +95,7 @@ const PersonalDetailsSection: React.FunctionComponent = () => {
             >
               Add custom field
             </Button>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
     </ResumeSection>
