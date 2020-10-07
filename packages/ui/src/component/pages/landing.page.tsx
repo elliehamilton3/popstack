@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   resumePaper: {
     maxWidth: "352px", 
-    height: "428px", 
+    height: "40vw", 
     position: "relative",
     top: "-100px"
   },
