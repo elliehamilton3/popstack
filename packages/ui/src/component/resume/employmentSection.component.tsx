@@ -44,7 +44,8 @@ const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({em
       first."
     >
       <Grid container spacing={2}>
-      {employment && employment.map((job) => <Grid item>
+      {employment && employment.map((job, i) => 
+      <Grid item key={i}>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon className={classes.icon} />}

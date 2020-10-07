@@ -26,6 +26,6 @@ export interface Resume {
     firstName: string;
     lastName: string;
     email: string;
-    phoneNumber: string;
+    phoneNumber: number;
   };
 }

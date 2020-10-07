@@ -20,8 +20,15 @@ import ResumeSection from "./resumeSection.component";
 //     color: lighten(theme.palette.primary.light, 0.7),
 //   },
 // }));
+export interface IPersonalDetailsProps {
+  firstName?: string;
+  lastName?: string;
+  email: string;
+  phoneNumber: number;
+  title: string;
+}
 
-const PersonalDetailsSection: React.FunctionComponent = () => {
+const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = ({firstName, lastName, email, phoneNumber, title}: IPersonalDetailsProps) => {
   // const classes = useStyles();
   return (
     <ResumeSection
@@ -38,6 +45,7 @@ const PersonalDetailsSection: React.FunctionComponent = () => {
               helperText="First name"
               fullWidth
               variant="filled"
+              defaultValue={firstName}
             />
           </Grid>
           <Grid item sm={6}>
@@ -47,6 +55,7 @@ const PersonalDetailsSection: React.FunctionComponent = () => {
               helperText="Last name"
               fullWidth
               variant="filled"
+              defaultValue={lastName}
             />
           </Grid>
         </Grid>
@@ -60,6 +69,7 @@ const PersonalDetailsSection: React.FunctionComponent = () => {
               helperText="Email address"
               fullWidth
               variant="filled"
+              defaultValue={email}
             />
           </Grid>
           <Grid item sm={6}>
@@ -70,6 +80,7 @@ const PersonalDetailsSection: React.FunctionComponent = () => {
               helperText="Phone number"
               fullWidth
               variant="filled"
+              defaultValue={phoneNumber}
             />
           </Grid>
         </Grid>
@@ -83,6 +94,7 @@ const PersonalDetailsSection: React.FunctionComponent = () => {
               helperText="Job title"
               fullWidth
               variant="filled"
+              defaultValue={title}
             />
           </Grid>
           {/* <Grid item sm={6}>

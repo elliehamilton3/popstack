@@ -42,7 +42,8 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
     any recent educational achievements and the dates here."
     >
       <Grid container spacing={2}>
-      {educations && educations.map((education) => <Grid item>
+      {educations && educations.map((education, i) => 
+      <Grid item key={i}>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon className={classes.icon} />}

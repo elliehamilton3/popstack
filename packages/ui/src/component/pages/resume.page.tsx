@@ -51,6 +51,7 @@ const ResumePage: React.FunctionComponent = () => {
   const updateResume = () => {
     const form = formRef.current as HTMLFormElement;
     const formData = getFormValues(form);
+    console.log(formData)
     apiFetch("/resume/0", "PATCH", formData).then((json) => {
       setResume(json as Resume);
     });
@@ -107,7 +108,12 @@ const ResumePage: React.FunctionComponent = () => {
                   </Grid>
                 </Box>
 
-                <PersonalDetailsSection />
+                <PersonalDetailsSection 
+                firstName={resume && resume.user.firstName} 
+                lastName={resume && resume.user.lastName} 
+                phoneNumber={resume && resume.user.phoneNumber} 
+                email={resume && resume.user.email} 
+                title={resume && resume.resume.title}/>
 
                 <ResumeSection
                   icon={<ParallelogramIcon />}
@@ -121,6 +127,7 @@ const ResumePage: React.FunctionComponent = () => {
                     multiline
                     variant="filled"
                     rows={4}
+                    defaultValue={resume && resume.resume.bio}
                   />
                 </ResumeSection>
 
