@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Page1: React.FunctionComponent = () => {
+const ResumePage: React.FunctionComponent = () => {
   const [resume, setResume] = useState<Resume | undefined>(undefined);
   const [resumeStyle, setResumeStyle] = useState<1 | 2>(1);
   const [checked, setChecked] = useState(false);
@@ -186,4 +186,4 @@ export const Page1: React.FunctionComponent = () => {
   );
 };
 
-export default Page1;
+export default ResumePage;

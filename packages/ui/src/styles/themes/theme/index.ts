@@ -8,12 +8,13 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#0057FF",
+      dark: "#0046CF"
     },
     secondary: {
       main: "#FF8C4C",
     },
     common: {
-      black: "#1C1A1A",
+      black: "#0C0C0C",
     },
   },
   typography: {
@@ -102,7 +103,7 @@ const theme = createMuiTheme({
     },
     MuiToolbar: { 
       root: {
-      backgroundColor: "#1C1A1A",
+      backgroundColor: "#0C0C0C",
       color: "#FFB7D5"
     }},
     MuiButton: {
