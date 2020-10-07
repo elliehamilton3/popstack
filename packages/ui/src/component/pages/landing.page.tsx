@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
   shapes:{
     position: "absolute",
-    top: "calc(448px - 35%)",
+    top: "calc(488px - 26vw)",
     left: 0,
     width: "100%",
     height: "100%",
