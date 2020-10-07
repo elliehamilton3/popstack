@@ -140,8 +140,7 @@ const PdfDocument: React.FunctionComponent<Resume> = ({
               </View>
               <View style={styles.text1}>
                 <Body>
-                  {moment(job.dateFrom).format("MMMM YYYY")} -{" "}
-                  {moment(job.dateTo).format("MMMM YYYY")}
+                  {moment(job.dateFrom).format("MMMM YYYY")} - {moment(job.dateTo).format("MMMM YYYY")}
                 </Body>
               </View>
             </View>

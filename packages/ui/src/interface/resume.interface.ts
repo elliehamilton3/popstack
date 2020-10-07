@@ -5,6 +5,15 @@ export interface Education {
   info: string;
 }
 
+export interface Employment {
+  company: string;
+  title: string;
+  location: string;
+  description: string;
+  dateFrom: Date | null;
+  dateTo: Date | null;
+}
+
 export interface Resume {
   resume: {
     bio: string;
@@ -12,14 +21,7 @@ export interface Resume {
     location: string;
   };
   educations: Education[];
-  jobs: {
-    company: string;
-    title: string;
-    location: string;
-    description: string;
-    dateFrom: Date;
-    dateTo: Date;
-  }[];
+  jobs: Employment[];
   user: {
     firstName: string;
     lastName: string;

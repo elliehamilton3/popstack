@@ -14,7 +14,6 @@ import { ThemeProvider } from "../../styles/theme";
 import apiFetch from "../../service/apiFetch.service";
 import AddIcon from "@material-ui/icons/Add";
 import ParallelogramIcon from "../icons/parallelogram.icon";
-import TeardropIcon from "../icons/teardrop.icon";
 import SquareIcon from "../icons/square.icon";
 import RectangleIcon from "../icons/rectangle.icon";
 import { getFormValues } from "../../helper/getFormValues";
@@ -23,6 +22,7 @@ import ResumeSection from "../resume/resumeSection.component";
 import ResumePreview, {generatePdfDocument} from "../resume/resumePreview.component";
 import PersonalDetailsSection from "../resume/personalDetails.component";
 import EducationSection from "../resume/educationSection.component";
+import EmploymentSection from "../resume/employmentSection.component";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -124,23 +124,7 @@ const ResumePage: React.FunctionComponent = () => {
                   />
                 </ResumeSection>
 
-                <ResumeSection
-                  icon={<TeardropIcon />}
-                  heading="Employment history"
-                  subtitle="Include your last 10 years of relevant experience and
-                  dates in this section. List your most recent position
-                  first."
-                >
-                  <Button
-                    color="secondary"
-                    variant="outlined"
-                    className={classes.button}
-                    fullWidth
-                    endIcon={<AddIcon className={classes.icon} />}
-                  >
-                    Add employment history
-                  </Button>
-                </ResumeSection>
+                <EmploymentSection employment={resume?.jobs}/>
 
                 <EducationSection educations={resume?.educations}/>
                 

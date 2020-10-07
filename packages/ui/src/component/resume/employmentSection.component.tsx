@@ -12,8 +12,9 @@ import ResumeSection from "./resumeSection.component";
 import HalfCircleIcon from "../icons/halfCircle.icon";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { Education } from "../../interface/resume.interface";
-import EducationForm from "./education.component";
+import { Employment } from "../../interface/resume.interface";
+import EmploymentForm from "./employment.component";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -26,46 +27,42 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export interface IEducationSectionProps {
-  educations?: Education[]
+export interface IEmploymentSectionProps {
+  employment?: Employment[]
 }
 
-const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educations}: IEducationSectionProps) => {
+const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({employment}: IEmploymentSectionProps) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
   return (
     <ResumeSection
       icon={<HalfCircleIcon />}
-      heading="Education"
-      subtitle="If it’s relevant to your work, you can choose to include
-    any recent educational achievements and the dates here."
+      heading="Employment history"
+      subtitle="Include your last 10 years of relevant experience and
+      dates in this section. List your most recent position
+      first."
     >
       <Grid container spacing={2}>
-      {educations && educations.map((education) => <Grid item>
+      {employment && employment.map((job) => <Grid item>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon className={classes.icon} />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Grid container justify="space-between" alignItems="center">
-              <Grid item>
+      
                 <Grid container direction="column">
                   <Grid item>
-                    <Typography variant="body2">{education.info}</Typography>
+                    <Typography variant="body2">{job.title} at {job.company}</Typography>
                   </Grid>
                   <Grid item>
-                    <Typography>{education.place}, London</Typography>
+                    <Typography>{moment(job.dateFrom).format("MMMM YYYY")} - {moment(job.dateTo).format("MMMM YYYY")}</Typography>
                   </Grid>
                 </Grid>
-              </Grid>
-              <Grid item>
-                <Typography>{education.yearFrom} - {education.yearTo}</Typography>
-              </Grid>
-            </Grid>
+            
           </AccordionSummary>
-          <EducationForm education={education}/>
+          <EmploymentForm job={job}/>
         </Accordion>
       </Grid>)}
       <Grid item>
@@ -89,13 +86,13 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
               <Grid item>
                 <Grid container direction="column">
                   <Grid item>
-                    <Typography variant="body2">Add education</Typography>
+                    <Typography variant="body2">Add employment history</Typography>
                   </Grid>
                 </Grid>
               </Grid>
             </Grid>
           </AccordionSummary>
-          <EducationForm education={{info: "", place: "", yearFrom: 0, yearTo: 0}}/>
+          <EmploymentForm job={{company: "", title: "", location: "", description: "", dateFrom: null, dateTo: null}}/>
         </Accordion>
       </Grid>
       </Grid>
@@ -103,4 +100,4 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
   );
 };
 
-export default EducationSection;
+export default EmploymentSection;
