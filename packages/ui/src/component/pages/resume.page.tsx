@@ -108,12 +108,13 @@ const ResumePage: React.FunctionComponent = () => {
                   </Grid>
                 </Box>
 
+                {resume && 
                 <PersonalDetailsSection 
-                firstName={resume && resume.user.firstName} 
-                lastName={resume && resume.user.lastName} 
-                phoneNumber={resume && resume.user.phoneNumber} 
-                email={resume && resume.user.email} 
-                title={resume && resume.resume.title}/>
+                firstName={resume.user.firstName} 
+                lastName={resume.user.lastName} 
+                phoneNumber={resume.user.phoneNumber} 
+                email={resume.user.email} 
+                title={resume.resume.title}/>}
 
                 <ResumeSection
                   icon={<ParallelogramIcon />}

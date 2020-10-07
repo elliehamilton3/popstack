@@ -15,7 +15,7 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
       <Grid item sm={12}>
         <TextField
           id="title"
-          name="title"
+          // name="title"
           helperText="Job title"
           fullWidth
           variant="filled"

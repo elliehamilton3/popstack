@@ -21,22 +21,21 @@ import ResumeSection from "./resumeSection.component";
 //   },
 // }));
 export interface IPersonalDetailsProps {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  phoneNumber?: number;
-  title?: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: number;
+  title: string;
 }
 
-const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = ({firstName, lastName, email, title}: IPersonalDetailsProps) => {
+const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = ({firstName, lastName, email, title, phoneNumber}: IPersonalDetailsProps) => {
   // const classes = useStyles();
-  console.log(firstName, "=======")
   return (
     <ResumeSection
       icon={<CircleIcon />}
       heading="Personal Details"
       subtitle="Summarise your professional career in 2 or 3 sentences."
-    >
+    > 
       <Grid item>
         <Grid container spacing={2} alignItems="flex-end">
           <Grid item sm={6}>
@@ -46,7 +45,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               helperText="First name"
               fullWidth
               variant="filled"
-              placeholder={firstName}
+              defaultValue={firstName}
             />
           </Grid>
           <Grid item sm={6}>
@@ -56,7 +55,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               helperText="Last name"
               fullWidth
               variant="filled"
-              placeholder={lastName}
+              defaultValue={lastName}
             />
           </Grid>
         </Grid>
@@ -70,7 +69,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               helperText="Email address"
               fullWidth
               variant="filled"
-              placeholder={email && email}
+              defaultValue={email}
             />
           </Grid>
           <Grid item sm={6}>
@@ -81,7 +80,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               helperText="Phone number"
               fullWidth
               variant="filled"
-              // placeholder={phoneNumber && phoneNumber}
+              defaultValue={phoneNumber}
             />
           </Grid>
         </Grid>
@@ -95,7 +94,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               helperText="Job title"
               fullWidth
               variant="filled"
-              placeholder={title}
+              defaultValue={title}
             />
           </Grid>
           {/* <Grid item sm={6}>
