@@ -80,14 +80,6 @@ const ResumePage: React.FunctionComponent = () => {
                       </Grid>
                      
                       <Grid item>
-                        <Button
-                          variant="outlined"
-                          onClick={() => updateResume()}
-                        >
-                          Update
-                        </Button>
-                      </Grid>
-                      <Grid item>
                       <Switch
                         checked={checked}
                         onChange={handleChange}
@@ -101,6 +93,7 @@ const ResumePage: React.FunctionComponent = () => {
 
                 {resume && 
                 <PersonalDetailsSection 
+                onChange={updateResume}
                 firstName={resume.user.firstName} 
                 lastName={resume.user.lastName} 
                 phoneNumber={resume.user.phoneNumber} 
@@ -120,12 +113,13 @@ const ResumePage: React.FunctionComponent = () => {
                     variant="filled"
                     rows={4}
                     defaultValue={resume && resume.resume.bio}
+                    onChange={() => updateResume()}
                   />
                 </ResumeSection>
 
-                <EmploymentSection employment={resume?.jobs}/>
+                <EmploymentSection employment={resume?.jobs} onChange={updateResume}/>
 
-                <EducationSection educations={resume?.educations}/>
+                <EducationSection educations={resume?.educations} onChange={updateResume}/>
                 
                 <ResumeSection
                   icon={<RectangleIcon fontSize="large" />}

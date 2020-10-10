@@ -27,10 +27,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export interface IEducationSectionProps {
-  educations?: Education[]
+  educations?: Education[];
+  onChange: () => void;
 }
 
-const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educations}: IEducationSectionProps) => {
+const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educations, onChange}: IEducationSectionProps) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -67,7 +68,7 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
               </Grid>
             </Grid>
           </AccordionSummary>
-          <EducationForm education={education} number={i}/>
+          <EducationForm education={education} number={i} onChange={onChange}/>
         </Accordion>
       </Grid>)}
       <Grid item>
@@ -97,7 +98,7 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
               </Grid>
             </Grid>
           </AccordionSummary>
-          <EducationForm education={{info: "", place: "", yearFrom: 0, yearTo: 0}} number={educations.length}/>
+          <EducationForm education={{info: "", place: "", yearFrom: 0, yearTo: 0}} number={educations.length} onChange={onChange}/>
         </Accordion>
       </Grid>
       </Grid>}

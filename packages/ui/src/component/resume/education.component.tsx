@@ -1,14 +1,15 @@
-import { AccordionDetails, Grid, TextField, FormControlLabel, Checkbox } from "@material-ui/core";
+import { AccordionDetails, Grid, TextField, FormControlLabel, Checkbox, Button } from "@material-ui/core";
 import React from "react";
 import { Education } from "../../interface/resume.interface";
 
 export interface IEducationFormProps {
   education: Education;
   number: number;
+  onChange: () => void;
 }
 
 const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
-  education: {place, info, yearFrom, yearTo}, number
+  education: {place, info, yearFrom, yearTo}, number, onChange
 }: IEducationFormProps) => {
   return (
     <AccordionDetails>
@@ -82,6 +83,16 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           variant="filled"
           rows={3}
         />
+      </Grid>
+      <Grid item container justify="flex-end">
+      <Grid item >
+        <Button
+        variant="outlined"
+        onClick={() => onChange()}
+          
+          
+        >Add to my resume</Button>
+      </Grid>
       </Grid>
     </Grid>
   </AccordionDetails>

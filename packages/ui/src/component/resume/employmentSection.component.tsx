@@ -28,10 +28,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export interface IEmploymentSectionProps {
-  employment?: Employment[]
+  employment?: Employment[];
+  onChange: () => void;
 }
 
-const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({employment}: IEmploymentSectionProps) => {
+const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({employment, onChange}: IEmploymentSectionProps) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
@@ -64,7 +65,7 @@ const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({em
                 </Grid>
             
           </AccordionSummary>
-          <EmploymentForm job={job} number={i}/>
+          <EmploymentForm job={job} number={i} onChange={onChange}/>
         </Accordion>
       </Grid>)}
       <Grid item>
@@ -94,7 +95,7 @@ const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({em
               </Grid>
             </Grid>
           </AccordionSummary>
-          <EmploymentForm job={{company: "", title: "", location: "", description: "", dateFrom: null, dateTo: null}} number={employment.length}/>
+          <EmploymentForm job={{company: "", title: "", location: "", description: "", dateFrom: null, dateTo: null}} number={employment.length} onChange={onChange}/>
         </Accordion>
       </Grid>
       </Grid>}

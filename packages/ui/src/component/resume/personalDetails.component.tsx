@@ -26,9 +26,10 @@ export interface IPersonalDetailsProps {
   email: string;
   phoneNumber: number;
   title: string;
+  onChange: () => void;
 }
 
-const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = ({firstName, lastName, email, title, phoneNumber}: IPersonalDetailsProps) => {
+const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = ({firstName, lastName, email, title, phoneNumber, onChange}: IPersonalDetailsProps) => {
   // const classes = useStyles();
   return (
     <ResumeSection
@@ -46,6 +47,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               fullWidth
               variant="filled"
               defaultValue={firstName}
+              onChange={() => onChange()}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -56,6 +58,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               fullWidth
               variant="filled"
               defaultValue={lastName}
+              onChange={() => onChange()}
             />
           </Grid>
         </Grid>
@@ -70,6 +73,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               fullWidth
               variant="filled"
               defaultValue={email}
+              onChange={() => onChange()}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -81,6 +85,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               fullWidth
               variant="filled"
               defaultValue={phoneNumber}
+              onChange={() => onChange()}
             />
           </Grid>
         </Grid>
@@ -95,6 +100,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               fullWidth
               variant="filled"
               defaultValue={title}
+              onChange={() => onChange()}
             />
           </Grid>
           {/* <Grid item xs={12} sm={6}>

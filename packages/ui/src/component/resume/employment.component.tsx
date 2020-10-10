@@ -1,14 +1,15 @@
-import { AccordionDetails, Grid, TextField, FormControlLabel, Checkbox } from "@material-ui/core";
+import { AccordionDetails, Grid, TextField, FormControlLabel, Checkbox, Button } from "@material-ui/core";
 import React from "react";
 import { Employment } from "../../interface/resume.interface";
 
 export interface IEmploymentFormProps {
   job: Employment;
   number: number;
+  onChange: () => void;
 }
 
 const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
-  job: {company, title, location, description}, number
+  job: {company, title, location, description}, number, onChange
 }: IEmploymentFormProps) => {
   return (
     <AccordionDetails>
@@ -82,6 +83,14 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
           rows={3}
           defaultValue={description}
         />
+      </Grid>
+      <Grid item container justify="flex-end">
+      <Grid item >
+        <Button
+        variant="outlined"
+        onClick={() => onChange()}
+        >Add to my resume</Button>
+      </Grid>
       </Grid>
     </Grid>
   </AccordionDetails>

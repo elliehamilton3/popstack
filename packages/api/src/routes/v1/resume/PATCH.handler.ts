@@ -24,7 +24,7 @@ export default async function patchHandler({ payload }: any) {
   await Education.destroy({ where: { resumeId } });
 
   payload.educations.forEach(async (education: any, i: number) => {
-    if (i === payload.jobs.length - 1) return;
+    if (i === payload.jobs.length - 1 && payload.jobs.length !== 1) return;
     await Education.create({
       info: education.info,
       place: education.place,
@@ -38,7 +38,7 @@ export default async function patchHandler({ payload }: any) {
   await Job.destroy({ where: { resumeId } });
 
   payload.jobs.forEach(async (job: any, i: number) => {
-    if (i === payload.jobs.length - 1) return;
+    if (i === payload.jobs.length - 1 && payload.jobs.length !== 1) return;
     await Job.create({
       title: job.title,
       company: job.company,
