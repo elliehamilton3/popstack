@@ -21,6 +21,7 @@ const useStyles = makeStyles(() => ({
   paper: {
     marginTop: "40px",
     minWidth: "calc(100vw - 80px)",
+    minHeight:  "122vw",
     "@media (min-width: 960px)": {
       minHeight:  "calc(100vh - 176px)",
     },
