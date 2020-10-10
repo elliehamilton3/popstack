@@ -67,7 +67,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     // add floor
     World.add(
       world,
-      Bodies.rectangle(400, 480, 900, 1, {
+      Bodies.rectangle(400, 480, 2000, 1, {
         isStatic: true,
         render: {
           fillStyle: "#0C0C0C",
@@ -93,7 +93,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     // create a stack with varying body categories (but these bodies can all collide with each other)
     World.add(
       world,
-      Composites.stack(100, 0, 4, 7, 20, 20, function (x: any, y: any, column: any, row: number) {
+      Composites.stack(0, 0, 9, 2, 30, 30, function (x: any, y: any, column: any, row: number) {
         let category = redCategory;
 
           if (row > 8) {
@@ -118,8 +118,8 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
               return Bodies.rectangle(
                 x,
                 y,
-                Common.random(25, 80),
-                Common.random(25, 80),
+                Common.random(50, 80),
+                Common.random(50, 80),
                 {
                   collisionFilter: {
                     category: category
@@ -189,7 +189,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
               );
             }
           case 1:
-            return Bodies.polygon(x, y, sides, Common.random(25, 80), {
+            return Bodies.polygon(x, y, sides, Common.random(50, 80), {
               collisionFilter: {
                 category: category
             },
@@ -226,7 +226,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     // this body will only collide with the walls and the red bodies
     World.add(
       world,
-      Bodies.circle(400, 40, 40, {
+      Bodies.circle(400, 40, 70, {
         collisionFilter: {
             mask: defaultCategory | redCategory
         },
@@ -252,7 +252,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     // this body will only collide with the walls and the blue bodies
     World.add(
       world,
-      Bodies.circle(480, 40, 30, {
+      Bodies.circle(480, 40, 70, {
         collisionFilter: {
             mask: defaultCategory | blueCategory
         },
