@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   box: {
     position: "relative",
-    top: "-472px",
+    top: "-480px",
   },
   content: {
     zIndex: 2

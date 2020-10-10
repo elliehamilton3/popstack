@@ -36,7 +36,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       engine: engine,
       canvas: canvasRef.current,
       options: {
-        height: 472,
+        height: 480,
         wireframes: false,
         background: "#0C0C0C",
       },
@@ -67,7 +67,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     // add floor
     World.add(
       world,
-      Bodies.rectangle(400, 472, 900, 1, {
+      Bodies.rectangle(400, 480, 900, 1, {
         isStatic: true,
         render: {
           fillStyle: "#0C0C0C",
@@ -301,7 +301,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
   useEffect(() => {
     if (constraints && scene) {
       const { width } = constraints;
-      const height = "472";
+      const height = "480";
       // Dynamically update canvas and bounds
       scene.bounds.max.x = width;
       scene.bounds.max.y = height;
