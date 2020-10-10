@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     zIndex: 2,
-    pointerEvents: "all"
+    pointerEvents: "auto"
   },
   button: {
     backgroundColor: theme.palette.common.white
@@ -56,10 +56,10 @@ export const Page1: React.FunctionComponent = () => {
         <Box className={classes.section1} pt={15} pb={21}>
           <Grid container className={classes.content} spacing={3} alignItems="center" direction="column">
           <Grid item className={classes.content}>
-            <Typography variant="h1">Make your resumé pop.</Typography>
+            <Typography variant="h1" style={{userSelect: "none", pointerEvents: "none"}}>Make your resumé pop.</Typography>
           </Grid>
-          <Grid item style={{maxWidth: "370px"}} className={classes.content}>
-            <Typography variant="h3" align="center">Beautiful resumes, designed for professionals like you.</Typography>
+          <Grid item className={classes.content} style={{maxWidth: "370px"}} >
+            <Typography variant="h3" align="center" style={{userSelect: "none", pointerEvents: "none"}}>Beautiful resumes, designed for professionals like you.</Typography>
           </Grid>
           <Grid item>
           <NavLink
