@@ -13,7 +13,7 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
   return (
     <AccordionDetails>
     <Grid container spacing={2} alignItems="flex-end">
-      <Grid item sm={12}>
+      <Grid item md={12}>
         <TextField
           id={`jobs-title-${number}`}
           name={`jobs-title-${number}`}
@@ -23,7 +23,7 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
           defaultValue={title}
         />
       </Grid>
-      <Grid item sm={12}>
+      <Grid item md={12}>
         <TextField
           id={`jobs-company-${number}`}
           name={`jobs-company-${number}`}
@@ -33,7 +33,7 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
           defaultValue={company}
         />
       </Grid>
-      <Grid item sm={4}>
+      <Grid item md={4}>
         <TextField
           id={`jobs-dateFrom-${number}`}
           name={`jobs-dateFrom-${number}`}
@@ -43,7 +43,7 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
           // defaultValue={dateFrom}
         />
       </Grid>
-      <Grid item sm={4}>
+      <Grid item md={4}>
         <TextField
           id={`jobs-dateTo-${number}`}
           name={`jobs-dateTo-${number}`}
@@ -53,7 +53,7 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
           // defaultValue={dateTo}
         />
       </Grid>
-      <Grid item sm={4}>
+      <Grid item md={4}>
         <FormControlLabel
           control={
             <Checkbox checked={true} name="checkedA" color="primary" />
@@ -61,7 +61,7 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
           label="Currently working"
         />
       </Grid>
-      <Grid item sm={12}>
+      <Grid item md={12}>
         <TextField
           id={`jobs-location-${number}`}
           name={`jobs-location-${number}`}
@@ -71,7 +71,7 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
           defaultValue={location}
         />
       </Grid>
-      <Grid item sm={12}>
+      <Grid item md={12}>
         <TextField
           name={`jobs-description-${number}`}
           fullWidth

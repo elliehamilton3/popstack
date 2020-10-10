@@ -20,16 +20,20 @@ export interface IResumePreviewProps {
 const useStyles = makeStyles(() => ({
   paper: {
     marginTop: "40px",
-    minHeight: "calc(147vw - 80px)",
-    "@media (min-width: 600px)": {
+    minWidth: "calc(100vw - 80px)",
+    "@media (min-width: 960px)": {
       minHeight:  "calc(100vh - 176px)",
     },
   },
   pdfStyles: {
     "& canvas": {
-      height: "calc(100vh - 200px) !important",
-      width: "auto !important",
+      width: "100% !important",
+      height: "auto !important",
       borderRadius: "4px",
+      "@media (min-width: 960px)": {
+        height: "calc(100vh - 200px) !important",
+        width: "auto !important",
+      }
     },
     "& div div div": {
       display: "none",
@@ -37,11 +41,14 @@ const useStyles = makeStyles(() => ({
   },
   box: {
     backgroundColor: "#2C6DC5",
-    height: "calc(100vh - 64px)",
-    position: "fixed",
-    width: "50%",
-    top: "64px",
-    // padding: "40px"
+    padding: "40px",
+    "@media (min-width: 960px)": {
+      height: "calc(100vh - 64px)",
+      position: "fixed",
+      width: "50%",
+      top: "64px",
+      padding: 0,
+    }
   }
 }));
 

@@ -38,7 +38,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
     > 
       <Grid item>
         <Grid container spacing={2} alignItems="flex-end">
-          <Grid item sm={6}>
+          <Grid item md={6}>
             <TextField
               id="firstName"
               name="firstName"
@@ -48,7 +48,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               defaultValue={firstName}
             />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item md={6}>
             <TextField
               id="lastName"
               name="lastName"
@@ -62,7 +62,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
       </Grid>
       <Grid item>
         <Grid container spacing={2} alignItems="flex-end">
-          <Grid item sm={6}>
+          <Grid item md={6}>
             <TextField
               id="email"
               name="email"
@@ -72,7 +72,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               defaultValue={email}
             />
           </Grid>
-          <Grid item sm={6}>
+          <Grid item md={6}>
             <TextField
               id="phoneNumber"
               name="phoneNumber"
@@ -87,7 +87,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
       </Grid>
       <Grid item>
         <Grid container spacing={2} alignItems="flex-end">
-          <Grid item sm={6}>
+          <Grid item md={6}>
             <TextField
               id="title"
               name="title"
@@ -97,7 +97,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               defaultValue={title}
             />
           </Grid>
-          {/* <Grid item sm={6}>
+          {/* <Grid item md={6}>
             <Button
               color="secondary"
               variant="outlined"

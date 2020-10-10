@@ -65,10 +65,10 @@ const ResumePage: React.FunctionComponent = () => {
     <ThemeProvider>
       <Navbar />
       <Grid container>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12} md={6}>
           <ResumePreview resume={resume} resumeStyle={resumeStyle}/>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12} md={6}>
           <Box p={3} pt={12}>
             <Grid container direction="column">
               <form ref={formRef} noValidate autoComplete="off">
