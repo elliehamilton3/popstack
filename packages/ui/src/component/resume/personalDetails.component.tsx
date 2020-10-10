@@ -32,7 +32,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
   // const classes = useStyles();
   return (
     <ResumeSection
-      icon={<CircleIcon />}
+      icon={<CircleIcon fontSize="large" />}
       heading="Personal Details"
       subtitle="Summarise your professional career in 2 or 3 sentences."
     > 

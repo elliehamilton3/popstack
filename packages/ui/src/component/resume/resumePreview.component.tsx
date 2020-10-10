@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
     minHeight:  "122vw",
     "@media (min-width: 960px)": {
       minHeight:  "calc(100vh - 176px)",
+      minWidth: 0
     },
   },
   pdfStyles: {

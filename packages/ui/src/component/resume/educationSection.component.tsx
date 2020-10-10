@@ -36,7 +36,7 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
 
   return (
     <ResumeSection
-      icon={<HalfCircleIcon />}
+      icon={<HalfCircleIcon fontSize="large"/>}
       heading="Education"
       subtitle="If it’s relevant to your work, you can choose to include
     any recent educational achievements and the dates here."

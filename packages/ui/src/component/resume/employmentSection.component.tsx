@@ -9,12 +9,12 @@ import {
 import React, { useState } from "react";
 import AddIcon from "@material-ui/icons/Add";
 import ResumeSection from "./resumeSection.component";
-import HalfCircleIcon from "../icons/halfCircle.icon";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import RemoveIcon from "@material-ui/icons/Remove";
 import { Employment } from "../../interface/resume.interface";
 import EmploymentForm from "./employment.component";
 import moment from "moment";
+import TeardropIcon from "../icons/teardrop.icon";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -37,7 +37,7 @@ const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({em
 
   return (
     <ResumeSection
-      icon={<HalfCircleIcon />}
+      icon={<TeardropIcon fontSize="large"/>}
       heading="Employment history"
       subtitle="Include your last 10 years of relevant experience and
       dates in this section. List your most recent position

@@ -108,7 +108,7 @@ const ResumePage: React.FunctionComponent = () => {
                 title={resume.resume.title}/>}
 
                 <ResumeSection
-                  icon={<ParallelogramIcon />}
+                  icon={<ParallelogramIcon fontSize="large" />}
                   heading="Describe you and your work"
                   subtitle="Summarise your professional career in 2 or 3 sentences."
                 >
@@ -128,7 +128,7 @@ const ResumePage: React.FunctionComponent = () => {
                 <EducationSection educations={resume?.educations}/>
                 
                 <ResumeSection
-                  icon={<RectangleIcon />}
+                  icon={<RectangleIcon fontSize="large" />}
                   heading="Websites &amp; social media links"
                   subtitle="Include a link to your personal website or portfolio,
                   Github repository, LinkedIn, or anything you might want
@@ -146,7 +146,7 @@ const ResumePage: React.FunctionComponent = () => {
                 </ResumeSection>
 
                 <ResumeSection
-                  icon={<SquareIcon />}
+                  icon={<SquareIcon fontSize="large" />}
                   heading="Skills"
                   subtitle="Add any skills you have that you want to highlight."
                 >
