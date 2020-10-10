@@ -17,7 +17,7 @@ export interface IResumePreviewProps {
   resumeStyle: 1 | 2;
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: "40px",
 
@@ -47,7 +47,10 @@ const useStyles = makeStyles(() => ({
       top: "64px",
       padding: 0,
     }
-  }
+  },
+  button: {
+    backgroundColor: theme.palette.common.white
+  },
 }));
 
 export const generatePdfDocument = async (documentData: Resume, resumeStyle: number) => {
@@ -139,12 +142,13 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
       </Grid>
       <Grid item>
                         <Button
-                          variant="outlined"
+                          variant="contained"
+                          className={classes.button}
                           disabled={!resume}
                           // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
                           onClick={() => generatePdfDocument(resume!, resumeStyle)}
                         >
-                          Download
+                          Download as PDF
                         </Button>
                       </Grid>
       </Grid>

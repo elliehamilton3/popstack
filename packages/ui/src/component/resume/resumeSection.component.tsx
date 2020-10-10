@@ -18,7 +18,7 @@ const ResumeSection: React.FunctionComponent<IResumeSectionProps> = ({
       <Grid item container direction="column" spacing={2}>
         <Grid item>{icon}</Grid>
         <Grid item>
-          <Typography variant="h2">{heading}</Typography>
+          <Typography variant="h3">{heading}</Typography>
         </Grid>
         {subtitle && (
           <Grid item>

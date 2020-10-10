@@ -28,11 +28,12 @@ const theme = createMuiTheme({
       fontWeight: 700,
     },
     h2: {
-      fontSize: "1.75rem",
-      fontWeight: 500,
+      fontSize: "1.625rem",
+      fontWeight: 400,
+      lineHeight: "1.2",
     },
     h3: {
-      fontSize: "1.375rem",
+      fontSize: "1.25rem",
       lineHeight: "1.25",
       // fontWeight: 500,
     },

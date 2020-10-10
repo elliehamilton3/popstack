@@ -76,7 +76,7 @@ const ResumePage: React.FunctionComponent = () => {
                   <Grid item>
                     <Grid container justify="space-between" alignItems="center">
                       <Grid item>
-                        <Typography variant="h1">Your Resumé</Typography>
+                        <Typography variant="h2">Your Resumé</Typography>
                       </Grid>
                      
                       <Grid item>
