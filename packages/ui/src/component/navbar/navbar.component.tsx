@@ -4,7 +4,7 @@ import { Menu } from "@material-ui/icons";
 
 const Navbar: React.FunctionComponent = () => {
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Toolbar>
         <Grid
           justify="space-between"

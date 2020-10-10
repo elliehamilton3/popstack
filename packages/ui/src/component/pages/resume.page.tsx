@@ -69,7 +69,7 @@ const ResumePage: React.FunctionComponent = () => {
           <ResumePreview resume={resume} resumeStyle={resumeStyle}/>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <Box p={3} pt={4}>
+          <Box p={3} pt={12}>
             <Grid container direction="column">
               <form ref={formRef} noValidate autoComplete="off">
                 <Box pb={4}>

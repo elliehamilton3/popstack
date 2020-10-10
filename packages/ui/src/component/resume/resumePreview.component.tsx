@@ -38,9 +38,11 @@ const useStyles = makeStyles(() => ({
   },
   box: {
     backgroundColor: "#2C6DC5",
-    // height: "calc(100vh - 64px)",
-    padding: "40px"
-    // overflow: "hidden"
+    height: "calc(100vh - 64px)",
+    position: "fixed",
+    width: "50%",
+    top: "64px",
+    // padding: "40px"
   }
 }));
 
@@ -112,6 +114,8 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
   );
   return (
     <Box className={classes.box}>
+      <Grid container justify="center">
+        <Grid item>
       <Paper
         elevation={8}
         className={`${classes.paper} ${generatedResume && classes.pdfStyles}`}
@@ -128,6 +132,8 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
           </Doc>
         )}
       </Paper>
+      </Grid>
+      </Grid>
     </Box>
   );
 };
