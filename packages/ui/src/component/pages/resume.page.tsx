@@ -19,7 +19,7 @@ import RectangleIcon from "../icons/rectangle.icon";
 import { getFormValues } from "../../helper/getFormValues";
 import { Resume } from "../../interface/resume.interface";
 import ResumeSection from "../resume/resumeSection.component";
-import ResumePreview, {generatePdfDocument} from "../resume/resumePreview.component";
+import ResumePreview from "../resume/resumePreview.component";
 import PersonalDetailsSection from "../resume/personalDetails.component";
 import EducationSection from "../resume/educationSection.component";
 import EmploymentSection from "../resume/employmentSection.component";
@@ -78,16 +78,7 @@ const ResumePage: React.FunctionComponent = () => {
                       <Grid item>
                         <Typography variant="h1">Your Resumé</Typography>
                       </Grid>
-                      <Grid item>
-                        <Button
-                          variant="outlined"
-                          disabled={!resume}
-                          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                          onClick={() => generatePdfDocument(resume!, resumeStyle)}
-                        >
-                          Download
-                        </Button>
-                      </Grid>
+                     
                       <Grid item>
                         <Button
                           variant="outlined"

@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography, makeStyles } from "@material-ui/core";
+import { Box, Grid, Paper, Typography, makeStyles, Button } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import React, { useEffect, useState } from "react";
 import PdfDocument from "./pdfDocument.component";
@@ -19,17 +19,16 @@ export interface IResumePreviewProps {
 
 const useStyles = makeStyles(() => ({
   paper: {
-    width: "calc(100vw - 80px)",
+    marginTop: "40px",
     minHeight: "calc(147vw - 80px)",
     "@media (min-width: 600px)": {
-      width: "calc(50vw - 80px)",
-      minHeight: "586px",
+      minHeight:  "calc(100vh - 176px)",
     },
   },
   pdfStyles: {
     "& canvas": {
-      width: "100% !important",
-      height: "auto !important",
+      height: "calc(100vh - 200px) !important",
+      width: "auto !important",
       borderRadius: "4px",
     },
     "& div div div": {
@@ -114,7 +113,7 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
   );
   return (
     <Box className={classes.box}>
-      <Grid container justify="center">
+      <Grid container alignItems="center" direction="column" spacing={2}>
         <Grid item>
       <Paper
         elevation={8}
@@ -133,6 +132,16 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
         )}
       </Paper>
       </Grid>
+      <Grid item>
+                        <Button
+                          variant="outlined"
+                          disabled={!resume}
+                          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                          onClick={() => generatePdfDocument(resume!, resumeStyle)}
+                        >
+                          Download
+                        </Button>
+                      </Grid>
       </Grid>
     </Box>
   );
