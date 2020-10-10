@@ -25,6 +25,8 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     const Runner = Matter.Runner;
     const Composites = Matter.Composites;
     const Common = Matter.Common;
+    const MouseConstraint = Matter.MouseConstraint
+        const Mouse = Matter.Mouse
 
     const engine = Engine.create({});
     const world = engine.world;
@@ -47,6 +49,12 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     setContraints(boxRef.current.getBoundingClientRect());
     setScene(render);
     window.addEventListener("resize", handleResize);
+    const defaultCategory = 0x0001,
+        redCategory = 0x0002,
+        greenCategory = 0x0004,
+        blueCategory = 0x0008,
+        orangeCategory = 0x0010,
+        yellowCategory = 0x0012;
 
     const redColor = "#FFB7D5",
       blueColor = "#62CFF1",
@@ -83,7 +91,23 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     // create a stack with varying body categories (but these bodies can all collide with each other)
     World.add(
       world,
-      Composites.stack(100, 0, 4, 7, 20, 20, function (x: any, y: any) {
+      Composites.stack(100, 0, 4, 7, 20, 20, function (x: any, y: any, column: any, row: number) {
+        let category = redCategory;
+
+          if (row > 8) {
+              category = yellowCategory;
+           
+          } 
+        else if (row > 6) {
+              category = orangeCategory;
+
+          } 
+          else if (row > 4) {
+              category = blueCategory;
+      
+          } else if (row > 2) {
+              category = greenCategory;
+          }
         const sides = Math.round(Common.random(1, 8));
 
         switch (Math.round(Common.random(0, 1))) {
@@ -95,6 +119,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
                 Common.random(25, 80),
                 Common.random(25, 80),
                 {
+                  collisionFilter: {
+                    category: category
+                },
                   render: {
                     strokeStyle: "transparent",
                     opacity: 0.7,
@@ -117,6 +144,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
                 Common.random(25, 80),
                 Common.random(0, 1),
                 {
+                  collisionFilter: {
+                    category: category
+                },
                   render: {
                     strokeStyle: "transparent",
                     opacity: 0.8,
@@ -138,6 +168,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
                 Common.random(80, 120),
                 Common.random(25, 30),
                 {
+                  collisionFilter: {
+                                category: category
+                            },
                   render: {
                     strokeStyle: "transparent",
                     opacity: Common.random(0.6, 1),
@@ -155,6 +188,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
             }
           case 1:
             return Bodies.polygon(x, y, sides, Common.random(25, 80), {
+              collisionFilter: {
+                category: category
+            },
               render: {
                 strokeStyle: "transparent",
                 opacity: 0.6,
@@ -176,9 +212,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     World.add(
       world,
       Bodies.circle(310, 40, 60, {
-        // collisionFilter: {
-        //     mask: defaultCategory | greenCategory
-        // },
+        collisionFilter: {
+            mask: defaultCategory | greenCategory
+        },
         render: {
           fillStyle: greenColor,
         },
@@ -189,9 +225,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     World.add(
       world,
       Bodies.circle(400, 40, 40, {
-        // collisionFilter: {
-        //     mask: defaultCategory | redCategory
-        // },
+        collisionFilter: {
+            mask: defaultCategory | redCategory
+        },
         render: {
           fillStyle: redColor,
         },
@@ -202,9 +238,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     World.add(
       world,
       Bodies.circle(400, 40, 50, {
-        // collisionFilter: {
-        //     mask: defaultCategory | orangeCategory
-        // },
+        collisionFilter: {
+            mask: defaultCategory | orangeCategory
+        },
         render: {
           fillStyle: orangeColor,
         },
@@ -215,9 +251,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     World.add(
       world,
       Bodies.circle(480, 40, 30, {
-        // collisionFilter: {
-        //     mask: defaultCategory | blueCategory
-        // },
+        collisionFilter: {
+            mask: defaultCategory | blueCategory
+        },
         render: {
           fillStyle: blueColor,
         },
@@ -228,14 +264,30 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     World.add(
       world,
       Bodies.circle(480, 40, 50, {
-        // collisionFilter: {
-        //     mask: defaultCategory | yellowCategory
-        // },
+        collisionFilter: {
+            mask: defaultCategory | yellowCategory
+        },
         render: {
           fillStyle: yellowColor,
         },
       })
     );
+     // add mouse control
+    const mouse = Mouse.create(render.canvas),
+        mouseConstraint = MouseConstraint.create(engine, {
+            mouse: mouse,
+            constraint: {
+                stiffness: 0.2,
+                render: {
+                    visible: false
+                }
+            }
+        });
+
+    World.add(world, mouseConstraint);
+
+    // keep the mouse in sync with rendering
+    render.mouse = mouse;
   }, []);
 
   useEffect(() => {
