@@ -3,19 +3,20 @@ import React from "react";
 import { Education } from "../../interface/resume.interface";
 
 export interface IEducationFormProps {
-  education: Education
+  education: Education;
+  number: number;
 }
 
 const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
-  education: {place, info, yearFrom, yearTo}
+  education: {place, info, yearFrom, yearTo}, number
 }: IEducationFormProps) => {
   return (
     <AccordionDetails>
     <Grid container spacing={2} alignItems="flex-end">
       <Grid item sm={12}>
         <TextField
-          id="institution"
-          name="institution"
+          id={`educations-place-${number}`}
+          name={`educations-place-${number}`}
           helperText="Institution"
           fullWidth
           variant="filled"
@@ -24,8 +25,8 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
       </Grid>
       <Grid item sm={12}>
         <TextField
-          id="qualification"
-          name="qualification"
+          id={`educations-info-${number}`}
+          name={`educations-info-${number}`}
           helperText="Qualification"
           fullWidth
           variant="filled"
@@ -34,8 +35,8 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
       </Grid>
       <Grid item sm={4}>
         <TextField
-          id="startDate"
-          name="startDate"
+          id={`educations-yearFrom-${number}`}
+          name={`educations-yearFrom-${number}`}
           helperText="Start date"
           fullWidth
           variant="filled"
@@ -45,8 +46,8 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
       </Grid>
       <Grid item sm={4}>
         <TextField
-          id="endDate"
-          name="endDate"
+          id={`educations-yearTo-${number}`}
+          name={`educations-yearTo-${number}`}
           helperText="End date"
           fullWidth
           variant="filled"
@@ -64,8 +65,8 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
       </Grid>
       <Grid item sm={12}>
         <TextField
-          id="location"
-          name="location"
+          id={`educations-location-${number}`}
+          name={`educations-location-${number}`}
           helperText="Location"
           fullWidth
           variant="filled"
@@ -73,10 +74,10 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
       </Grid>
       <Grid item sm={12}>
         <TextField
-          name="description"
+          name={`educations-description-${number}`}
           fullWidth
           helperText="Description"
-          id="description"
+          id={`educations-description-${number}`}
           multiline
           variant="filled"
           rows={3}

@@ -36,6 +36,12 @@ const useStyles = makeStyles(() => ({
       display: "none",
     },
   },
+  box: {
+    backgroundColor: "#2C6DC5",
+    // height: "calc(100vh - 64px)",
+    padding: "40px"
+    // overflow: "hidden"
+  }
 }));
 
 export const generatePdfDocument = async (documentData: Resume, resumeStyle: number) => {
@@ -105,7 +111,7 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
     </Box>
   );
   return (
-    <Box bgcolor="#333333" p={5}>
+    <Box className={classes.box}>
       <Paper
         elevation={8}
         className={`${classes.paper} ${generatedResume && classes.pdfStyles}`}

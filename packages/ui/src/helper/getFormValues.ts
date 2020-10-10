@@ -60,7 +60,19 @@ export function getFormValues(form: HTMLFormElement) {
   const output = {} as any;
 
   serializedArray.forEach((item) => {
-    output[item.name] = item.value;
+    if (
+      item.name.split("-")[0] === "educations" ||
+      item.name.split("-")[0] === "jobs"
+    ) {
+      if (!output[item.name.split("-")[0]])
+        output[item.name.split("-")[0]] = [];
+      output[item.name.split("-")[0]][item.name.split("-")[2]] = {
+        ...output[item.name.split("-")[0]][item.name.split("-")[2]],
+        [item.name.split("-")[1]]: item.value,
+      };
+    } else {
+      output[item.name] = item.value;
+    }
   });
 
   return convertDotNotationToObject(output);

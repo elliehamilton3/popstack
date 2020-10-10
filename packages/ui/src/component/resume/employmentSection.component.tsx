@@ -43,8 +43,9 @@ const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({em
       dates in this section. List your most recent position
       first."
     >
+      {employment &&
       <Grid container spacing={2}>
-      {employment && employment.map((job, i) => 
+      {employment.map((job, i) => 
       <Grid item key={i}>
         <Accordion>
           <AccordionSummary
@@ -63,7 +64,7 @@ const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({em
                 </Grid>
             
           </AccordionSummary>
-          <EmploymentForm job={job}/>
+          <EmploymentForm job={job} number={i}/>
         </Accordion>
       </Grid>)}
       <Grid item>
@@ -93,10 +94,10 @@ const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({em
               </Grid>
             </Grid>
           </AccordionSummary>
-          <EmploymentForm job={{company: "", title: "", location: "", description: "", dateFrom: null, dateTo: null}}/>
+          <EmploymentForm job={{company: "", title: "", location: "", description: "", dateFrom: null, dateTo: null}} number={employment.length}/>
         </Accordion>
       </Grid>
-      </Grid>
+      </Grid>}
     </ResumeSection>
   );
 };

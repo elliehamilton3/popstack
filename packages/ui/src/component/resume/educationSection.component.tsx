@@ -41,8 +41,9 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
       subtitle="If it’s relevant to your work, you can choose to include
     any recent educational achievements and the dates here."
     >
+      {educations &&
       <Grid container spacing={2}>
-      {educations && educations.map((education, i) => 
+       {educations.map((education, i) => 
       <Grid item key={i}>
         <Accordion>
           <AccordionSummary
@@ -66,7 +67,7 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
               </Grid>
             </Grid>
           </AccordionSummary>
-          <EducationForm education={education}/>
+          <EducationForm education={education} number={i}/>
         </Accordion>
       </Grid>)}
       <Grid item>
@@ -96,10 +97,10 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
               </Grid>
             </Grid>
           </AccordionSummary>
-          <EducationForm education={{info: "", place: "", yearFrom: 0, yearTo: 0}}/>
+          <EducationForm education={{info: "", place: "", yearFrom: 0, yearTo: 0}} number={educations.length}/>
         </Accordion>
       </Grid>
-      </Grid>
+      </Grid>}
     </ResumeSection>
   );
 };

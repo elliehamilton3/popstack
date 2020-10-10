@@ -3,19 +3,20 @@ import React from "react";
 import { Employment } from "../../interface/resume.interface";
 
 export interface IEmploymentFormProps {
-  job: Employment
+  job: Employment;
+  number: number;
 }
 
 const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
-  job: {company, title, location, description}
+  job: {company, title, location, description}, number
 }: IEmploymentFormProps) => {
   return (
     <AccordionDetails>
     <Grid container spacing={2} alignItems="flex-end">
       <Grid item sm={12}>
         <TextField
-          id="title"
-          // name="title"
+          id={`jobs-title-${number}`}
+          name={`jobs-title-${number}`}
           helperText="Job title"
           fullWidth
           variant="filled"
@@ -24,8 +25,8 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
       </Grid>
       <Grid item sm={12}>
         <TextField
-          id="company"
-          name="company"
+          id={`jobs-company-${number}`}
+          name={`jobs-company-${number}`}
           helperText="Company"
           fullWidth
           variant="filled"
@@ -34,8 +35,8 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
       </Grid>
       <Grid item sm={4}>
         <TextField
-          id="dateFrom"
-          name="dateFrom"
+          id={`jobs-dateFrom-${number}`}
+          name={`jobs-dateFrom-${number}`}
           helperText="Start date"
           fullWidth
           variant="filled"
@@ -44,8 +45,8 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
       </Grid>
       <Grid item sm={4}>
         <TextField
-          id="dateTo"
-          name="dateTo"
+          id={`jobs-dateTo-${number}`}
+          name={`jobs-dateTo-${number}`}
           helperText="End date"
           fullWidth
           variant="filled"
@@ -62,8 +63,8 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
       </Grid>
       <Grid item sm={12}>
         <TextField
-          id="location"
-          name="location"
+          id={`jobs-location-${number}`}
+          name={`jobs-location-${number}`}
           helperText="Location"
           fullWidth
           variant="filled"
@@ -72,10 +73,10 @@ const EmploymentForm: React.FunctionComponent<IEmploymentFormProps> = ({
       </Grid>
       <Grid item sm={12}>
         <TextField
-          name="description"
+          name={`jobs-description-${number}`}
           fullWidth
           helperText="Description"
-          id="description"
+          id={`jobs-description-${number}`}
           multiline
           variant="filled"
           rows={3}
