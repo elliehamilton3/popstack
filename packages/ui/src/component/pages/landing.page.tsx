@@ -7,7 +7,6 @@ import {Animation} from '../animation/animation.component'
 const useStyles = makeStyles((theme) => ({
   section1: {
     color: theme.palette.common.white,
-    // zIndex: -1,
   },
   section2: {
     backgroundColor: "#0057FF",
@@ -30,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
   box: {
     position: "relative",
-    top: "-480px",
+    top: "-476px",
+    // zIndex: -1,
   },
   content: {
     zIndex: 2

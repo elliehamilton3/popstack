@@ -340,8 +340,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     <div
       ref={boxRef}
       style={{
-        width: "100%",
-        pointerEvents: "none",
+        zIndex: 3
       }}
     >
       <canvas ref={canvasRef}/>
