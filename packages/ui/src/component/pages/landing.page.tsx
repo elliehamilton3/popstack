@@ -30,10 +30,11 @@ const useStyles = makeStyles((theme) => ({
   box: {
     position: "relative",
     top: "-476px",
-    // zIndex: -1,
+    pointerEvents: "none"
   },
   content: {
-    zIndex: 2
+    zIndex: 2,
+    pointerEvents: "all"
   },
   button: {
     backgroundColor: theme.palette.common.white
