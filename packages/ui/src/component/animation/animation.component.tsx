@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, createRef } from "react";
 import Matter from "matter-js";
 import { IReactProps } from "../../interface/reactProps.interface";
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const Animation: React.FunctionComponent<IReactProps> = ({children}: IReactProps) => {
   const boxRef = useRef<any>(null);
-  const canvasRef = useRef<any>(null);
+  const canvasRef = createRef<HTMLCanvasElement>();
   const STATIC_DENSITY = 15;
 
   const [constraints, setContraints] = useState<any>();
@@ -32,11 +32,13 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     const world = engine.world;
     // create renderer
     const render = Render.create({
-      element: document.body,
+      element: boxRef.current,
       engine: engine,
+      canvas: canvasRef.current,
       options: {
+        height: 472,
         wireframes: false,
-        background: "#ffffff",
+        background: "#0C0C0C",
       },
     });
 
@@ -65,10 +67,10 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     // add floor
     World.add(
       world,
-      Bodies.rectangle(400, 600, 900, 1, {
+      Bodies.rectangle(400, 472, 900, 1, {
         isStatic: true,
         render: {
-          fillStyle: "transparent",
+          fillStyle: "#0C0C0C",
         },
       })
     );
@@ -77,13 +79,13 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       Bodies.rectangle(800, 0, 1, 2000, {
         isStatic: true,
         render: {
-          fillStyle: "transparent",
+          fillStyle: "#0C0C0C",
         },
       }),
       Bodies.rectangle(0, 0, 1, 2000, {
         isStatic: true,
         render: {
-          fillStyle: "transparent",
+          fillStyle: "#0C0C0C",
         },
       }),
     ]);
@@ -124,7 +126,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
                 },
                   render: {
                     strokeStyle: "transparent",
-                    opacity: 0.7,
+                    opacity: 0.9,
                     fillStyle: Common.choose([
                       "#FFB7D5",
                       "#26C58C",
@@ -149,7 +151,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
                 },
                   render: {
                     strokeStyle: "transparent",
-                    opacity: 0.8,
+                    opacity: 0.9,
                     fillStyle: Common.choose([
                       "#FFB7D5",
                       "#26C58C",
@@ -173,7 +175,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
                             },
                   render: {
                     strokeStyle: "transparent",
-                    opacity: Common.random(0.6, 1),
+                    opacity: 0.9,
                     fillStyle: Common.choose([
                       "#FFB7D5",
                       "#26C58C",
@@ -193,7 +195,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
             },
               render: {
                 strokeStyle: "transparent",
-                opacity: 0.6,
+                opacity: 0.9,
                 fillStyle: Common.choose([
                   "#FFB7D5",
                   "#26C58C",
@@ -298,7 +300,8 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
 
   useEffect(() => {
     if (constraints && scene) {
-      const { width, height } = constraints;
+      const { width } = constraints;
+      const height = "472";
       // Dynamically update canvas and bounds
       scene.bounds.max.x = width;
       scene.bounds.max.y = height;
@@ -306,18 +309,18 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       scene.options.height = height;
       scene.canvas.width = width;
       scene.canvas.height = height;
-      // Dynamically update floor
-      const floor = scene.engine.world.bodies[0];
-      Matter.Body.setPosition(floor, {
-        x: width / 2,
-        y: height + STATIC_DENSITY / 2,
-      });
-      Matter.Body.setVertices(floor, [
-        { x: 0, y: height },
-        { x: width, y: height },
-        { x: width, y: height + STATIC_DENSITY },
-        { x: 0, y: height + STATIC_DENSITY },
-      ]);
+      // // Dynamically update floor
+      // const floor = scene.engine.world.bodies[0];
+      // Matter.Body.setPosition(floor, {
+      //   x: width / 2,
+      //   y: height + STATIC_DENSITY / 2,
+      // });
+      // Matter.Body.setVertices(floor, [
+      //   { x: 0, y: height },
+      //   { x: width, y: height },
+      //   { x: width, y: height + STATIC_DENSITY },
+      //   { x: 0, y: height + STATIC_DENSITY },
+      // ]);
 
       const wallRight = scene.engine.world.bodies[1];
       Matter.Body.setPosition(wallRight, {
@@ -337,17 +340,14 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     <div
       ref={boxRef}
       style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
         width: "100%",
-        height: "100%",
         pointerEvents: "none",
       }}
     >
+      <canvas ref={canvasRef}/>
       {children}
 
-      <canvas ref={canvasRef} />
+    
     </div>
   );
 };

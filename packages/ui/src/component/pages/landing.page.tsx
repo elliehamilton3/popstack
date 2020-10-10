@@ -3,11 +3,11 @@ import React from "react";
 import Navbar from "../navbar/navbar.component";
 import { ThemeProvider } from "../../styles/theme";
 import { NavLink } from "react-router-dom";
+import {Animation} from '../animation/animation.component'
 const useStyles = makeStyles((theme) => ({
   section1: {
-    backgroundColor: "#0C0C0C",
     color: theme.palette.common.white,
-    zIndex: -1,
+    // zIndex: -1,
   },
   section2: {
     backgroundColor: "#0057FF",
@@ -29,19 +29,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#FFD84C"
   },
   box: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    zIndex: 1,
-  },
-  shapes:{
-    position: "absolute",
-    top: "calc(525px - 28vw)",
-    left: 0,
-    width: "100%",
-    height: "100%",
+    position: "relative",
+    top: "-472px",
   },
   content: {
     zIndex: 2
@@ -58,11 +47,32 @@ export const Page1: React.FunctionComponent = () => {
   const classes = useStyles();
   return (
     <ThemeProvider>
-      <Box className={classes.box}>
       <Navbar />
-      <Box className={classes.section1} pt={15} pb={21}>
-      <Box className={classes.shapes}>
-      <svg  viewBox="0 0 1175 2061" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <Animation >
+        
+        </Animation>
+        <Box className={classes.box}> 
+        <Box className={classes.section1} pt={15} pb={21}>
+          <Grid container className={classes.content} spacing={3} alignItems="center" direction="column">
+          <Grid item className={classes.content}>
+            <Typography variant="h1">Make your resumé pop.</Typography>
+          </Grid>
+          <Grid item style={{maxWidth: "370px"}} className={classes.content}>
+            <Typography variant="h3" align="center">Beautiful resumes, designed for professionals like you.</Typography>
+          </Grid>
+          <Grid item>
+          <NavLink
+            to="/resume"
+            exact
+            className={classes.link}
+          >
+            <Button variant="contained" className={classes.button}>Create my resume</Button>
+          </NavLink>
+          </Grid>
+        </Grid>
+        </Box>
+      {/* 
+       <svg  viewBox="0 0 1175 2061" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect opacity="0.9" x="473" y="311" width="711" height="46" rx="4" fill="#0057FF"/>
       <path opacity="0.9" d="M801.389 298.347C799.767 297.778 798.689 296.236 798.713 294.517L800.054 197.559C800.092 194.826 802.798 192.935 805.377 193.84L896.882 225.925C898.505 226.494 899.582 228.036 899.558 229.755L898.217 326.713C898.18 329.445 895.473 331.336 892.894 330.432L801.389 298.347Z" fill="#26C58C"/>
       <path opacity="0.9" d="M316.948 352.989C317.005 355.198 315.253 357 313.044 357C297.443 357 237.53 357 166 357C94.4702 357 34.557 357 18.9563 357C16.7472 357 14.9947 355.198 15.0522 352.989C17.1785 271.448 83.9461 206 166 206C248.054 206 314.822 271.448 316.948 352.989Z" fill="#0057FF"/>
@@ -82,28 +92,9 @@ export const Page1: React.FunctionComponent = () => {
       <circle opacity="0.9" cx="350.786" cy="780.357" r="70" transform="rotate(18.8919 350.786 780.357)" fill="#FFD84C"/>
       <circle opacity="0.9" cx="1180.89" cy="1558.89" r="70" transform="rotate(18.8919 1180.89 1558.89)" fill="#62CFF1"/>
       <path opacity="0.9" d="M1076.95 1997.32C1062.2 1966.76 1083.73 1887.3 1089.22 1868.34C1089.87 1866.1 1092.26 1864.95 1094.41 1865.83C1112.67 1873.34 1188.28 1905.91 1203.03 1936.47C1219.83 1971.28 1205.23 2013.13 1170.42 2029.94C1135.6 2046.74 1093.75 2032.14 1076.95 1997.32Z" fill="#FFB7D5"/>
-      </svg>
-
-      </Box>
-        <Grid container className={classes.content} spacing={3} alignItems="center" direction="column">
-          <Grid item className={classes.content}>
-            <Typography variant="h1">Make your resumé pop.</Typography>
-          </Grid>
-          <Grid item style={{maxWidth: "370px"}} className={classes.content}>
-            <Typography variant="h3" align="center">Beautiful resumes, designed for professionals like you.</Typography>
-          </Grid>
-          <Grid item>
-          <NavLink
-            to="/resume"
-            exact
-            className={classes.link}
-          >
-            <Button variant="contained" className={classes.button}>Create my resume</Button>
-          </NavLink>
-          </Grid>
-        </Grid>
-      </Box>
-       <Box className={classes.section2} p={5}>
+      </svg> 
+  */}
+      <Box className={classes.section2} p={5}>
       <Grid container spacing={3} className={classes.content}>
         <Grid item sm={1}>
           <Paper className={classes.resumePaper} style={{marginLeft: "-40px", borderRadius: "0 20px 20px 0"}}/>
@@ -124,7 +115,7 @@ export const Page1: React.FunctionComponent = () => {
         </Grid>
         </Grid>
       </Box>
-      <Box className={classes.section1} p={5}>
+       <Box className={classes.section1} style={{backgroundColor: "#0C0C0C"}} p={5}>
       <Grid container spacing={3} alignItems="center" className={classes.content}>
      
         <Grid item sm={6}>
@@ -186,7 +177,7 @@ export const Page1: React.FunctionComponent = () => {
       </Grid>
       </Box>
       </Box> 
-      <Box className={classes.section1} height="300px" />
+      <Box className={classes.section1} style={{backgroundColor: "#0C0C0C"}} height="300px" /> 
       </Box>
     </ThemeProvider> 
   );
