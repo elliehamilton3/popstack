@@ -73,7 +73,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     );
     World.add(world, [
       // walls
-      Bodies.rectangle(800, 0, 1, 2000, {
+      Bodies.rectangle(200, 200, 1, 2000, {
         isStatic: true,
      
         render: {
@@ -266,6 +266,12 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       //   { x: width, y: height + STATIC_DENSITY },
       //   { x: 0, y: height + STATIC_DENSITY },
       // ]);
+
+      // const wallLeft = scene.engine.world.bodies[1];
+      // Matter.Body.setPosition(wallLeft, {
+      //   x: 0,
+      //   y: 0
+      // });
 
       const wallRight = scene.engine.world.bodies[1];
       Matter.Body.setPosition(wallRight, {
