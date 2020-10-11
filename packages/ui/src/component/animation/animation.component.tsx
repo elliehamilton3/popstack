@@ -50,10 +50,8 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     setContraints(boxRef.current.getBoundingClientRect());
     setScene(render);
     window.addEventListener("resize", handleResize);
-    // const category1 = 0x0001,
-        // category2 = 0x0002,
-        // category3 = 0x0004,
-        // category4 = 0x0006;
+    const category1 = 0x0001,
+        category2 = 0x0002;
 
     const redColor = "#FFB7D5",
       blueColor = "#62CFF1",
@@ -94,9 +92,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       world,
       Bodies.rectangle(
           400,
-          100,
-         700,
-          46,
+          0,
+         400,
+          26,
           {
           //   collisionFilter: {
           //     mask: category1 
@@ -112,9 +110,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     World.add(
       world,
       Bodies.circle(480, 40, 70, {
-        // collisionFilter: {
-        //     mask: category4 |category1 
-        // },
+        collisionFilter: {
+            mask: category1  | category2
+        },
         render: {
           fillStyle: yellowColor,
           opacity: 0.9,
@@ -127,9 +125,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
         World.add(
           world,
           Bodies.circle(440, 0, 70, {
-          //   collisionFilter: {
-          //     mask: category4 | category1 
-          // },
+            collisionFilter: {
+              mask:  category1 | category2
+          },
             render: {
               fillStyle: redColor,
               opacity: 0.9,
@@ -146,9 +144,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
               334,
               79,
               {
-              //   collisionFilter: {
-              //     mask: category3| category2 |category1 
-              // },
+                collisionFilter: {
+                  mask: category1 | category2
+              },
                 render: {
                   strokeStyle: "transparent",
                   opacity: 0.9,
@@ -164,9 +162,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
              274,
               274,
               {
-              //   collisionFilter: {
-              //     mask: category2| category1 
-              // },
+                collisionFilter: {
+                  mask:  category1 
+              },
                 render: {
                   strokeStyle: "transparent",
                   opacity: 0.9,
@@ -178,9 +176,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
         World.add(
           world,
         Bodies.polygon(100, 10, 3, 121, {
-        //   collisionFilter: {
-        //     mask: category4| category1 
-        // },
+          collisionFilter: {
+            mask: category1 
+        },
                     render: {
                       opacity: 0.9,
                       fillStyle: greenColor,
@@ -195,9 +193,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
                     World.add(world, [
                      
                       Bodies.rectangle(200, 70, 150, 150, { 
-                      //   collisionFilter: {
-                      //     mask: category3 |category4 |category1 
-                      // },
+                        collisionFilter: {
+                          mask: category1 
+                      },
                           chamfer: { radius: [149, 0, 0, 0] },
                           render: {
 
@@ -208,9 +206,9 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
           
               
                       Bodies.polygon(200, 80, 3, 140, { 
-                      //   collisionFilter: {
-                      //     mask: category2 |category4 |category1 
-                      // },
+                        collisionFilter: {
+                          mask: category1 
+                      },
                           chamfer: { radius: [100, 5, 100] },
                           render: {
 
@@ -231,7 +229,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
             }
         });
         
-        // mouseConstraint.collisionFilter.mask = category1;
+        mouseConstraint.collisionFilter.mask = category1;
 
     World.add(world, mouseConstraint);
 
@@ -288,7 +286,8 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     <div
       ref={boxRef}
       style={{
-        zIndex: 3
+        zIndex: 3,
+        maxWidth: "100vw"
       }}
     >
       <canvas ref={canvasRef}/>
