@@ -34,7 +34,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     const render = Render.create({
       element: boxRef.current,
       engine: engine,
-      canvas: canvasRef.current,
+      canvas: canvasRef.current || undefined,
       options: {
         height: 480,
         wireframes: false,
@@ -301,7 +301,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
   useEffect(() => {
     if (constraints && scene) {
       const { width } = constraints;
-      const height = "480";
+      const height = 480;
       // Dynamically update canvas and bounds
       scene.bounds.max.x = width;
       scene.bounds.max.y = height;

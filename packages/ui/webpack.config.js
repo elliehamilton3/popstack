@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     index: './src/index.tsx',
+    polyfills: './src/assets/pathseg.js',
   },
 
   node: {
@@ -14,7 +15,7 @@ module.exports = {
   },
 
   output: {
-    filename: '[name].[hash].bundle.js',
+    filename: '[name].bundle.js',
     path: `${__dirname}/dist`,
     publicPath: '/',
   },
@@ -84,6 +85,16 @@ module.exports = {
             limit: 50000,
             mimetype: 'application/font-ttf',
             name: './src/assets/font/[name].[ext]',
+          },
+        },
+      },
+
+      {
+        test: /\.(js)$/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            name: './src/assets/[name].[hash].[ext]',
           },
         },
       },
