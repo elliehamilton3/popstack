@@ -22,8 +22,6 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     const World = Matter.World;
     const Bodies = Matter.Bodies;
     const Runner = Matter.Runner;
-    // const Composites = Matter.Composites;
-    // const Common = Matter.Common;
     const MouseConstraint = Matter.MouseConstraint
         const Mouse = Matter.Mouse
 
@@ -88,9 +86,12 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
         },
       }),
     ]);
+   
+
+   
     World.add(
       world,
-      Bodies.rectangle(
+      [Bodies.rectangle(
           400,
           0,
          400,
@@ -103,27 +104,16 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
               opacity: 0.7,
               fillStyle: indigoColor,
             },
-          })
-    );
-
-    // this body will only collide with the walls and the yellow bodies
-    World.add(
-      world,
-      Bodies.circle(480, 40, 70, {
-        collisionFilter: {
-            mask: category1  | category2
-        },
-        render: {
-          fillStyle: yellowColor,
-          opacity: 0.9,
-        },
-      })
-    );
-
-
-        // this body will only collide with the walls and the red bodies
-        World.add(
-          world,
+          }),
+          Bodies.circle(480, 40, 70, {
+            collisionFilter: {
+                mask: category1  | category2
+            },
+            render: {
+              fillStyle: yellowColor,
+              opacity: 0.9,
+            },
+          }),
           Bodies.circle(440, 0, 70, {
             collisionFilter: {
               mask:  category1 | category2
@@ -133,27 +123,29 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
               opacity: 0.9,
             },
           
-          }, 2)
-        );
-   
-        World.add(
-          world,
+          }),
           Bodies.rectangle(
-              400,
-              20,
-              334,
-              79,
-              {
-                collisionFilter: {
-                  mask: category1 | category2
+            400,
+            20,
+            334,
+            79,
+            {
+              collisionFilter: {
+                mask: category1 | category2
+            },
+              render: {
+                strokeStyle: "transparent",
+                opacity: 0.9,
+                fillStyle: orangeColor,
               },
-                render: {
-                  strokeStyle: "transparent",
-                  opacity: 0.9,
-                  fillStyle: orangeColor,
-                },
-              })
-        );
+            })
+        ]
+    );
+
+
+
+   
+
         World.add(
           world,
           Bodies.rectangle(
@@ -254,43 +246,13 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       scene.options.height = height;
       scene.canvas.width = width;
       scene.canvas.height = height;
-      // // Dynamically update floor
-      // const floor = scene.engine.world.bodies[0];
-      // Matter.Body.setPosition(floor, {
-      //   x: width / 2,
-      //   y: height + STATIC_DENSITY / 2,
-      // });
-      // Matter.Body.setVertices(floor, [
-      //   { x: 0, y: height },
-      //   { x: width, y: height },
-      //   { x: width, y: height + STATIC_DENSITY },
-      //   { x: 0, y: height + STATIC_DENSITY },
-      // ]);
 
-
-
-      const wallRight = scene.engine.world.bodies[1];
-      Matter.Body.setPosition(wallRight, {
-        x: width,
-        y: 0,
-      });
-
-      Matter.Body.setVertices(wallRight, [
-        { x: width-1, y: height },
-        { x: width, y: height },
-        { x: width, y: height },
-        { x: width-1, y: height },
-      ]);
     }
   }, [scene, constraints]);
 
   return (
     <div
       ref={boxRef}
-      style={{
-        zIndex: 3,
-        maxWidth: "100vw"
-      }}
     >
       <canvas ref={canvasRef}/>
       {children}
