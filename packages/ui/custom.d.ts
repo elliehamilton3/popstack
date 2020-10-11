@@ -6,3 +6,5 @@ declare module '*.pdf';
 declare module 'react-pdf/dist/esm/entry.webpack';
 declare module '@react-pdf/styled-components';
 declare module 'blob-stream';
+declare module 'pathseg';
+declare module 'matter-js';

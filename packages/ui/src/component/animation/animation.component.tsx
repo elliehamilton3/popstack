@@ -7,7 +7,6 @@ import { IReactProps } from "../../interface/reactProps.interface";
 export const Animation: React.FunctionComponent<IReactProps> = ({children}: IReactProps) => {
   const boxRef = useRef<any>(null);
   const canvasRef = createRef<HTMLCanvasElement>();
-  const STATIC_DENSITY = 15;
 
   const [constraints, setContraints] = useState<any>();
   const [scene, setScene] = useState<any>();
@@ -23,8 +22,8 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     const World = Matter.World;
     const Bodies = Matter.Bodies;
     const Runner = Matter.Runner;
-    const Composites = Matter.Composites;
-    const Common = Matter.Common;
+    // const Composites = Matter.Composites;
+    // const Common = Matter.Common;
     const MouseConstraint = Matter.MouseConstraint
         const Mouse = Matter.Mouse
 
@@ -51,24 +50,24 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     setContraints(boxRef.current.getBoundingClientRect());
     setScene(render);
     window.addEventListener("resize", handleResize);
-    const defaultCategory = 0x0001,
-        redCategory = 0x0002,
-        greenCategory = 0x0004,
-        blueCategory = 0x0008,
-        orangeCategory = 0x0010,
-        yellowCategory = 0x0012;
+    // const category1 = 0x0001,
+        // category2 = 0x0002,
+        // category3 = 0x0004,
+        // category4 = 0x0006;
 
     const redColor = "#FFB7D5",
       blueColor = "#62CFF1",
       greenColor = "#26C58C",
       yellowColor = "#FFD84C",
-      orangeColor = "#FF8C4C";
+      orangeColor = "#FF8C4C",
+      indigoColor = "#0057FF";
 
     // add floor
     World.add(
       world,
       Bodies.rectangle(400, 480, 2000, 1, {
         isStatic: true,
+      
         render: {
           fillStyle: "#0C0C0C",
         },
@@ -78,203 +77,149 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       // walls
       Bodies.rectangle(800, 0, 1, 2000, {
         isStatic: true,
+     
         render: {
           fillStyle: "#0C0C0C",
         },
       }),
       Bodies.rectangle(0, 0, 1, 2000, {
         isStatic: true,
+       
         render: {
           fillStyle: "#0C0C0C",
         },
       }),
     ]);
-
-    // create a stack with varying body categories (but these bodies can all collide with each other)
     World.add(
       world,
-      Composites.stack(0, 0, 9, 2, 30, 30, function (x: any, y: any, column: any, row: number) {
-        let category = redCategory;
-
-          if (row > 8) {
-              category = yellowCategory;
-           
-          } 
-        else if (row > 6) {
-              category = orangeCategory;
-
-          } 
-          else if (row > 4) {
-              category = blueCategory;
-      
-          } else if (row > 2) {
-              category = greenCategory;
-          }
-        const sides = Math.round(Common.random(1, 8));
-
-        switch (Math.round(Common.random(0, 1))) {
-          case 0:
-            if (Common.random() < 0.8) {
-              return Bodies.rectangle(
-                x,
-                y,
-                Common.random(50, 80),
-                Common.random(50, 80),
-                {
-                  collisionFilter: {
-                    category: category
-                },
-                  render: {
-                    strokeStyle: "transparent",
-                    opacity: 0.9,
-                    fillStyle: Common.choose([
-                      "#FF8C4C",
-                      "#FFB7D5",
-                      "#26C58C",
-                      "#FFD84C",
-                      "#62CFF1",
-                    ]),
-                    lineWidth: 1,
-                  },
-                }
-              );
-            } else if (Common.random() < 0.6) {
-              return Bodies.trapezoid(
-                x,
-                y,
-                Common.random(25, 80),
-                Common.random(25, 80),
-                Common.random(0, 1),
-                {
-                  collisionFilter: {
-                    category: category
-                },
-                  render: {
-                    strokeStyle: "transparent",
-                    opacity: 0.9,
-                    fillStyle: Common.choose([
-                      "#FFB7D5",
-                      "#26C58C",
-                      "#FFD84C",
-                      "#FF8C4C",
-                      "#62CFF1",
-                    ]),
-                    lineWidth: 1,
-                  },
-                }
-              );
-            } else {
-              return Bodies.rectangle(
-                x,
-                y,
-                Common.random(80, 120),
-                Common.random(25, 30),
-                {
-                  collisionFilter: {
-                                category: category
-                            },
-                  render: {
-                    strokeStyle: "transparent",
-                    opacity: 0.9,
-                    fillStyle: Common.choose([
-                      "#FFB7D5",
-                      "#26C58C",
-                      "#FFD84C",
-                      "#62CFF1",
-                      "#FF8C4C",
-                    ]),
-                    lineWidth: 1,
-                  },
-                }
-              );
-            }
-          case 1:
-            return Bodies.polygon(x, y, sides, Common.random(50, 80), {
-              collisionFilter: {
-                category: category
+      Bodies.rectangle(
+          400,
+          100,
+         700,
+          46,
+          {
+          //   collisionFilter: {
+          //     mask: category1 
+          // },
+            render: {
+              opacity: 0.7,
+              fillStyle: indigoColor,
             },
-              render: {
-                strokeStyle: "transparent",
-                opacity: 0.9,
-                fillStyle: Common.choose([
-                  "#FFB7D5",
-                  "#26C58C",
-                  "#FFD84C",
-                  "#FF8C4C",
-                  "#62CFF1",
-                ]),
-                lineWidth: 1,
-              },
-            });
-        }
-      })
-    );
-
-    // this body will only collide with the walls and the green bodies
-    World.add(
-      world,
-      Bodies.circle(310, 40, 60, {
-        collisionFilter: {
-            mask: defaultCategory | greenCategory
-        },
-        render: {
-          fillStyle: greenColor,
-        },
-      })
-    );
-
-    // this body will only collide with the walls and the red bodies
-    World.add(
-      world,
-      Bodies.circle(400, 40, 70, {
-        collisionFilter: {
-            mask: defaultCategory | redCategory
-        },
-        render: {
-          fillStyle: redColor,
-        },
-      })
-    );
-
-    // this body will only collide with the walls and the orange bodies
-    World.add(
-      world,
-      Bodies.circle(400, 40, 50, {
-        collisionFilter: {
-            mask: defaultCategory | orangeCategory
-        },
-        render: {
-          fillStyle: orangeColor,
-        },
-      })
-    );
-
-    // this body will only collide with the walls and the blue bodies
-    World.add(
-      world,
-      Bodies.circle(480, 40, 70, {
-        collisionFilter: {
-            mask: defaultCategory | blueCategory
-        },
-        render: {
-          fillStyle: blueColor,
-        },
-      })
+          })
     );
 
     // this body will only collide with the walls and the yellow bodies
     World.add(
       world,
-      Bodies.circle(480, 40, 50, {
-        collisionFilter: {
-            mask: defaultCategory | yellowCategory
-        },
+      Bodies.circle(480, 40, 70, {
+        // collisionFilter: {
+        //     mask: category4 |category1 
+        // },
         render: {
           fillStyle: yellowColor,
+          opacity: 0.9,
         },
       })
     );
-     // add mouse control
+
+
+        // this body will only collide with the walls and the red bodies
+        World.add(
+          world,
+          Bodies.circle(440, 0, 70, {
+          //   collisionFilter: {
+          //     mask: category4 | category1 
+          // },
+            render: {
+              fillStyle: redColor,
+              opacity: 0.9,
+            },
+          
+          }, 2)
+        );
+   
+        World.add(
+          world,
+          Bodies.rectangle(
+              400,
+              20,
+              334,
+              79,
+              {
+              //   collisionFilter: {
+              //     mask: category3| category2 |category1 
+              // },
+                render: {
+                  strokeStyle: "transparent",
+                  opacity: 0.9,
+                  fillStyle: orangeColor,
+                },
+              })
+        );
+        World.add(
+          world,
+          Bodies.rectangle(
+              400,
+              20,
+             274,
+              274,
+              {
+              //   collisionFilter: {
+              //     mask: category2| category1 
+              // },
+                render: {
+                  strokeStyle: "transparent",
+                  opacity: 0.9,
+                  fillStyle: blueColor,
+                },
+              })
+        );
+
+        World.add(
+          world,
+        Bodies.polygon(100, 10, 3, 121, {
+        //   collisionFilter: {
+        //     mask: category4| category1 
+        // },
+                    render: {
+                      opacity: 0.9,
+                      fillStyle: greenColor,
+                    },
+                  }));
+
+                  // little yellow half circle
+                  // green diamond
+                  // orange half circle
+                  // indigo half circle
+
+                    World.add(world, [
+                     
+                      Bodies.rectangle(200, 70, 150, 150, { 
+                      //   collisionFilter: {
+                      //     mask: category3 |category4 |category1 
+                      // },
+                          chamfer: { radius: [149, 0, 0, 0] },
+                          render: {
+
+                            opacity: 0.9,
+                            fillStyle: orangeColor,
+                          },
+                      }),
+          
+              
+                      Bodies.polygon(200, 80, 3, 140, { 
+                      //   collisionFilter: {
+                      //     mask: category2 |category4 |category1 
+                      // },
+                          chamfer: { radius: [100, 5, 100] },
+                          render: {
+
+                            opacity: 0.9,
+                            fillStyle: redColor,
+                          },
+                      })
+                  ]);
+    //  add mouse control
     const mouse = Mouse.create(render.canvas),
         mouseConstraint = MouseConstraint.create(engine, {
             mouse: mouse,
@@ -285,6 +230,8 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
                 }
             }
         });
+        
+        // mouseConstraint.collisionFilter.mask = category1;
 
     World.add(world, mouseConstraint);
 
@@ -325,13 +272,14 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       const wallRight = scene.engine.world.bodies[1];
       Matter.Body.setPosition(wallRight, {
         x: width,
+        y: 0
       });
 
       Matter.Body.setVertices(wallRight, [
         { x: 0, y: height },
         { x: width, y: height },
-        { x: width, y: height + STATIC_DENSITY },
-        { x: 0, y: height + STATIC_DENSITY },
+        { x: width, y: height },
+        { x: 0, y: height },
       ]);
     }
   }, [scene, constraints]);

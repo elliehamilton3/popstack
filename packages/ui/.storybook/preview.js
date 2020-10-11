@@ -1,5 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from '../src/styles/theme';
+// import 'pathseg';
 
 const withThemeProvider = (Story, context) => {
   return (

@@ -1,8 +1,7 @@
 import * as React from "react";
-import { AppBar, Toolbar, IconButton, Grid } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Grid, makeStyles } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 const useStyles = makeStyles(() => ({
   link: {
     textDecoration: "none",
