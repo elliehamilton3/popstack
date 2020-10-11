@@ -88,16 +88,6 @@ module.exports = {
         },
       },
 
-      {
-        test: /\.(js)$/,
-        use: {
-          loader: 'url-loader',
-          options: {
-            name: './src/assets/[name].[hash].[ext]',
-          },
-        },
-      },
-
 
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
