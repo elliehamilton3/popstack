@@ -267,23 +267,19 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       //   { x: 0, y: height + STATIC_DENSITY },
       // ]);
 
-      // const wallLeft = scene.engine.world.bodies[1];
-      // Matter.Body.setPosition(wallLeft, {
-      //   x: 0,
-      //   y: 0
-      // });
+
 
       const wallRight = scene.engine.world.bodies[1];
       Matter.Body.setPosition(wallRight, {
         x: width,
-        y: 0
+        y: 0,
       });
 
       Matter.Body.setVertices(wallRight, [
-        { x: 0, y: height },
+        { x: width-1, y: height },
         { x: width, y: height },
         { x: width, y: height },
-        { x: 0, y: height },
+        { x: width-1, y: height },
       ]);
     }
   }, [scene, constraints]);
