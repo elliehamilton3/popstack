@@ -170,7 +170,7 @@ const Navbar: React.FunctionComponent = () => {
                 to="/dashboard"
                 exact
               >
-                  <IconButton color="inherit">
+                  <IconButton color="primary">
                   <DashboardIcon />
                 </IconButton>
                   </NavLink>
