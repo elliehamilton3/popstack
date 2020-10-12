@@ -37,7 +37,9 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: "auto"
   },
   button: {
-    backgroundColor: theme.palette.common.white
+    backgroundColor: theme.palette.common.white,
+    zIndex: 2,
+    pointerEvents: "auto"
   },
   link: {
     textDecoration: "none",
@@ -54,11 +56,11 @@ export const Page1: React.FunctionComponent = () => {
         </Animation>
         <Box className={classes.box}> 
         <Box className={classes.section1} pt={15} pb={21}>
-          <Grid container className={classes.content} spacing={3} alignItems="center" direction="column">
-          <Grid item className={classes.content}>
+          <Grid container spacing={3} alignItems="center" direction="column">
+          <Grid item >
             <Typography variant="h1" style={{userSelect: "none", pointerEvents: "none"}}>Make your resumé pop.</Typography>
           </Grid>
-          <Grid item className={classes.content} style={{maxWidth: "370px"}} >
+          <Grid item  style={{maxWidth: "370px"}} >
             <Typography variant="h3" align="center" style={{userSelect: "none", pointerEvents: "none"}}>Beautiful resumes, designed for professionals like you.</Typography>
           </Grid>
           <Grid item>

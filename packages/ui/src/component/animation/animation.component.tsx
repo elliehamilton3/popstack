@@ -58,7 +58,6 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
       yellowColor = "#FFD84C",
       orangeColor = "#FF8C4C",
       indigoColor = "#0057FF";
-
     World.add(world, [
       // walls
       Bodies.rectangle(400, 480, 2000, 1, { isStatic: true, render: {fillStyle: "#0C0C0C"}, }),
@@ -82,6 +81,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
     3,
     121,
     {
+      // collision
       chamfer: { radius: 4 },
       render: {
         opacity: 0.9,
@@ -195,8 +195,10 @@ Bodies.rectangle(
         }
     });
 
-    World.add(world, mouseConstraint);
 
+    mouse.element.removeEventListener("mousewheel", mouse.mousewheel);
+  mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
+World.add(world, mouseConstraint);
     // keep the mouse in sync with rendering
     render.mouse = mouse;
     
