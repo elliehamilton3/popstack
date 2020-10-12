@@ -61,10 +61,7 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
 
     World.add(world, [
       // walls
-      Bodies.rectangle(400, 0, 800, 1, { isStatic: true, render: {fillStyle: "#0C0C0C"}, }),
-      Bodies.rectangle(400, 480, 800, 1, { isStatic: true, render: {fillStyle: "#0C0C0C"}, }),
-      Bodies.rectangle(800, 300, 1, 480, { isStatic: true, render: {fillStyle: "#0C0C0C"}, }),
-      Bodies.rectangle(0, 300, 1, 480, { isStatic: true, render: {fillStyle: "#0C0C0C"}, }),
+      Bodies.rectangle(400, 480, 2000, 1, { isStatic: true, render: {fillStyle: "#0C0C0C"}, }),
   ]);
 
     const diamond = Vertices.fromPath('M22.3893 106.347C20.7669 105.778 19.6895 104.236 19.7132 102.517L21.0541 5.55896C21.0919 2.82619 23.7982 0.935262 26.3773 1.83959L117.882 33.9248C119.505 34.4937 120.582 36.0357 120.558 37.7548L119.217 134.713C119.18 137.445 116.473 139.336 113.894 138.432L22.3893 106.347Z ');
