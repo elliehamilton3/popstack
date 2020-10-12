@@ -68,15 +68,12 @@ export const Animation: React.FunctionComponent<IReactProps> = ({children}: IRea
   ]);
 
     const diamond = Vertices.fromPath('M22.3893 106.347C20.7669 105.778 19.6895 104.236 19.7132 102.517L21.0541 5.55896C21.0919 2.82619 23.7982 0.935262 26.3773 1.83959L117.882 33.9248C119.505 34.4937 120.582 36.0357 120.558 37.7548L119.217 134.713C119.18 137.445 116.473 139.336 113.894 138.432L22.3893 106.347Z ');
-    // const tearDrop = Vertices.fromPath('M41.7152 90.546C61.9379 63.2953 142.314 45.4906 161.66 41.5453C163.937 41.0807 166.072 42.665 166.288 44.9798C168.117 64.639 174.363 146.726 154.14 173.976C131.101 205.022 87.2576 211.512 56.2124 188.474C25.1671 165.435 18.6765 121.591 41.7152 90.546Z');
-
     World.add(world, [
   
-      // Green diamond
+    // Green diamond
     Bodies.fromVertices(480, 80, diamond, {
       render: {
           fillStyle: greenColor,
-          strokeStyle: greenColor,
           opacity: 0.9,
       }
   }),
