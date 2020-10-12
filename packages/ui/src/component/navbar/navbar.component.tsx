@@ -1,9 +1,11 @@
 import * as React from "react";
-import { AppBar, Toolbar, IconButton, Grid, makeStyles } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Grid, makeStyles, Typography } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
 import LoginButton from "../auth/loginButton.component";
 import LogoutButton from "../auth/logoutButton.component";
+import { useAuth0 } from "@auth0/auth0-react";
+
 const useStyles = makeStyles(() => ({
   link: {
     textDecoration: "none",
@@ -48,6 +50,8 @@ const useStyles = makeStyles(() => ({
 
 const Navbar: React.FunctionComponent = () => {
   const classes = useStyles();
+  const { isAuthenticated, user } = useAuth0();
+  console.log(isAuthenticated, user)
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -150,9 +154,12 @@ const Navbar: React.FunctionComponent = () => {
               justify="space-between"
               container
               alignItems="center"
-              spacing={1}
+              spacing={2}
             >
-               <Grid item>
+              { user && user.given_name && <Grid item>
+              <Typography>Welcome {user.given_name}</Typography>
+              </Grid>}
+                <Grid item>
                 <LoginButton/>
               </Grid>
               <Grid item>

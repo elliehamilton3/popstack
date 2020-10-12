@@ -7,21 +7,12 @@ const Profile: React.FunctionComponent =  () => {
   if (isLoading) {
     return <div>Loading ...</div>;
   }
-  if (isAuthenticated) {
-    return (<div>
-    <img src={user.picture} alt={user.name} />
-    <h2>{user.name}</h2>
-    <p>{user.email}</p>
-  </div>)
-  }
 
-  return (
-      <div>
-        Not isAuthenticated
-     
-      </div>
-    
-  );
+  return isAuthenticated ? <div>
+        <img src={user.picture} alt={user.name} />
+        <h2>{user.name}</h2>
+        <p>{user.email}</p>
+      </div>: <div>Not authenticated</div>
 };
 
 export default Profile;
