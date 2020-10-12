@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
+// global.decomp = require('poly-decomp');
 const webpack = require('webpack');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -116,6 +117,7 @@ module.exports = {
       inject: 'body',
       favicon: "./src/assets/favicon.svg"
     }),
+    new webpack.ProvidePlugin({ 'window.decomp': 'poly-decomp' }),
     new webpack.DefinePlugin({
       'process.env': ((envs) => {
         let output = {};
