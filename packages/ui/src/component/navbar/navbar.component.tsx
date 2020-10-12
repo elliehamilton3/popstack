@@ -50,8 +50,7 @@ const useStyles = makeStyles(() => ({
 
 const Navbar: React.FunctionComponent = () => {
   const classes = useStyles();
-  const { isAuthenticated, user } = useAuth0();
-  console.log(isAuthenticated, user)
+  const { user } = useAuth0();
   return (
     <AppBar position="fixed">
       <Toolbar>
