@@ -2,6 +2,8 @@ import * as React from "react";
 import { AppBar, Toolbar, IconButton, Grid, makeStyles } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import { NavLink } from "react-router-dom";
+import LoginButton from "../auth/loginButton.component";
+import LogoutButton from "../auth/logoutButton.component";
 const useStyles = makeStyles(() => ({
   link: {
     textDecoration: "none",
@@ -150,6 +152,12 @@ const Navbar: React.FunctionComponent = () => {
               alignItems="center"
               spacing={1}
             >
+               <Grid item>
+                <LoginButton/>
+              </Grid>
+              <Grid item>
+                <LogoutButton/>
+              </Grid>
               <Grid item>
                 <IconButton color="inherit">
                   <Menu />
