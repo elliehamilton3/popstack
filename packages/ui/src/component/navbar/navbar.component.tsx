@@ -1,6 +1,7 @@
 import * as React from "react";
 import { AppBar, Toolbar, IconButton, Grid, makeStyles, Typography } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
+import DashboardIcon from '@material-ui/icons/Dashboard';
 import { NavLink } from "react-router-dom";
 import LoginButton from "../auth/loginButton.component";
 import LogoutButton from "../auth/logoutButton.component";
@@ -165,6 +166,19 @@ const Navbar: React.FunctionComponent = () => {
                 <LogoutButton/>
               </Grid>
               <Grid item>
+                <NavLink
+                to="/dashboard"
+                exact
+              >
+                  <IconButton color="inherit">
+                  <DashboardIcon />
+                </IconButton>
+                  </NavLink>
+                </Grid>
+              <Grid item>
+              
+                
+          
                 <IconButton color="inherit">
                   <Menu />
                 </IconButton>
