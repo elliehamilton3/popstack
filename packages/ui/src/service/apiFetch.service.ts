@@ -1,8 +1,12 @@
 // eslint-disable-next-line
+
+import { IApiFetchOptions } from "../interface/apiFetch.interface";
+
 export default async function apiFetch<T = any>(
   endpoint: string,
   method?: string,
-  body?: any
+  body?: any,
+  options?: IApiFetchOptions
 ): Promise<T> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const API_ROOT =
@@ -18,6 +22,13 @@ export default async function apiFetch<T = any>(
     "Content-Type": "application/json",
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any;
+
+  if (options && options.auth && options.auth.strategy) {
+    if (options.auth.strategy === "jwt") {
+      const jwt = options.auth.jwt || localStorage.getItem("jwt");
+      headers.Authorization = `Bearer ${jwt}`;
+    }
+  }
 
   const res = await fetch(url, {
     method,

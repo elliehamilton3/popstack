@@ -3,9 +3,7 @@ import { AppBar, Toolbar, IconButton, Grid, makeStyles, Typography } from "@mate
 import { Menu } from "@material-ui/icons";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { NavLink } from "react-router-dom";
-import LoginButton from "../auth/loginButton.component";
-import LogoutButton from "../auth/logoutButton.component";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuthState } from '../../store/auth.store';
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -51,7 +49,7 @@ const useStyles = makeStyles(() => ({
 
 const Navbar: React.FunctionComponent = () => {
   const classes = useStyles();
-  const { user } = useAuth0();
+  const [user] = useAuthState("user");
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -156,15 +154,9 @@ const Navbar: React.FunctionComponent = () => {
               alignItems="center"
               spacing={2}
             >
-              { user && user.given_name && <Grid item>
-              <Typography>Welcome {user.given_name}</Typography>
+              { user && user.userUuid && <Grid item>
+              <Typography>Welcome {user.userUuid}</Typography>
               </Grid>}
-                <Grid item>
-                <LoginButton/>
-              </Grid>
-              <Grid item>
-                <LogoutButton/>
-              </Grid>
               <Grid item>
                 <NavLink
                 to="/dashboard"

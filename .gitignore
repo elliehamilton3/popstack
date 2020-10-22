@@ -25,3 +25,5 @@ packages/*/node_modules
 *.tgz
 
 .db/
+.env
+packages/*/.env

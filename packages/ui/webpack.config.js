@@ -122,7 +122,7 @@ module.exports = {
       'process.env': ((envs) => {
         let output = {};
         Object.entries(envs).forEach(([key, value]) => {
-          if (key.startsWith("API_")) {
+          if (key.startsWith("API_") || key.startsWith("AUTH0_") ) {
             output[key] = JSON.stringify(value);
           }
         });
