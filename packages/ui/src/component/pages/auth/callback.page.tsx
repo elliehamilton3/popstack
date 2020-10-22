@@ -30,6 +30,7 @@ const Auth0Provider: React.FunctionComponent = () => {
         }).then((res) => {
           setJwt(res.token);
         }).catch((err) => {
+          console.log(err)
           setJwt(null);
           setError(err);
         });
