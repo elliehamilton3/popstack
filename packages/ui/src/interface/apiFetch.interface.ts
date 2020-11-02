@@ -3,4 +3,6 @@ export interface IApiFetchOptions {
     strategy: "jwt";
     jwt?: string;
   };
+  audience?: string;
+  scope?: string;
 }

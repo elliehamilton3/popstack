@@ -12,9 +12,6 @@ export const scope = [
 ].join(' ');
 
 const onRedirectCallback = (appState: any) => {
-  // If using a Hash Router, you need to use window.history.replaceState to
-  // remove the `code` and `state` query parameters from the callback url.
-  // 
   window.history.replaceState({}, document.title, window.location.pathname);
   const browserHistory = historyInit();
   browserHistory.replace((appState && appState.returnTo) || window.location.pathname);

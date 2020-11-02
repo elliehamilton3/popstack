@@ -8,10 +8,10 @@ export default [
     method: 'GET',
     path: '/{userUuid}',
     options: {
-      auth: {
-        strategy: 'jwt',
-        mode: 'required',
-      },
+      // auth: {
+      //   strategy: 'jwt',
+      //   mode: 'required',
+      // },
       id: 'GET/users/{userUuid}',
       handler: getHandler,
       tags: ['api'],

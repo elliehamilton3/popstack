@@ -29,3 +29,8 @@ export interface Resume {
     phoneNumber: number;
   };
 }
+export interface ResumeListItem {
+  id: string;
+  type: "Cover Letter" | "Resume";
+  title: string;
+}
