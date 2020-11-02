@@ -13,12 +13,12 @@ const app = {
 
     ReactDOM.render(
 
-      <Router history={browserHistory}>
           <AuthController
-      >
+      >      <Router history={browserHistory}>
         <AppView />
+        </Router>
         </AuthController>
-      </Router>
+
       ,
       document.getElementById("appRoot")
     );

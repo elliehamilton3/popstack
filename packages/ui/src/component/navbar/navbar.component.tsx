@@ -1,9 +1,10 @@
 import * as React from "react";
-import { AppBar, Toolbar, IconButton, Grid, makeStyles, Typography } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Grid, makeStyles, Typography, Button } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { NavLink } from "react-router-dom";
-import { useAuthState } from '../../store/auth.store';
+// import { useAuthState } from '../../store/auth.store';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -49,7 +50,12 @@ const useStyles = makeStyles(() => ({
 
 const Navbar: React.FunctionComponent = () => {
   const classes = useStyles();
-  const [user] = useAuthState("user");
+  const {
+    user,
+    isAuthenticated,
+    loginWithRedirect,
+    // logout,
+  } = useAuth0();
   return (
     <AppBar position="fixed">
       <Toolbar>
@@ -154,6 +160,17 @@ const Navbar: React.FunctionComponent = () => {
               alignItems="center"
               spacing={2}
             >
+              {!isAuthenticated && (
+                <Grid item>
+                  <Button
+                  variant="contained"
+                    color="primary"
+                    onClick={() => loginWithRedirect()}
+                  >
+                    Log in
+                  </Button>
+                </Grid>
+              )}
               { user && user.userUuid && <Grid item>
               <Typography>Welcome {user.userUuid}</Typography>
               </Grid>}
