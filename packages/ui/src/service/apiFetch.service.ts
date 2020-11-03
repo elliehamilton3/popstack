@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 
 import { IApiFetchOptions } from "../interface/apiFetch.interface";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0} from "@auth0/auth0-react";
 
 export default async function apiFetch<T = any>(
   endpoint: string,
@@ -15,8 +15,6 @@ export default async function apiFetch<T = any>(
     process.env.API_HOST ||
     "https://popstack.herokuapp.com";
   const API_VERSION = "v1";
-  // const { getAccessTokenSilently } = useAuth0();
-  console.log(useAuth0);
 
   const url = [API_ROOT, "/", API_VERSION, endpoint].join("");
 
@@ -28,7 +26,6 @@ export default async function apiFetch<T = any>(
 
   if (options && options.auth && options.auth.strategy) {
     if (options.auth.strategy === "jwt") {
-      // const accessToken = await getAccessTokenSilently({ audience: 'popstack.eu.auth0.com', scope:'read:users' });
       const accessToken = "token";
       headers.Authorization = `Bearer ${accessToken}`;
     }

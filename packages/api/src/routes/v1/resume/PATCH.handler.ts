@@ -4,14 +4,15 @@ import User from '../../../models/User';
 import Education from '../../../models/Education';
 import Job from '../../../models/Job';
 
-export default async function patchHandler({ payload }: any) {
+export default async function patchHandler({ payload, auth }: any) {
+  const { credentials: { sub: authId } } = auth as any;
   await User.update({
     firstName: payload.firstName,
     lastName: payload.lastName,
     email: payload.email,
     phoneNumber: payload.phoneNumber,
-  }, { where: { userUuid: '0001' } });
-  const user = (await User.findOne({ where: { userUuid: '0001' } }));
+  }, { where: { authId } });
+  const user = (await User.findOne({ where: { authId } }));
   const userId = user && user.id;
 
   await Resume.update({

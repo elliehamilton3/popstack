@@ -11,10 +11,12 @@ export const scope = [
   "update:current_user_metadata"
 ].join(' ');
 
-const onRedirectCallback = (appState: any) => {
+const onRedirectCallback = async (appState: any) => {
   window.history.replaceState({}, document.title, window.location.pathname);
   const browserHistory = historyInit();
   browserHistory.replace((appState && appState.returnTo) || window.location.pathname);
+  // Get the user
+  // If doesn't exist post?
 };
 
 export const AuthController: React.FunctionComponent<IReactProps> = ({ children }: IReactProps) => {
@@ -23,11 +25,11 @@ export const AuthController: React.FunctionComponent<IReactProps> = ({ children 
       domain={process.env.AUTH0_DOMAIN || ""}
       clientId={process.env.AUTH0_CLIENT_ID || ""}
       redirectUri={window.location.origin}
-      audience={"https://popstack.eu.auth0.com/api/v2/"}
       scope={scope}
-      cacheLocation="localstorage"
+      // cacheLocation="localstorage"
       useRefreshTokens={true}
       onRedirectCallback={onRedirectCallback}
+      audience={process.env.AUTH0_AUDIENCE || ""}
       >
         {children}
     </Auth0Provider>

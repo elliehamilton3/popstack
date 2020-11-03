@@ -9,9 +9,10 @@ import {
   lighten,
   Switch
 } from "@material-ui/core";
+import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../navbar/navbar.component";
 import { ThemeProvider } from "../../styles/theme";
-import apiFetch from "../../service/apiFetch.service";
+// import apiFetch from "../../service/apiFetch.service";
 import AddIcon from "@material-ui/icons/Add";
 import ParallelogramIcon from "../icons/parallelogram.icon";
 import SquareIcon from "../icons/square.icon";
@@ -41,20 +42,77 @@ const ResumePage: React.FunctionComponent = () => {
   const [checked, setChecked] = useState(false);
   const classes = useStyles();
   const formRef = React.useRef<HTMLFormElement>(null);
+  const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
-    apiFetch("/resume/0", "GET").then((json) => {
-      setResume(json as Resume);
-    });
+    const getUserMetadata = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+  
+        const response = await fetch(
+          `http://localhost:3000/v1/resume/0`,
+          {
+            headers: {
+              Accept: "application/json",
+             "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+  
+        const responseData = await response.json();
+        setResume(responseData as Resume);
+  
+      } catch (error) {
+        console.log(error.message);
+        const token = await getAccessTokenSilently();
+  
+        const response = await fetch(
+          `http://localhost:3000/v1/resume/0`,
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+             "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+  
+        const responseData = await response.json();
+        setResume(responseData as Resume);
+  
+      }
+    };
+  
+    getUserMetadata();
   }, []);
 
-  const updateResume = () => {
+  const updateResume = async () => {
     const form = formRef.current as HTMLFormElement;
     const formData = getFormValues(form);
-    console.log(formData)
-    apiFetch("/resume/0", "PATCH", formData).then((json) => {
-      setResume(json as Resume);
-    });
+    try {
+      const token = await getAccessTokenSilently();
+
+      const response = await fetch(
+        `http://localhost:3000/v1/resume/0`,
+        {
+          method: "PATCH",
+          body: JSON.stringify(formData),
+          headers: {
+            Accept: "application/json",
+           "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const responseData = await response.json();
+      setResume(responseData as Resume);
+
+    } catch (error) {
+      console.log(error.message);
+    }
   };
   const handleChange = () => {
     setChecked(!checked);
@@ -163,4 +221,4 @@ const ResumePage: React.FunctionComponent = () => {
   );
 };
 
-export default ResumePage;
+export default withAuthenticationRequired(ResumePage);

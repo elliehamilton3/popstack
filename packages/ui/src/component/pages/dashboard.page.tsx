@@ -1,21 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useAuth0 , withAuthenticationRequired} from "@auth0/auth0-react";
 import Navbar from "../navbar/navbar.component";
 import { ThemeProvider } from "../../styles/theme";
-import { Typography, Grid, Paper, Box} from "@material-ui/core";
-import apiFetch from "../../service/apiFetch.service";
+import { Typography, Grid, Paper, Box, Button} from "@material-ui/core";
+// import apiFetch from "../../service/apiFetch.service";
 import { ResumeListItem } from "../../interface/resume.interface";
 
 const Profile: React.FunctionComponent = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
   const [resumeList, setResumeList] = useState<ResumeListItem[]>();
 
-  useEffect(() => {
-    apiFetch("/users/me", "GET", {}, {auth: {strategy: "jwt", }}).then((json) => {
-      const resumes = json.resumes.map((resume:any) => ({id: resume.id, type: "Resume", title: "Alexandra's resume"}))
+  const callSecureApi = async () => {
+    try {
+      const token = await getAccessTokenSilently();
+
+      const response = await fetch(
+        `http://localhost:3000/v1/users/me`,
+        {
+          headers: {
+            Accept: "application/json",
+           "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const responseData = await response.json();
+      const resumes = responseData.resumes.map((resume:any) => ({id: resume.id, type: "Resume", title: "Alexandra's resume"}))
       setResumeList(resumes)
-    });
-  }, []);
+
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return <ThemeProvider>
   <Navbar />
@@ -26,9 +43,10 @@ const Profile: React.FunctionComponent = () => {
         <Typography variant="h1">{user.name}</Typography>
         <Typography>{user.email}</Typography>
         <Typography>{user.sub}</Typography>
+        <Button onClick={callSecureApi}>Get user</Button>
         <Grid container>
-        {resumeList && resumeList.map(resume => (
-          <Grid item>
+        {resumeList && resumeList.map((resume, i) => (
+          <Grid item key={i}>
             <Grid container direction="column">
             <Grid item><Paper style={{height: "150px", width: "100px"}}/></Grid>
             <Grid item> <Typography>{resume.id}</Typography></Grid>

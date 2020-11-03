@@ -13,7 +13,10 @@ export default [
     method: 'POST',
     path: '',
     options: {
-      auth: false,
+      auth: {
+        strategy: 'jwt',
+        mode: 'required',
+      },
       id: 'POST/resume',
       handler: postHandler,
       tags: ['api'],
@@ -28,7 +31,10 @@ export default [
     method: 'GET',
     path: '/{resumeId}',
     options: {
-      auth: false,
+      auth: {
+        strategy: 'jwt',
+        mode: 'required',
+      },
       id: 'GET/resume/{resumeId}',
       handler: getHandler,
       tags: ['api'],
@@ -59,7 +65,10 @@ export default [
     method: 'PATCH',
     path: '/{resumeId}',
     options: {
-      auth: false,
+      auth: {
+        strategy: 'jwt',
+        mode: 'required',
+      },
       id: 'PATCH/resume/{resumeId}',
       handler: patchHandler,
       tags: ['api'],

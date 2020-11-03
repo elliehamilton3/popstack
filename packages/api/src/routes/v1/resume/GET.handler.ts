@@ -1,10 +1,12 @@
+import { Request } from '@hapi/hapi';
 import Resume from '../../../models/Resume';
 import User from '../../../models/User';
 import Education from '../../../models/Education';
 import Job from '../../../models/Job';
 
-export default async function getHandler() {
-  const user = (await User.findOne({ where: { userUuid: '0001' } }));
+export default async function getHandler(request: Request) {
+  const { credentials: { sub: authId } } = request.auth as any;
+  const user = (await User.findOne({ where: { authId } }));
   const userId = user && user.id;
   const resume = await Resume.findOne({ where: { userId } });
   const resumeId = resume && resume.id;

@@ -26,17 +26,6 @@ const init = async () => {
 
   server.auth.strategy('jwt', 'jwt', {
     complete: true,
-    key: process.env.AUTH_PRIVATEKEY,
-    validate: (decoded: any) => ({
-      isValid: !!(decoded && decoded.userUuid),
-      credentials: {
-        ...decoded,
-      },
-    }),
-  });
-
-  server.auth.strategy('auth0.jwt', 'jwt', {
-    complete: true,
     key: jwksRsa.hapiJwt2KeyAsync({
       cache: true,
       rateLimit: true,
@@ -47,6 +36,7 @@ const init = async () => {
       issuer: `https://${process.env.AUTH0_DOMAIN}/`,
       algorithms: ['RS256'],
     },
+    audience: process.env.AUTH0_AUDIENCE,
     validate: (decoded: any) => ({
       isValid: !!(decoded && decoded.sub),
       credentials: {

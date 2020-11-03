@@ -1,17 +1,23 @@
+import { Request } from '@hapi/hapi';
+import { v4 as uuidv4 } from 'uuid';
 import Resume from '../../../models/Resume';
 import User from '../../../models/User';
 import Education from '../../../models/Education';
 import Job from '../../../models/Job';
 
-export default async function postHandler() {
-  const user = await User.create({
-    userUuid: '0001',
-    authId: '0001',
-    firstName: 'Example',
-    lastName: 'Person',
-    email: 'email@test.com',
-    phoneNumber: '0123123123',
-  });
+export default async function postHandler(request: Request) {
+  const { credentials: { sub: authId } } = request.auth as any;
+  const user = (await User.findOne({ where: { authId } }));
+  if (!user) {
+    await User.create({
+      userUuid: uuidv4(),
+      authId,
+      firstName: 'Example',
+      lastName: 'Person',
+      email: 'email@test.com',
+      phoneNumber: '0123123123',
+    });
+  }
   const userId = user && user.id;
   const resume = await Resume.create({
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae viverra leo, vitae elementum nibh. Vivamus et pharetra eros, sed blandit mauris.',

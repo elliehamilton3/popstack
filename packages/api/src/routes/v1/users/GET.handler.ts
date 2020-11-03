@@ -3,18 +3,11 @@ import { Request } from '@hapi/hapi';
 import getUserInfo from '../../../services/getUserInfo.service';
 
 export default async function getHandler(request: Request) {
-  // const userUuidParam = request.params.userUuid;
-  // const { credentials } = request.auth as any;
-  console.log(request.auth);
-  // const userUuid = userUuidParam === 'me' ? credentials.userUuid : userUuidParam;
+  const { credentials: { sub: authId } } = request.auth as any;
 
-  // if (userUuid !== credentials.userUuid) {
-  //   return Boom.unauthorized();
-  // }
-
-  const userInfo = await getUserInfo('0001');
+  const userInfo = await getUserInfo(authId);
   if (!userInfo) {
-    return Boom.notFound();
+    return Boom.unauthorized();
   }
 
   return userInfo;

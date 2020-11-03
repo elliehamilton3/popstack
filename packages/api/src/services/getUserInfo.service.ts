@@ -1,10 +1,10 @@
 import User from '../models/User';
 import Resume from '../models/Resume';
 
-export default async function getUserInfo(userUuid: string) {
+export default async function getUserInfo(authId: string) {
   const user = await User.findOne({
     where: {
-      userUuid,
+      authId,
     },
   });
   const userId = user && user.id;
