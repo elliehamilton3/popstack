@@ -105,20 +105,20 @@ const PdfDocument: React.FunctionComponent<Resume> = ({
         <View style={styles.body}>
           <View style={styles.text}>
             <Heading>
-              {user.firstName} {user.lastName}
+              {user && user.firstName} {user && user.lastName}
             </Heading>
-            <Body>{resume.bio}</Body>
+            <Body>{resume && resume.bio}</Body>
           </View>
           <View style={styles.text1}>
-            <Body>{resume.title}</Body>
-            <Body>{user.email}</Body>
-            <Body>{user.phoneNumber}</Body>
-            <Body>{resume.location}</Body>
+            <Body>{resume && resume.title}</Body>
+            <Body>{user && user.email}</Body>
+            <Body>{user && user.phoneNumber}</Body>
+            <Body>{resume && resume.location}</Body>
           </View>
         </View>
         <View style={styles.border} />
         <Subtitle>Work Experience</Subtitle>
-        {jobs.map(
+        {jobs && jobs.map(
           (
             job: {
               title: any;
@@ -148,7 +148,7 @@ const PdfDocument: React.FunctionComponent<Resume> = ({
         )}
         <View style={styles.border} />
         <Subtitle>Education</Subtitle>
-        {educations.map(
+        {educations && educations.map(
           (
             education: { place: any; info: any; yearFrom: any; yearTo: any },
             i: string | number | null | undefined

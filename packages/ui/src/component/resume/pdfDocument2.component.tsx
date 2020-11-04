@@ -125,17 +125,17 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
       <View style={styles.info}>
           <View style={styles.text}>
             <Heading>
-              {user.firstName}
+              {user && user.firstName}
             </Heading>
             <Heading>
-              {user.lastName}
+              {user && user.lastName}
             </Heading>
           </View>
           <View style={styles.text1}>
-            <Body>{resume.title}</Body>
-            <Body>{user.email}</Body>
-            <Body>{user.phoneNumber}</Body>
-            <Body style={{paddingTop: "30px"}}>{resume.location}</Body>
+            <Body>{resume && resume.title}</Body>
+            <Body>{user && user.email}</Body>
+            <Body>{user && user.phoneNumber}</Body>
+            <Body style={{paddingTop: "30px"}}>{resume && resume.location}</Body>
           </View>
         </View>
         <View style={{...styles.body, paddingRight: "0", position: "relative", top: '-100px'}}>
@@ -143,14 +143,14 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
             <View style={styles.box} />
           </View>
           <View style={{...styles.text3, ...styles.bio}}>
-            <Body>{resume.bio}</Body>
+            <Body>{resume && resume.bio}</Body>
           </View>
         </View>
         <View style={{position: "relative", top: "-140px"}}>
         <View style={styles.body}>
         <Subtitle>Work Experience</Subtitle>
         </View>
-        {jobs.map(
+        {jobs && jobs.map(
           (
             job: {
               title: any;
@@ -190,9 +190,9 @@ const PdfDocument2: React.FunctionComponent<Resume> = ({
                 <Subtitle>{"Education"}</Subtitle>
               </View>
               <View style={styles.text3}>
-                <Body>{educations[0].info} at {educations[0].place}</Body>
+                <Body>{educations && educations[0].info} at {educations && educations[0].place}</Body>
                 <Body>
-                  {educations[0].yearFrom} - {educations[0].yearTo}
+                  {educations && educations[0].yearFrom} - {educations && educations[0].yearTo}
                 </Body>
               </View>
               {/* </>

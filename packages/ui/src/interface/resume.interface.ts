@@ -15,18 +15,18 @@ export interface Employment {
 }
 
 export interface Resume {
-  resume: {
-    bio: string;
-    title: string;
-    location: string;
+  resume?: {
+    bio?: string;
+    title?: string;
+    location?: string;
   };
-  educations: Education[];
-  jobs: Employment[];
-  user: {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: number;
+  educations?: Education[];
+  jobs?: Employment[];
+  user?: {
+    firstName?: string;
+    lastName?: string;
+    email?: string;
+    phoneNumber?: number;
   };
 }
 export interface ResumeListItem {

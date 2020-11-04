@@ -21,11 +21,11 @@ import ResumeSection from "./resumeSection.component";
 //   },
 // }));
 export interface IPersonalDetailsProps {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: number;
-  title: string;
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phoneNumber?: number;
+  title?: string;
   onChange: () => void;
 }
 

@@ -8,17 +8,22 @@ import Job from '../../../models/Job';
 export default async function postHandler(request: Request) {
   const { credentials: { sub: authId } } = request.auth as any;
   const user = (await User.findOne({ where: { authId } }));
+  let newUser;
   if (!user) {
-    await User.create({
-      userUuid: uuidv4(),
-      authId,
-      firstName: 'Example',
-      lastName: 'Person',
-      email: 'email@test.com',
-      phoneNumber: '0123123123',
-    });
+    try {
+      newUser = await User.create({
+        userUuid: uuidv4(),
+        authId,
+        firstName: 'Example',
+        lastName: 'Person',
+        email: 'email@test.com',
+        phoneNumber: '0123123123',
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
-  const userId = user && user.id;
+  const userId = newUser && newUser.id;
   const resume = await Resume.create({
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae viverra leo, vitae elementum nibh. Vivamus et pharetra eros, sed blandit mauris.',
     title: 'Senior Person',

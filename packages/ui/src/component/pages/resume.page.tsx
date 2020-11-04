@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ResumePage: React.FunctionComponent = () => {
+  
   const [resume, setResume] = useState<Resume | undefined>(undefined);
   const [resumeStyle, setResumeStyle] = useState<1 | 2>(1);
   const [checked, setChecked] = useState(false);
@@ -44,8 +45,9 @@ const ResumePage: React.FunctionComponent = () => {
   const formRef = React.useRef<HTMLFormElement>(null);
   const { getAccessTokenSilently } = useAuth0();
 
+
   useEffect(() => {
-    const getUserMetadata = async () => {
+    (async () => {
       try {
         const token = await getAccessTokenSilently();
   
@@ -61,14 +63,12 @@ const ResumePage: React.FunctionComponent = () => {
         );
   
         const responseData = await response.json();
-        setResume(responseData as Resume);
+        console.log("=====", responseData)
+        if(responseData.statusCode === 404) {
+          const token = await getAccessTokenSilently();
   
-      } catch (error) {
-        console.log(error.message);
-        const token = await getAccessTokenSilently();
-  
-        const response = await fetch(
-          `http://localhost:3000/v1/resume/0`,
+        const response1 = await fetch(
+          `http://localhost:3000/v1/resume`,
           {
             method: "POST",
             headers: {
@@ -78,15 +78,22 @@ const ResumePage: React.FunctionComponent = () => {
             },
           }
         );
-  
-        const responseData = await response.json();
+        const responseData1 = await response1.json();
+        setResume(responseData1 as Resume);
+        } else {
+
         setResume(responseData as Resume);
+        }
+  
+      } catch (error) {
+        console.log(error.message, "-------");
+      
+  
+   
   
       }
-    };
-  
-    getUserMetadata();
-  }, []);
+    })();
+  }, [getAccessTokenSilently]);
 
   const updateResume = async () => {
     const form = formRef.current as HTMLFormElement;
@@ -152,11 +159,11 @@ const ResumePage: React.FunctionComponent = () => {
                 {resume && 
                 <PersonalDetailsSection 
                 onChange={updateResume}
-                firstName={resume.user.firstName} 
-                lastName={resume.user.lastName} 
-                phoneNumber={resume.user.phoneNumber} 
-                email={resume.user.email} 
-                title={resume.resume.title}/>}
+                firstName={resume && resume.user && resume.user.firstName} 
+                lastName={resume && resume.user && resume.user.lastName} 
+                phoneNumber={resume && resume.user && resume.user.phoneNumber} 
+                email={resume && resume.user && resume.user.email} 
+                title={resume && resume.resume && resume.resume.title}/>}
 
                 <ResumeSection
                   icon={<ParallelogramIcon fontSize="large" />}
@@ -170,7 +177,7 @@ const ResumePage: React.FunctionComponent = () => {
                     multiline
                     variant="filled"
                     rows={4}
-                    defaultValue={resume && resume.resume.bio}
+                    defaultValue={resume && resume.resume && resume.resume.bio}
                     onChange={() => updateResume()}
                   />
                 </ResumeSection>
