@@ -63,7 +63,6 @@ const ResumePage: React.FunctionComponent = () => {
         );
   
         const responseData = await response.json();
-        console.log("=====", responseData)
         if(responseData.statusCode === 404) {
           const token = await getAccessTokenSilently();
   
@@ -86,11 +85,7 @@ const ResumePage: React.FunctionComponent = () => {
         }
   
       } catch (error) {
-        console.log(error.message, "-------");
-      
-  
-   
-  
+        console.log(error.message);
       }
     })();
   }, [getAccessTokenSilently]);
