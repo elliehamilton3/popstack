@@ -104,8 +104,8 @@ const theme = createMuiTheme({
     },
     MuiToolbar: { 
       root: {
-      backgroundColor: "#0C0C0C",
-      color: "#FFB7D5"
+      backgroundColor: "#fff",
+      color: "#0C0C0C"
     }},
     MuiButton: {
       outlined: {
