@@ -18,7 +18,7 @@ export default async function postHandler(request: Request) {
         phoneNumber: '',
       });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   }
   const userId = newUser && newUser.id;

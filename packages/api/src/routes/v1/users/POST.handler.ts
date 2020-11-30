@@ -4,7 +4,7 @@ import User from '../../../models/User';
 
 export default async function getHandler(request: Request) {
   const { credentials: { sub: authId } } = request.auth as any;
-  console.log(request.auth.credentials);
+  // console.log(request.auth.credentials);
 
   const user = (await User.findOne({ where: { authId } }));
   if (!user) {
