@@ -1,0 +1,17 @@
+<svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="14"
+            viewBox="0 0 28 14"
+            width="28"
+          >
+            <g
+              fill="none"
+              fillRule="evenodd"
+              stroke="#84919c"
+              strokeWidth="2"
+              transform="translate(1 1)"
+            >
+              <path d="m23 6h-22.5" strokeLinecap="square" />
+              <path d="m20 0 5 6-5 6" />
+            </g>
+          </svg>
