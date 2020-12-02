@@ -42,19 +42,19 @@
   <body>
       <div class="wrapper">
         {% if prompt.name == "signup" %} 
-            <div class="image-wrapper" ><img class="image" src="https://i.imgur.com/Yz7l8zI_d.webp?maxwidth=760&fidelity=grand"/></div>
+            <div class="image-wrapper" ><img class="image" src="http://popstack.co/laptop-characters.svg"/></div>
             <div class="prompt-wrapper">
                 
             {%- auth0:widget -%}
             </div>
         {% elsif prompt.name == "reset-password" %} 
-            <div class="image-wrapper forgot-password-wrapper" ><img class="image" src="https://i.imgur.com/Yz7l8zI_d.webp?maxwidth=760&fidelity=grand"/></div>
+            <div class="image-wrapper forgot-password-wrapper" ><img class="image" src="http://popstack.co/semi-circle-characters.svg"/></div>
             <div class="prompt-wrapper">
                 
             {%- auth0:widget -%}
             </div>
         {% else %}
-            <div class="image-wrapper signup-wrapper" ><img class="image" src="https://i.imgur.com/Yz7l8zI_d.webp?maxwidth=760&fidelity=grand"/></div>
+            <div class="image-wrapper signup-wrapper" ><img class="image" src="http://popstack.co/resume-characters.svg"/></div>
             <div class="prompt-wrapper">
                 
             {%- auth0:widget -%}
