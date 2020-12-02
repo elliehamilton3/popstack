@@ -76,7 +76,7 @@ export default function Dashboard() {
             <Grid item xs={4} sm={3} key={i}>
               <Grid container direction="column">
               <Grid item><Paper style={{height: "calc(46vw - 180px)", width: "100%"}}>
-              <Grid container justify="center" alignContent="center" style={{height: "100%"}} direction="column">
+              <Grid container justify="space-between" alignContent="center" style={{height: "100%"}} direction="column">
               <Grid item>
             <IconButton ><DeleteForeverIcon/></IconButton>
             </Grid>
