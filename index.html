@@ -1,0 +1,65 @@
+<!DOCTYPE html><html>
+  <head>
+    {%- auth0:head -%}
+    <style>
+     
+     .wrapper {
+        position: relative;
+        display: flex;
+        height: 100%;
+     }
+      .prompt-wrapper {
+        height: 100%;
+        width: 50%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .prompt-wrapper div{
+        box-shadow: none;
+      }
+    
+      .image {
+          width: 50%;
+          height: auto;
+      }
+      .image-wrapper {
+          width: 50%;
+          display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .signup-wrapper {
+          background-color: #FFD84C;
+      }
+      .forgot-password-wrapper {
+          background-color: #26C58C;
+      }
+    </style>
+    <title>{{ prompt.screen.texts.pageTitle }}</title>
+  </head>
+  <body>
+      <div class="wrapper">
+        {% if prompt.name == "signup" %} 
+            <div class="image-wrapper" ><img class="image" src="https://i.imgur.com/Yz7l8zI_d.webp?maxwidth=760&fidelity=grand"/></div>
+            <div class="prompt-wrapper">
+                
+            {%- auth0:widget -%}
+            </div>
+        {% elsif prompt.name == "reset-password" %} 
+            <div class="image-wrapper forgot-password-wrapper" ><img class="image" src="https://i.imgur.com/Yz7l8zI_d.webp?maxwidth=760&fidelity=grand"/></div>
+            <div class="prompt-wrapper">
+                
+            {%- auth0:widget -%}
+            </div>
+        {% else %}
+            <div class="image-wrapper signup-wrapper" ><img class="image" src="https://i.imgur.com/Yz7l8zI_d.webp?maxwidth=760&fidelity=grand"/></div>
+            <div class="prompt-wrapper">
+                
+            {%- auth0:widget -%}
+            </div>
+        {% endif %}
+    </div>
+  </body>
+</html>
