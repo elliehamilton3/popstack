@@ -4,6 +4,8 @@ import Image2 from "../components/icons/image2";
 import Image3 from "../components/icons/image3";
 import Image4 from "../components/icons/image4";
 import Navbar from "../components/navbar/navbar.component";
+import Link from 'next/link'
+import Image from 'next/image'
 
 const useStyles = makeStyles((theme) => ({
   section1: {
@@ -53,13 +55,10 @@ export default function Home() {
         <Typography variant="h3">Beautiful resumes, designed for professionals like you.</Typography>
       </Grid>
       <Grid item>
-      {/* <NavLink
-        to="/resume"
-        exact
-        className={classes.link}
-      > */}
+      <Link href="/resume">
+      
         <Button variant="contained" className={classes.button}>Create my resume</Button>
-      {/* </NavLink> */}
+      </Link>
       </Grid>
     </Grid>
     </Grid>
@@ -81,13 +80,9 @@ export default function Home() {
     </Grid>
     </Grid>
     <Grid item sm={6} xs={12}>
-    {/* <NavLink
-        to="/resume"
-        exact
-        className={classes.link}
-      > */}
+      <Link href="/resume">
         <Button variant="contained">See all of our templates</Button>
-      {/* </NavLink> */}
+        </Link>
     </Grid>
 
   </Grid>
@@ -105,13 +100,9 @@ open={true}
 </AutoRotatingCarousel> */}
   <Grid container justify="center">
   <Grid item>
-    {/* <NavLink
-        to="/resume"
-        exact
-        className={classes.link}
-      > */}
+      <Link href="/resume">
         <Button variant="contained">Create my resume</Button>
-      {/* </NavLink> */}
+        </Link>
     </Grid>
     </Grid>
   </Box>
@@ -149,7 +140,12 @@ open={true}
     </Grid>
     </Grid>
     <Grid item sm={6} xs={12}>
-      <Image2 className={classes.image}/>
+    <Image
+        src="/resumes.png"
+        alt="Resume stack"
+        width={500}
+        height={500}
+      />
     </Grid>
 
   </Grid>

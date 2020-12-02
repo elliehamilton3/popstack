@@ -3,6 +3,7 @@ import { AppBar, Toolbar, IconButton, Grid, makeStyles, Typography, Button } fro
 import { Menu } from "@material-ui/icons";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { useAuth0 } from "@auth0/auth0-react";
+import Link from 'next/link'
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -73,7 +74,9 @@ const Navbar: React.FunctionComponent = () => {
             >
             
               <Grid item>
+              <Link href="/">
                 <Grid container spacing={2} alignItems="center">
+                  
                   <Grid item>
                     <svg
                       height="32"
@@ -98,6 +101,7 @@ const Navbar: React.FunctionComponent = () => {
                         fill="#26C58C"
                       />
                     </svg>
+         
                   </Grid>
 
                   <Grid item>
@@ -114,6 +118,7 @@ const Navbar: React.FunctionComponent = () => {
                   </Grid>
 
                 </Grid>
+                </Link>
               </Grid>
             </Grid>
           </Grid>
@@ -139,9 +144,11 @@ const Navbar: React.FunctionComponent = () => {
               <Typography>Welcome {user.userUuid}</Typography>
               </Grid>}
               <Grid item>
+              <Link href="/dashboard">
                   <IconButton color="primary">
                   <DashboardIcon />
                 </IconButton>
+                </Link>
                 </Grid>
               <Grid item>
                 <IconButton color="inherit">

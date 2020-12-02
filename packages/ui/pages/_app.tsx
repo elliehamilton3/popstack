@@ -6,6 +6,7 @@ import { CacheProvider } from '@emotion/react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import createCache from '@emotion/cache';
 import theme from '../styles/theme';
+import AuthController from '../controllers/auth.controller';
 
 export const cache = createCache({ key: 'css' });
 
@@ -26,11 +27,13 @@ export default function App(props: AppProps) {
         <title>Popstack</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
+      <AuthController>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
+      </AuthController>
     </CacheProvider>
   );
 }

@@ -27,3 +27,4 @@ packages/*/node_modules
 .db/
 .env
 packages/*/.env
+packages/*/.env.local
