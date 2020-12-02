@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Button,
   Typography,
@@ -41,7 +41,7 @@ export default function Resume() {
   const [resumeStyle, setResumeStyle] = useState<1 | 2>(1);
   const [checked, setChecked] = useState(false);
   const classes = useStyles();
-  const formRef = React.useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const { getAccessTokenSilently } = useAuth0();
 
 
