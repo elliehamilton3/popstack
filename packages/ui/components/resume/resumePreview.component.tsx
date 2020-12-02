@@ -5,10 +5,10 @@ import PdfDocument from "./pdfDocument.component";
 import PdfDocument2 from "./pdfDocument2.component";
 import { pdf } from "@react-pdf/renderer";
 import { saveAs } from "file-saver";
-// import {
-//   Document as Doc,
-//   Page as DocPage,
-// } from "react-pdf/dist/esm/entry.webpack";
+import {
+  Document as Doc,
+  Page as DocPage,
+} from "react-pdf/dist/esm/entry.webpack";
 import { Resume } from "../../interface/resume.interface";
 import blobStream from 'blob-stream';
 
@@ -130,14 +130,13 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
         {!generatedResume ? (
           loadingComponent
         ) : (
-          <></>
-          // <Doc
-          //   file={generatedResume}
-          //   onLoadSuccess={onDocumentLoadSuccess}
-          //   loading={loadingComponent}
-          // >
-          //   <DocPage pageNumber={numPages} style={{ width: "0px" }} />
-          // </Doc>
+          <Doc
+            file={generatedResume}
+            onLoadSuccess={onDocumentLoadSuccess}
+            loading={loadingComponent}
+          >
+            <DocPage pageNumber={numPages} style={{ width: "0px" }} />
+          </Doc>
         )}
       </Paper>
       </Grid>

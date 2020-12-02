@@ -34,6 +34,7 @@ services:
       NEXT_PUBLIC_AUTH0_CLIENT_ID: xchtaTjCz0VG7tNXmPc9Psvo805kfLQB
       NEXT_PUBLIC_AUTH0_DOMAIN: auth.popstack.co
       NEXT_PUBLIC_AUTH0_AUDIENCE: https://popstack.api
+      NEXT_PUBLIC_REDIRECT_URI: http://localhost:3000
     entrypoint: npm run start:dev
     
   storybook:

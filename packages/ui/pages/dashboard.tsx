@@ -13,7 +13,7 @@ export default function Dashboard() {
         const token = await getAccessTokenSilently();
   
         const response = await fetch(
-          `http://localhost:3000/v1/users/me`,
+          `http://localhost:3001/v1/users/me`,
           {
             headers: {
               Accept: "application/json",

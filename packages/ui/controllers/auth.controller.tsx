@@ -1,6 +1,5 @@
 import React from 'react';
 import { Auth0Provider } from '@auth0/auth0-react';
-// import historyInit from '../../service/historyInit.service'
 
 export const scope = [
   "openid",
@@ -12,8 +11,6 @@ export const scope = [
 
 const onRedirectCallback = (appState: any) => {
   // const {user} = useAuth0();
-  // console.log(user)
-//   console.log("Redirect", "======", appState)
 //   window.history.replaceState({}, document.title, window.location.pathname);
 //   const browserHistory = historyInit();
 //   browserHistory.replace((appState && appState.returnTo) || window.location.pathname);

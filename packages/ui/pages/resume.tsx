@@ -51,7 +51,7 @@ export default function Resume() {
         const token = await getAccessTokenSilently();
   
         const response = await fetch(
-          `http://localhost:3000/v1/resume/0`,
+          `http://localhost:3001/v1/resume/0`,
           {
             headers: {
               Accept: "application/json",
@@ -66,7 +66,7 @@ export default function Resume() {
           const token = await getAccessTokenSilently();
   
         const response1 = await fetch(
-          `http://localhost:3000/v1/resume`,
+          `http://localhost:3001/v1/resume`,
           {
             method: "POST",
             headers: {
@@ -96,7 +96,7 @@ export default function Resume() {
       const token = await getAccessTokenSilently();
 
       const response = await fetch(
-        `http://localhost:3000/v1/resume/0`,
+        `http://localhost:3001/v1/resume/0`,
         {
           method: "PATCH",
           body: JSON.stringify(formData),
