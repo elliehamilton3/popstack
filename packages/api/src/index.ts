@@ -14,7 +14,7 @@ const init = async () => {
     routes: {
       cors: {
         origin: ['*'],
-        headers: ['Authorization', 'Content-Type'],
+        headers: ['Accept', 'Authorization', 'Content-Type', 'If-None-Match', 'Accept-language'],
         exposedHeaders: ['Accept'],
         additionalExposedHeaders: ['Accept'],
         maxAge: 60,
