@@ -73,10 +73,6 @@ const Navbar: React.FunctionComponent = () => {
             >
             
               <Grid item>
-              {/* <NavLink
-                to="/"
-                exact
-              > */}
                 <Grid container spacing={2} alignItems="center">
                   <Grid item>
                     <svg
@@ -118,7 +114,6 @@ const Navbar: React.FunctionComponent = () => {
                   </Grid>
 
                 </Grid>
-                {/* </NavLink> */}
               </Grid>
             </Grid>
           </Grid>
@@ -144,19 +139,11 @@ const Navbar: React.FunctionComponent = () => {
               <Typography>Welcome {user.userUuid}</Typography>
               </Grid>}
               <Grid item>
-                {/* <NavLink
-                to="/dashboard"
-                exact
-              > */}
                   <IconButton color="primary">
                   <DashboardIcon />
                 </IconButton>
-                  {/* </NavLink> */}
                 </Grid>
               <Grid item>
-              
-                
-          
                 <IconButton color="inherit">
                   <Menu />
                 </IconButton>
