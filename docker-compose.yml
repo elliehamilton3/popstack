@@ -11,12 +11,12 @@ services:
       PGPASSWORD: password
       PGDATABASE: dev
       PGHOST: postgres
-      CLIENT_ORIGIN_URL: http://localhost:8080
+      CLIENT_ORIGIN_URL: http://localhost:3000
       AUTH0_AUDIENCE: https://popstack.api
       AUTH0_DOMAIN: auth.popstack.co
 
     ports:
-      - "3000:3000"
+      - "3001:3000"
     working_dir: /api
     entrypoint: npm run start:dev
 
@@ -25,12 +25,12 @@ services:
     volumes:
       - ./packages/ui:/ui
     ports:
-      - "8080:8080"
+      - "3000:3000"
     working_dir: /ui
     depends_on: 
       - api
     environment:
-      API_HOST: http://localhost:3000
+      API_HOST: http://localhost:3001
       NEXT_PUBLIC_AUTH0_CLIENT_ID: xchtaTjCz0VG7tNXmPc9Psvo805kfLQB
       NEXT_PUBLIC_AUTH0_DOMAIN: auth.popstack.co
       NEXT_PUBLIC_AUTH0_AUDIENCE: https://popstack.api

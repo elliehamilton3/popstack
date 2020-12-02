@@ -22,12 +22,11 @@ const onRedirectCallback = (appState: any) => {
 };
 
 export const AuthController: React.FunctionComponent = ({ children }) => {
-    // console.log(process.env)
   return (
     <Auth0Provider
       domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN || ""}
       clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID || ""}
-    //   redirectUri={window.location.origin}
+      redirectUri={process.env.NEXT_PUBLIC_REDIRECT_URI}
       scope={scope}
       // cacheLocation="localstorage"
       useRefreshTokens={true}
