@@ -239,7 +239,7 @@ export default function Home() {
     <Grid item sm={2} />
     <Grid item sm={5} xs={12} className={classes.section3Content} >
     <Image
-        src="/resumes.svg"
+        src="https://popstack.s3-eu-west-1.amazonaws.com/resumes.svg"
         alt="Resume stack"
         width="350px"
         height="350px"
