@@ -141,7 +141,7 @@ open={true}
     </Grid>
     <Grid item sm={6} xs={12}>
     <Image
-        src="/resumes.png"
+        src="/resumes.svg"
         alt="Resume stack"
         width={500}
         height={500}

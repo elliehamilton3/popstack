@@ -1,9 +1,10 @@
-import { AppBar, Toolbar, IconButton, Grid, makeStyles, Typography, Button } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Grid, makeStyles, Typography, Button, Hidden } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import { useAuth0 } from "@auth0/auth0-react";
 import Link from 'next/link'
 import PopstackIcon from "../icons/popstack.icon";
+import React from "react";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -42,6 +43,16 @@ const useStyles = makeStyles(() => ({
         transform: "rotate(-15deg) translate(-30px, 20px)",
         transition: "transform 400ms ease"
       }
+    },
+    "@media (max-width: 600px)": {
+      height: "18px", 
+    }
+  },
+  name: {
+    height: "22px", 
+    width: "auto",
+    "@media (max-width: 600px)": {
+      height: "16px", 
     }
   }
 
@@ -75,14 +86,13 @@ const Navbar: React.FunctionComponent = () => {
               spacing={1}
             >
             
-              <Grid item>
+              <Grid item style={{cursor: "pointer"}}>
               <Link href="/">
-                <Grid container spacing={2} alignItems="center">
-                  
+                <Grid container spacing={1} alignItems="center">
                   <Grid item>
                     <svg
                       height="32"
-                      viewBox="-100 -50 600 360"
+                      viewBox="-100 -50 600 400"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
                       className={classes.logo}
@@ -107,7 +117,7 @@ const Navbar: React.FunctionComponent = () => {
                   </Grid>
 
                   <Grid item>
-                  <PopstackIcon style={{height: "22px", width: "auto"}}/>
+                  <PopstackIcon className={classes.name}/>
                   </Grid>
 
                 </Grid>
@@ -122,6 +132,7 @@ const Navbar: React.FunctionComponent = () => {
               alignItems="center"
               spacing={2}
             >
+              <Hidden xsDown>
               {!isAuthenticated ?
                 <Grid item>
                   <Button
@@ -151,11 +162,14 @@ const Navbar: React.FunctionComponent = () => {
                 </IconButton>
                 </Link>
                 </Grid>
+                </Hidden>
+              <Hidden smUp>
               <Grid item>
                 <IconButton color="inherit">
                   <Menu />
                 </IconButton>
               </Grid>
+              </Hidden>
             </Grid>
           </Grid>
         </Grid>
