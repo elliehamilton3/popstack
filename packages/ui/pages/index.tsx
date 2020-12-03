@@ -64,6 +64,12 @@ const useStyles = makeStyles((theme) => ({
     "@media (min-width: 600px)": {
       maxWidth: "350px"
     }
+  },
+  button1: {
+    backgroundColor: "#FFB7D5",
+  },
+  button2:{
+    backgroundColor: "#FFD84C",
   }
 }));
 
@@ -87,7 +93,6 @@ export default function Home() {
       </Grid>
       <Grid item>
       <Link href="/resume">
-      
         <Button variant="contained" className={classes.button}>Create my resume</Button>
       </Link>
       </Grid>
@@ -110,10 +115,12 @@ export default function Home() {
       </Grid>
     </Grid>
     </Grid>
-    <Grid item sm={6} xs={12}>
+    <Grid item sm={6} xs={12} container justify="center">
+      <Grid item>
       <Link href="/resume">
-        <Button variant="contained">See all of our templates</Button>
+        <Button variant="contained" className={classes.button1}>See all of our templates</Button>
         </Link>
+        </Grid>
     </Grid>
 
   </Grid>
@@ -132,7 +139,7 @@ open={true}
   <Grid container justify="center">
   <Grid item>
       <Link href="/resume">
-        <Button variant="contained">Create my resume</Button>
+        <Button variant="contained" className={classes.button2}>Create my resume</Button>
         </Link>
     </Grid>
     </Grid>
