@@ -48,13 +48,13 @@ const theme = createMuiTheme({
       opacity: 0.7,
     },
     body1: {
-      fontSize: "0.875rem",
-      lineHeight: 1.25,
+      fontSize: "1rem",
+      lineHeight: 1.375,
       fontWeight: 300
     },
     body2: {
-      fontSize: "0.875rem",
-      lineHeight: 1.25,
+      fontSize: "1rem",
+      lineHeight: 1.375,
       fontWeight: 700,
     },
   },

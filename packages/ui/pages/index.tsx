@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   section4: {
     backgroundColor: "#0057FF",
+    color: "#fff",
     "@media (max-width: 600px)": {
       padding: "48px 32px"
     }
@@ -158,9 +159,9 @@ open={true}
   </Grid>
   </Box>
   <Box p={8} py={12} className={classes.section4}>
-  <Grid container spacing={8} >
-    <Grid item sm={6} xs={12}>
-    <Grid container spacing={3} direction="column">
+  <Grid container alignItems="center" justify="center">
+    <Grid item sm={5} xs={12} className={classes.section3Content}>
+    <Grid container spacing={3} direction="column" >
       <Grid item >
         <Typography variant="h2">Create multiple resumes and cover letters</Typography>
       </Grid>
@@ -169,12 +170,13 @@ open={true}
       </Grid>
     </Grid>
     </Grid>
-    <Grid item sm={6} xs={12}>
+    <Grid item sm={2} />
+    <Grid item sm={5} xs={12}className={classes.section3Content} >
     <Image
         src="/resumes.svg"
         alt="Resume stack"
-        width={500}
-        height={500}
+        width={"350px"}
+        height={"350px"}
       />
     </Grid>
 
@@ -214,7 +216,7 @@ open={true}
       </Grid>
     </Grid>
     </Grid>
-    <Hidden smDown><Grid item sm={4} xs={12}>
+    <Hidden xsDown><Grid item sm={4} xs={12}>
     <Image4 className={classes.image}/>
     </Grid>
     </Hidden>
