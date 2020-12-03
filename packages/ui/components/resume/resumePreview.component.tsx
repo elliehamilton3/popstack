@@ -11,6 +11,7 @@ import {
 } from "react-pdf/dist/esm/entry.webpack";
 import { Resume } from "../../interface/resume.interface";
 import blobStream from 'blob-stream';
+import ResumeLoadingPlaceholder from "./resumeLoadingPlaceholder.component";
 
 export interface IResumePreviewProps {
   resume: Resume | undefined;
@@ -102,38 +103,21 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
     setNumPages(numPages);
   }
 
-  const loadingComponent = (
-    <Box p={4}>
-      <Grid container>
-        <Grid item>
-          <Typography variant="h1">
-            <Skeleton width="200px" />
-          </Typography>
-          <Typography variant="h2">
-            <Skeleton width="120px" />
-          </Typography>
-          <Typography variant="body1">
-            <Skeleton width="80px" />
-          </Typography>
-        </Grid>
-      </Grid>
-    </Box>
-  );
   return (
     <Box className={classes.box}>
       <Grid container alignItems="center" direction="column" spacing={2}>
-        <Grid item>
+        <Grid item style={{width: "calc(100% - 160px)"}}>
       <Paper
         elevation={8}
         className={`${classes.paper} ${generatedResume && classes.pdfStyles}`}
       >
         {!generatedResume ? (
-          loadingComponent
+          <ResumeLoadingPlaceholder />
         ) : (
           <Doc
             file={generatedResume}
             onLoadSuccess={onDocumentLoadSuccess}
-            loading={loadingComponent}
+            loading={<ResumeLoadingPlaceholder />}
           >
             <DocPage pageNumber={numPages} style={{ width: "0px" }} />
           </Doc>

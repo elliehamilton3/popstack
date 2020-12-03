@@ -65,7 +65,7 @@ export default function Dashboard() {
   return (
     <>
         <Navbar />
-        <Box p={12} bgcolor="#ffdbeb" height={"100%"}>
+        <Box p={12} bgcolor="#ffdbeb" minHeight="100vh">
         {isAuthenticated ? (<>
             <Box pb={5}>
           <Typography variant="h2">My resumes and cover letters</Typography>

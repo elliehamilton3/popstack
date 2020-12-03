@@ -11,8 +11,9 @@
     "test": "echo no tests",
     "lint": "tsc && eslint . --ext .ts,.tsx",
     "lint:fix": "npm run lint -- --fix && prettier --write ./**/*.ts{,x} --write ./**/*.css  --write ./**/*.svg",
-    "storybook:build": "npm run prefixes && build-storybook -c .storybook -o .storybook-dist",
-    "storybook:dev": "npm run prefixes && start-storybook --quiet -p 9009"
+    "storybook:build": "build-storybook -c .storybook -o .storybook-dist",
+    "storybook:dev": "start-storybook --quiet -p 9009",
+    "storybook": "start-storybook -p 6006"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
@@ -34,8 +35,11 @@
     "react-pdf": "^5.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.12.9",
     "@storybook/addon-a11y": "^6.1.9",
+    "@storybook/addon-actions": "^6.1.9",
     "@storybook/addon-essentials": "^6.1.9",
+    "@storybook/addon-links": "^6.1.9",
     "@storybook/addons": "^6.1.9",
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^6.1.9",
@@ -43,6 +47,7 @@
     "@types/react": "^16.9.56",
     "@typescript-eslint/eslint-plugin": "^4.7.0",
     "@typescript-eslint/parser": "^4.7.0",
+    "babel-loader": "^8.2.2",
     "chromatic": "^5.4.0",
     "eslint": "^7.13.0",
     "eslint-plugin-react": "^7.21.5",
