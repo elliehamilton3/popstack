@@ -242,6 +242,8 @@ export default function Home() {
         alt="Resume stack"
         width="350px"
         height="350px"
+        style={{ maxWidth: "100%"
+        }}
       />
     </Grid>
 
