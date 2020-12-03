@@ -36,6 +36,27 @@
       .forgot-password-wrapper {
           background-color: #26C58C;
       }
+      @media (max-width: 960px) {
+        .image {
+          width: 100%;
+      }
+      .image-wrapper {
+          width: 100%;
+      }
+      .prompt-wrapper {
+        height: 100%;
+        width: 100%;
+      }
+      .wrapper {
+        display: flex;
+        flex-direction: column-reverse;
+     }
+      }
+      @media (max-width: 400px) {
+        .prompt-wrapper section{
+          width: 100vw;
+      }
+      }
     </style>
     <title>{{ prompt.screen.texts.pageTitle }}</title>
   </head>
