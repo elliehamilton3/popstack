@@ -5,7 +5,6 @@ import Image3 from "../components/icons/image3";
 import Image4 from "../components/icons/image4";
 import Navbar from "../components/navbar/navbar.component";
 import Link from 'next/link'
-import Image from 'next/image'
 import Footer from '../components/footer/footer.component';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -238,7 +237,7 @@ export default function Home() {
     </Grid>
     <Grid item sm={2} />
     <Grid item sm={5} xs={12} className={classes.section3Content} >
-    <Image
+    <img
         src="https://popstack.s3-eu-west-1.amazonaws.com/resumes.svg"
         alt="Resume stack"
         width="350px"
