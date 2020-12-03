@@ -164,27 +164,33 @@ export default function Home() {
     transitionDuration={350}
     keyBoardControl={true}
     centerMode
+    focusOnSelect
     >
       <div>
         <Grid container justify="center">
         <Grid item>
-      <Resume1 className={classes.resume}/>
+      <Resume1 className={classes.resume} style={{fill: "#FFD84C"}}/>
       </Grid>
       </Grid>
       </div>
       <div> <Grid container justify="center">
         <Grid item>
-      <Resume1 className={classes.resume}/>
+      <Resume1 className={classes.resume} style={{fill: "#FFB7D5"}}/>
       </Grid>
       </Grid></div>
       <div> <Grid container justify="center">
         <Grid item>
-      <Resume1 className={classes.resume}/>
+      <Resume1 className={classes.resume} style={{fill: "#2F80ED"}}/>
       </Grid>
       </Grid></div>
       <div> <Grid container justify="center">
         <Grid item>
-      <Resume1 className={classes.resume}/>
+      <Resume1 className={classes.resume} style={{fill: "#26C58C"}}/>
+      </Grid>
+      </Grid></div>
+      <div> <Grid container justify="center">
+        <Grid item>
+      <Resume1 className={classes.resume} style={{fill: "#62CFF1"}}/>
       </Grid>
       </Grid></div>
     </Carousel>
