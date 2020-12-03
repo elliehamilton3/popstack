@@ -21,10 +21,8 @@ export interface IResumePreviewProps {
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: "40px",
-
-      minHeight:  "calc(100vh - 176px)",
-      minWidth: 0
-
+      minHeight:  "calc(100vh - 192px)",
+      minWidth: 0,
   },
   pdfStyles: {
     "& canvas": {
@@ -52,6 +50,12 @@ const useStyles = makeStyles((theme) => ({
   button: {
     backgroundColor: theme.palette.common.white
   },
+  pageWidth: {
+    width: "calc(67vh - 96px)",
+    "@media (max-width: 440px)": {
+      maxWidth: "260px"
+    }
+  }
 }));
 
 export const generatePdfDocument = async (documentData: Resume, resumeStyle: number) => {
@@ -106,7 +110,7 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
   return (
     <Box className={classes.box}>
       <Grid container alignItems="center" direction="column" spacing={2}>
-        <Grid item style={{width: "calc(100% - 160px)"}}>
+        <Grid item className={classes.pageWidth}>
       <Paper
         elevation={8}
         className={`${classes.paper} ${generatedResume && classes.pdfStyles}`}

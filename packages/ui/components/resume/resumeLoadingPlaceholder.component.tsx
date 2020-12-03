@@ -30,7 +30,7 @@ const ResumeLoadingPlaceholder: React.FunctionComponent = () => {
         </Typography>
       </Grid>
     </Grid>
-    <Box pt={8}>
+    <Box style={{paddingTop: "4vh"}} >
     <Grid container justify="space-between" spacing={4} alignItems="baseline">
       <Grid item xs={4}>
         <Typography variant="h2">
@@ -68,7 +68,7 @@ const ResumeLoadingPlaceholder: React.FunctionComponent = () => {
       </Grid>
     </Grid>
     </Box>
-    <Box pt={16}>
+    <Box style={{paddingTop: "8vh"}}>
     <Grid container justify="space-between" spacing={4}>
       <Grid item xs={4}>
         <Typography variant="h3">
