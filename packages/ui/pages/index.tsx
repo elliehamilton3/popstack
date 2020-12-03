@@ -7,6 +7,9 @@ import Navbar from "../components/navbar/navbar.component";
 import Link from 'next/link'
 import Image from 'next/image'
 import Footer from '../components/footer/footer.component';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import Resume1 from "../components/icons/resume1";
 
 const useStyles = makeStyles((theme) => ({
   section1Content: {
@@ -75,6 +78,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Home() {
   const classes = useStyles();
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
   return (
     <>
     <Navbar />
@@ -124,18 +146,40 @@ export default function Home() {
     </Grid>
 
   </Grid>
-  {/* <AutoRotatingCarousel
-// label='Get started'
-open={true}
-// onClose={() => setState({ open: false })}
-// onStart={() => setState({ open: false })}
-// style={{ position: 'absolute' }}
->
-<Resume1 style={{height: "335px", width:"235px"}}/>
-<Resume1 style={{height: "335px", width:"235px"}}/>
-<Resume1 style={{height: "335px", width:"235px"}}/>
+    <Carousel 
+    responsive={responsive}
+    infinite={true}
+    transitionDuration={350}
+    keyBoardControl={true}
+    >
+      <div>
+      <Image
+        src="/resume.svg"
+        alt="Resume"
+        width={"auto"}
+        height={"600px"}
+      />
+      </div>
+      <div><Image
+        src="/resume.svg"
+        alt="Resume"
+        width={"auto"}
+        height={"600px"}
+      /></div>
+      <div><Image
+        src="/resume.svg"
+        alt="Resume"
+        width={"auto"}
+        height={"600px"}
+      /></div>
+      <div><Image
+        src="/resume.svg"
+        alt="Resume"
+        width={"auto"}
+        height={"600px"}
+      /></div>
+    </Carousel>
 
-</AutoRotatingCarousel> */}
   <Grid container justify="center">
   <Grid item>
       <Link href="/resume">
