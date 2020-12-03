@@ -38,10 +38,12 @@
       }
       @media (max-width: 960px) {
         .image {
-          width: 100%;
+          max-height: 300px;
+          width: auto;
       }
       .image-wrapper {
           width: 100%;
+          padding: 32px;
       }
       .prompt-wrapper {
         height: 100%;
@@ -50,6 +52,7 @@
       .wrapper {
         display: flex;
         flex-direction: column-reverse;
+        height: fit-content;
      }
       }
       @media (max-width: 400px) {
