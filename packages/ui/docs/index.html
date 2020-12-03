@@ -21,7 +21,7 @@
       }
     
       .image {
-          width: 50%;
+          width: 65%;
           height: auto;
       }
       .image-wrapper {
@@ -30,8 +30,8 @@
         justify-content: center;
         align-items: center;
       }
-      .signup-wrapper {
-          background-color: #FFD84C;
+      .login-wrapper {
+          background-color: #FFb7d5;
       }
       .forgot-password-wrapper {
           background-color: #26C58C;
@@ -63,19 +63,19 @@
   <body>
       <div class="wrapper">
         {% if prompt.name == "signup" %} 
-            <div class="image-wrapper" ><img class="image" src="http://popstack.co/resume-characters.svg"/></div>
+            <div class="image-wrapper" ><img class="image" src="https://popstack.s3-eu-west-1.amazonaws.com/resume-characters.svg"/></div>
             <div class="prompt-wrapper">
                 
             {%- auth0:widget -%}
             </div>
         {% elsif prompt.name == "reset-password" %} 
-            <div class="image-wrapper forgot-password-wrapper" ><img class="image" src="http://popstack.co/semi-circle-characters.svg"/></div>
+            <div class="image-wrapper forgot-password-wrapper" ><img class="image" src="https://popstack.s3-eu-west-1.amazonaws.com/semi-circle-characters.svg"/></div>
             <div class="prompt-wrapper">
                 
             {%- auth0:widget -%}
             </div>
         {% else %}
-            <div class="image-wrapper signup-wrapper" ><img class="image" src="http://popstack.co/laptop-characters.svg"/></div>
+            <div class="image-wrapper login-wrapper" ><img class="image" src="https://popstack.s3-eu-west-1.amazonaws.com/laptop-characters.svg"/></div>
             <div class="prompt-wrapper">
                 
             {%- auth0:widget -%}
