@@ -73,6 +73,17 @@ const useStyles = makeStyles((theme) => ({
   },
   button2:{
     backgroundColor: "#FFD84C",
+  },
+  resume: {
+    width: "auto",
+    height: "60vw",
+    "@media (min-width: 1024px)": {
+      height: "32vw"
+    }
+  },
+  carousel: {
+    marginLeft: "-64px",
+    marginRight: "-64px"
   }
 }));
 
@@ -82,7 +93,7 @@ export default function Home() {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: 5
+      items: 3
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -90,7 +101,7 @@ export default function Home() {
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
-      items: 2
+      items: 1
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
@@ -146,40 +157,38 @@ export default function Home() {
     </Grid>
 
   </Grid>
+  <Box py={6} className={classes.carousel}>
     <Carousel 
     responsive={responsive}
     infinite={true}
     transitionDuration={350}
     keyBoardControl={true}
+    centerMode
     >
       <div>
-      <Image
-        src="/resume.svg"
-        alt="Resume"
-        width={"auto"}
-        height={"600px"}
-      />
+        <Grid container justify="center">
+        <Grid item>
+      <Resume1 className={classes.resume}/>
+      </Grid>
+      </Grid>
       </div>
-      <div><Image
-        src="/resume.svg"
-        alt="Resume"
-        width={"auto"}
-        height={"600px"}
-      /></div>
-      <div><Image
-        src="/resume.svg"
-        alt="Resume"
-        width={"auto"}
-        height={"600px"}
-      /></div>
-      <div><Image
-        src="/resume.svg"
-        alt="Resume"
-        width={"auto"}
-        height={"600px"}
-      /></div>
+      <div> <Grid container justify="center">
+        <Grid item>
+      <Resume1 className={classes.resume}/>
+      </Grid>
+      </Grid></div>
+      <div> <Grid container justify="center">
+        <Grid item>
+      <Resume1 className={classes.resume}/>
+      </Grid>
+      </Grid></div>
+      <div> <Grid container justify="center">
+        <Grid item>
+      <Resume1 className={classes.resume}/>
+      </Grid>
+      </Grid></div>
     </Carousel>
-
+    </Box>
   <Grid container justify="center">
   <Grid item>
       <Link href="/resume">
