@@ -6,6 +6,7 @@ import Image4 from "../components/icons/image4";
 import Navbar from "../components/navbar/navbar.component";
 import Link from 'next/link'
 import Image from 'next/image'
+import Footer from '../components/footer/footer.component';
 
 const useStyles = makeStyles((theme) => ({
   section1Content: {
@@ -62,9 +63,6 @@ const useStyles = makeStyles((theme) => ({
     "@media (min-width: 600px)": {
       maxWidth: "350px"
     }
-  },
-  footer: {
-    backgroundColor: "#0C0C0C",
   }
 }));
 
@@ -222,8 +220,7 @@ open={true}
     </Hidden>
   </Grid>
   </Box>
-  <Box className={classes.footer} height="300px" > 
-  </Box>
+  <Footer /> 
   </>
   );
 }

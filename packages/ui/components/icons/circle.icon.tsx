@@ -12,7 +12,7 @@ function CircleIcon(props: SvgIconProps) {
         rx="17.5"
         ry="17.5"
         transform="rotate(-180 17.5 17.5)"
-        fill="#FFD84C"
+        fill={props.color}
       />
     </SvgIcon>
   );
