@@ -1,6 +1,5 @@
 import { AppBar, Toolbar, IconButton, Grid, makeStyles, Typography, Button, Hidden } from "@material-ui/core";
 import { Menu } from "@material-ui/icons";
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import { useAuth0 } from "@auth0/auth0-react";
 import Link from 'next/link'
 import PopstackIcon from "../icons/popstack.icon";
@@ -76,8 +75,9 @@ const Navbar: React.FunctionComponent = () => {
           container
           alignItems="center"
           alignContent="center"
+
         >
-          <Grid item>
+          <Grid item sm={6}>
             <Grid
               justify="space-between"
               container
@@ -125,9 +125,9 @@ const Navbar: React.FunctionComponent = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid item sm={6}>
             <Grid
-              justify="space-between"
+              justify="flex-end"
               container
               alignItems="center"
               spacing={2}
@@ -157,9 +157,7 @@ const Navbar: React.FunctionComponent = () => {
               </Grid>}
               <Grid item>
               <Link href="/dashboard">
-                  <IconButton color="primary">
-                  <DashboardIcon />
-                </IconButton>
+                  <Button>My Account</Button>
                 </Link>
                 </Grid>
                 </Hidden>
