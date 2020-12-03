@@ -20,19 +20,27 @@ const theme = createMuiTheme({
       textTransform: "none",
     },
     h1: {
-      fontSize: "2.625rem",
+      fontSize: "2.5rem",
       lineHeight: "1.2",
       fontWeight: 700,
+      "@media (max-width: 600px)": {
+        fontSize: "2rem",
+      }
     },
     h2: {
-      fontSize: "1.625rem",
-      fontWeight: 400,
+      fontSize: "1.375rem",
+      fontWeight: 600,
       lineHeight: "1.2",
+      "@media (max-width: 600px)": {
+        fontSize: "1.25rem",
+      }
     },
     h3: {
       fontSize: "1.25rem",
       lineHeight: "1.25",
-      // fontWeight: 500,
+      "@media (max-width: 600px)": {
+        fontSize: "1.125rem",
+      }
     },
     subtitle1: {
       fontSize: "0.9375rem",
@@ -107,6 +115,7 @@ const theme = createMuiTheme({
     MuiButton: {
       outlined: {
         border: "1px solid #1C1A1A",
+        padding: "18px 26px"
       },
       outlinedSecondary: {
         color: "#1C1A1A",
@@ -121,6 +130,15 @@ const theme = createMuiTheme({
           backgroundColor: lighten("#0057FF", 0.96),
         },
       },
+      outlinedSizeSmall: {
+        padding: "10px 20px"
+      },
+      contained: {
+        padding: "18px 26px"
+      },
+      containedSizeSmall: {
+        padding: "10px 20px"
+      }
     },
     MuiAccordion: {
       root: {

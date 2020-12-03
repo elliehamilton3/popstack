@@ -1,6 +1,6 @@
-import { makeStyles, Box, Grid, Typography, Button } from "@material-ui/core";
+import { makeStyles, Box, Grid, Typography, Button, Hidden } from "@material-ui/core";
 import Image1 from '../components/icons/image1';
-import Image2 from "../components/icons/image2";
+// import Image2 from "../components/icons/image2";
 import Image3 from "../components/icons/image3";
 import Image4 from "../components/icons/image4";
 import Navbar from "../components/navbar/navbar.component";
@@ -8,11 +8,32 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const useStyles = makeStyles((theme) => ({
+  section1Content: {
+    "@media (min-width: 600px)": {
+    maxWidth: "490px"},
+    "@media (max-width: 600px)": {
+      alignItems: "center",
+      textAlign: "center"
+    }
+  },
   section1: {
+    "@media (max-width: 600px)": {
+      padding: "72px 24px 24px 24px"
+    }
   },
   section2: {
     backgroundColor: "#0C0C0C",
     color: theme.palette.common.white,
+  },
+  section3: {
+    "@media (max-width: 600px)": {
+      padding: "48px 32px"
+    }
+  },
+  section5: {
+    "@media (max-width: 600px)": {
+      padding: "48px 32px"
+    }
   },
   innerBox: {
     backgroundColor: "#0046CF",
@@ -23,8 +44,11 @@ const useStyles = makeStyles((theme) => ({
     top: "-100px",
     borderRadius: "20px"
   },
-  section3: {
-    backgroundColor: "#0057FF"
+  section4: {
+    backgroundColor: "#0057FF",
+    "@media (max-width: 600px)": {
+      padding: "48px 32px"
+    }
   },
   button: {
     backgroundColor: "#0C0C0C",
@@ -33,7 +57,15 @@ const useStyles = makeStyles((theme) => ({
   link: {
     textDecoration: "none",
   },
-  image: {height: "100%", width: "100%"}
+  image: {height: "100%", width: "100%"},
+  section3Content:{
+    "@media (min-width: 600px)": {
+      maxWidth: "350px"
+    }
+  },
+  footer: {
+    backgroundColor: "#0C0C0C",
+  }
 }));
 
 export default function Home() {
@@ -41,13 +73,13 @@ export default function Home() {
   return (
     <>
     <Navbar />
-    <Box p={8} py={15}>
-      <Grid container spacing={4}>
+    <Box p={8} pt={15} className={classes.section1}>
+      <Grid container spacing={4} alignItems="center">
       <Grid item sm={6} xs={12}>
         <Image1 className={classes.image}/>
       </Grid>
         <Grid item sm={6} xs={12}>
-      <Grid container spacing={3} direction="column">
+      <Grid container spacing={4} direction="column" className={classes.section1Content}>
       <Grid item >
         <Typography variant="h1">Make your resumé pop.</Typography>
       </Grid>
@@ -106,13 +138,13 @@ open={true}
     </Grid>
     </Grid>
   </Box>
-  <Box p={8} >
-  <Grid container spacing={3} >
+  <Box p={8} className={classes.section3}>
+  <Grid container spacing={3} alignItems="center" >
   <Grid item sm={6} xs={12}>
       <Image3 className={classes.image}/>
     </Grid>
     <Grid item sm={6} xs={12}>
-    <Grid container spacing={3} direction="column">
+    <Grid container spacing={3} direction="column" className={classes.section3Content}> 
       <Grid item >
         <Typography variant="h2">Designed for professionals</Typography>
       </Grid>
@@ -127,7 +159,7 @@ open={true}
 
   </Grid>
   </Box>
-  <Box p={8} py={12} className={classes.section3}>
+  <Box p={8} py={12} className={classes.section4}>
   <Grid container spacing={8} >
     <Grid item sm={6} xs={12}>
     <Grid container spacing={3} direction="column">
@@ -150,7 +182,7 @@ open={true}
 
   </Grid>
   </Box>
-  <Box p={8} >
+  <Box p={8} className={classes.section5}>
   <Grid container spacing={3} >
     <Grid item sm={4} xs={12}>
     <Grid container spacing={3} direction="column">
@@ -184,12 +216,14 @@ open={true}
       </Grid>
     </Grid>
     </Grid>
-    <Grid item sm={4} xs={12}>
+    <Hidden smDown><Grid item sm={4} xs={12}>
     <Image4 className={classes.image}/>
     </Grid>
+    </Hidden>
   </Grid>
   </Box>
-  <Box style={{backgroundColor: "#0C0C0C"}} height="300px" /> 
+  <Box className={classes.footer} height="300px" > 
+  </Box>
   </>
   );
 }

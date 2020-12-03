@@ -139,6 +139,7 @@ const Navbar: React.FunctionComponent = () => {
                   variant="contained"
                     color="primary"
                     onClick={() => loginWithRedirect()}
+                    size="small"
                   >
                     Log in/sign up
                   </Button>
@@ -148,6 +149,7 @@ const Navbar: React.FunctionComponent = () => {
                   variant="contained"
                     color="primary"
                     onClick={() => logout()}
+                    size="small"
                   >
                     Log out
                   </Button>
@@ -157,7 +159,7 @@ const Navbar: React.FunctionComponent = () => {
               </Grid>}
               <Grid item>
               <Link href="/dashboard">
-                  <Button>My Account</Button>
+                  <Button size="small" variant="outlined">My Account</Button>
                 </Link>
                 </Grid>
                 </Hidden>
