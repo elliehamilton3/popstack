@@ -237,12 +237,12 @@ export default function Home() {
     </Grid>
     </Grid>
     <Grid item sm={2} />
-    <Grid item sm={5} xs={12}className={classes.section3Content} >
+    <Grid item sm={5} xs={12} className={classes.section3Content} >
     <Image
         src="/resumes.svg"
         alt="Resume stack"
-        width={"350px"}
-        height={"350px"}
+        width="350px"
+        height="350px"
       />
     </Grid>
 
