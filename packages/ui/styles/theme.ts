@@ -114,11 +114,8 @@ const theme = createMuiTheme({
       backgroundColor: lighten("#0057FF", 0.9),
     }},
     MuiAutocomplete: {
-      tag: {
-      margin: "8px 3px"
-    },
     inputRoot: {
-      paddingTop: "0px !important",
+      padding: "11px 8px 1px !important",
     }  },
     MuiFormControl: { root: { flexDirection: "column-reverse" } },
     MuiAppBar: {

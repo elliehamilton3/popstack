@@ -217,7 +217,9 @@ export default function Resume() {
                       ))
                     }
                     renderInput={(params) => (
-                      <TextField {...params} variant="filled" placeholder="Add skills" />
+                      <TextField {...params} variant="filled" placeholder="Add skills" 
+                      fullWidth
+                     />
                     )}
                   />
                 </ResumeSection>}
