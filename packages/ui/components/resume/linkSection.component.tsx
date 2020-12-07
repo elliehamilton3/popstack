@@ -46,25 +46,22 @@ const LinkSection: React.FunctionComponent<ILinkSectionProps> = ({links, onChang
       
       <Grid container spacing={2}>
       {links && links.map((link, i) => 
-      <Grid item key={i}>
+      <Grid item key={i} xs={12}>
         <Accordion>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon className={classes.icon} />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Grid container justify="space-between" alignItems="center">
-              <Grid item>
-                <Grid container direction="column">
+               <Grid container direction="column">
                   <Grid item>
                     <Typography variant="subtitle2">{link.title}</Typography>
                   </Grid>
                   <Grid item>
                     <Typography>{link.link}</Typography>
                   </Grid>
-                </Grid>
               </Grid>
-            </Grid>
+   
           </AccordionSummary>
           <LinkForm link={link} number={i} onChange={onChange}/>
         </Accordion>

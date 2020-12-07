@@ -13,7 +13,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
   return (
     <AccordionDetails>
     <Grid container spacing={2} alignItems="flex-end">
-      <Grid item md={12}>
+      <Grid item xs={12}>
         <TextField
           id={`educations-place-${number}`}
           name={`educations-place-${number}`}
@@ -23,7 +23,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           defaultValue={place}
         />
       </Grid>
-      <Grid item md={12}>
+      <Grid item xs={12}>
         <TextField
           id={`educations-info-${number}`}
           name={`educations-info-${number}`}
@@ -33,7 +33,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           defaultValue={info}
         />
       </Grid>
-      <Grid item md={4}>
+      <Grid item xs={6} md={4}>
         <TextField
           id={`educations-yearFrom-${number}`}
           name={`educations-yearFrom-${number}`}
@@ -44,7 +44,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           defaultValue={yearFrom !== 0 && yearFrom.toString()}
         />
       </Grid>
-      <Grid item md={4}>
+      <Grid item xs={6} md={4}>
         <TextField
           id={`educations-yearTo-${number}`}
           name={`educations-yearTo-${number}`}
@@ -55,7 +55,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           defaultValue={yearTo !== 0 &&yearTo.toString()}
         />
       </Grid>
-      <Grid item md={4}>
+      <Grid item xs={12} md={4}>
         <FormControlLabel
           control={
             <Checkbox checked={true} name="checkedA" color="primary" />
@@ -63,7 +63,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           label="Currently studying"
         />
       </Grid>
-      <Grid item md={12}>
+      <Grid item xs={12}>
         <TextField
           id={`educations-location-${number}`}
           name={`educations-location-${number}`}
@@ -72,7 +72,7 @@ const EducationForm: React.FunctionComponent<IEducationFormProps> = ({
           variant="filled"
         />
       </Grid>
-      <Grid item md={12}>
+      <Grid item xs={12}>
         <TextField
           name={`educations-description-${number}`}
           fullWidth
