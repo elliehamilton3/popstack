@@ -31,9 +31,9 @@ const ResumeLoadingPlaceholder: React.FunctionComponent = () => {
       </Grid>
     </Grid>
     <Box style={{paddingTop: "4vh"}} >
-    <Grid container justify="space-between" spacing={4} alignItems="baseline">
+    <Grid container justify="space-between" spacing={4} >
       <Grid item xs={4}>
-        <Typography variant="h2">
+        <Typography variant="h2" style={{paddingTop: "6px"}}>
           <Skeleton width="100%" />
         </Typography>
       </Grid>
@@ -43,9 +43,9 @@ const ResumeLoadingPlaceholder: React.FunctionComponent = () => {
         </Typography>
       </Grid>
     </Grid>
-    <Grid container justify="space-between" spacing={4} alignItems="baseline">
+    <Grid container justify="space-between" spacing={4} >
       <Grid item xs={4}>
-        <Typography variant="h2">
+        <Typography variant="h2" style={{paddingTop: "6px"}}>
           <Skeleton width="100%" />
         </Typography>
       </Grid>
@@ -55,9 +55,9 @@ const ResumeLoadingPlaceholder: React.FunctionComponent = () => {
         </Typography>
       </Grid>
     </Grid>
-    <Grid container justify="space-between" spacing={4} alignItems="baseline">
+    <Grid container justify="space-between" spacing={4} >
       <Grid item xs={4}>
-        <Typography variant="h2">
+        <Typography variant="h2" style={{paddingTop: "6px"}}>
           <Skeleton width="100%" />
         </Typography>
       </Grid>
