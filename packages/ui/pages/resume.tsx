@@ -35,40 +35,41 @@ export default function Resume() {
   useEffect(() => {
     (async () => {
       try {
-        const token = await getAccessTokenSilently();
+        setResume({} as ResumeInterface);
+        // const token = await getAccessTokenSilently();
   
-        const response = await fetch(
-          `http://localhost:3001/v1/resume/0`,
-          {
-            headers: {
-              Accept: "application/json",
-             "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        // const response = await fetch(
+        //   `http://localhost:3001/v1/resume/0`,
+        //   {
+        //     headers: {
+        //       Accept: "application/json",
+        //      "Content-Type": "application/json",
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   }
+        // );
   
-        const responseData = await response.json();
-        if(responseData.statusCode === 404) {
-          const token = await getAccessTokenSilently();
+        // const responseData = await response.json();
+        // if(responseData.statusCode === 404) {
+        //   const token = await getAccessTokenSilently();
   
-        const response1 = await fetch(
-          `http://localhost:3001/v1/resume`,
-          {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-             "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        const responseData1 = await response1.json();
-        setResume(responseData1 as ResumeInterface);
-        } else {
+        // const response1 = await fetch(
+        //   `http://localhost:3001/v1/resume`,
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       Accept: "application/json",
+        //      "Content-Type": "application/json",
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   }
+        // );
+        // const responseData1 = await response1.json();
+        // setResume(responseData1 as ResumeInterface);
+        // } else {
 
-        setResume(responseData as ResumeInterface);
-        }
+        // setResume(responseData as ResumeInterface);
+        // }
   
       } catch (error) {
         console.log(error.message);

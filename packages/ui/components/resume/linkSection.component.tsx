@@ -66,7 +66,7 @@ const LinkSection: React.FunctionComponent<ILinkSectionProps> = ({links, onChang
           <LinkForm link={link} number={i} onChange={onChange}/>
         </Accordion>
       </Grid>)}
-      <Grid item>
+      <Grid item xs={12}>
         <Accordion
           expanded={expanded}
           className={`${!expanded && classes.closedAccordion}`}
