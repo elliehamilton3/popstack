@@ -13,7 +13,7 @@ const LinkForm: React.FunctionComponent<ILinkFormProps> = ({
   return (
     <AccordionDetails>
     <Grid container spacing={2} alignItems="flex-end">
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={6} md={12} lg={6}>
         <TextField
           id={`links-title-${number}`}
           name={`links-title-${number}`}
@@ -23,7 +23,7 @@ const LinkForm: React.FunctionComponent<ILinkFormProps> = ({
           defaultValue={title}
         />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} sm={6} md={12} lg={6}>
         <TextField
           id={`links-link-${number}`}
           name={`links-link-${number}`}
