@@ -7,8 +7,9 @@ import {
   Box,
   makeStyles,
   lighten,
-  Switch
+  Switch,
 } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../components/navbar/navbar.component";
 // import apiFetch from "../../service/apiFetch.service";
@@ -135,7 +136,9 @@ export default function Resume() {
                   <Grid item>
                     <Grid container justify="space-between" alignItems="center">
                       <Grid item>
+                      {!resume ? <Skeleton variant="text" width={140} height={26} />:
                         <Typography variant="h2">Your Resumé</Typography>
+                         } 
                       </Grid>
                      
                       <Grid item>
@@ -150,20 +153,22 @@ export default function Resume() {
                   </Grid>
                 </Box>
 
-                {resume && 
                 <PersonalDetailsSection 
+                loading={!resume}
                 onChange={updateResume}
                 firstName={resume && resume.user && resume.user.firstName} 
                 lastName={resume && resume.user && resume.user.lastName} 
                 phoneNumber={resume && resume.user && resume.user.phoneNumber} 
                 email={resume && resume.user && resume.user.email} 
-                title={resume && resume.resume && resume.resume.title}/>}
+                title={resume && resume.resume && resume.resume.title}/>
 
                 <ResumeSection
+                  loading={!resume}
                   icon={<ParallelogramIcon fontSize="large" />}
                   heading="Describe you and your work"
                   subtitle="Summarise your professional career in 2 or 3 sentences."
                 >
+                  {!resume ?  <Skeleton variant="rect" width="100%" height={114} />:
                   <TextField
                     name="bio"
                     fullWidth
@@ -174,13 +179,14 @@ export default function Resume() {
                     defaultValue={resume && resume.resume && resume.resume.bio}
                     onChange={() => updateResume()}
                   />
-                </ResumeSection>
+                  }
+                </ResumeSection> 
 
-                <EmploymentSection employment={resume?.jobs} onChange={updateResume}/>
+                {resume && <EmploymentSection employment={resume?.jobs} onChange={updateResume}/> }
 
-                <EducationSection educations={resume?.educations} onChange={updateResume}/>
+                {resume && <EducationSection educations={resume?.educations} onChange={updateResume}/>}
                 
-                <ResumeSection
+                {resume && <ResumeSection
                   icon={<RectangleIcon fontSize="large" />}
                   heading="Websites &amp; social media links"
                   subtitle="Include a link to your personal website or portfolio,
@@ -196,9 +202,9 @@ export default function Resume() {
                   >
                     Add website or link
                   </Button>
-                </ResumeSection>
+                </ResumeSection>}
 
-                <ResumeSection
+                {resume &&<ResumeSection
                   icon={<SquareIcon fontSize="large" />}
                   heading="Skills"
                   subtitle="Add any skills you have that you want to highlight."
@@ -212,7 +218,7 @@ export default function Resume() {
                   >
                     Add a skill
                   </Button>
-                </ResumeSection>
+                </ResumeSection>}
               </form>
             </Grid>
           </Box>

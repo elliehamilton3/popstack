@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/indent */
 import { createMuiTheme, lighten } from '@material-ui/core/styles';
+import { SkeletonClassKey } from '@material-ui/lab/Skeleton';
+
+declare module '@material-ui/core/styles/overrides' {
+  export interface ComponentNameToClassKey {
+    MuiSkeleton: SkeletonClassKey;
+  }
+}
 
 const theme = createMuiTheme({
   palette: {
@@ -101,6 +108,9 @@ const theme = createMuiTheme({
     MuiFormHelperText: {
       contained: { marginLeft: "0px", marginTop: "0px", marginBottom: "6px" },
     },
+    MuiSkeleton: { root: {
+      backgroundColor: lighten("#0057FF", 0.9),
+    }},
     MuiFormControl: { root: { flexDirection: "column-reverse" } },
     MuiAppBar: {
       root: {

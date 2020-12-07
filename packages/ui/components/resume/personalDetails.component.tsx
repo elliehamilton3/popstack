@@ -2,6 +2,7 @@ import {
   // Button,
   Grid,
   TextField,
+  Typography,
   // makeStyles,
   // lighten,
 } from "@material-ui/core";
@@ -9,6 +10,7 @@ import React from "react";
 import CircleIcon from "../icons/circle.icon";
 // import AddIcon from "@material-ui/icons/Add";
 import ResumeSection from "./resumeSection.component";
+import { Skeleton } from "@material-ui/lab";
 
 // const useStyles = makeStyles((theme) => ({
 //   button: {
@@ -27,12 +29,18 @@ export interface IPersonalDetailsProps {
   phoneNumber?: number;
   title?: string;
   onChange: () => void;
+  loading?: boolean;
 }
 
-const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = ({firstName, lastName, email, title, phoneNumber, onChange}: IPersonalDetailsProps) => {
+const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = ({firstName, lastName, email, title, phoneNumber, onChange, loading = false}: IPersonalDetailsProps) => {
   // const classes = useStyles();
+  const TextFieldSkeleton = <>
+  <Typography variant="subtitle1" style={{paddingBottom: "6px"}}><Skeleton width="33%" /></Typography>
+  <Skeleton variant="rect" width="100%" height={50} />
+  </>
   return (
     <ResumeSection
+      loading={loading}
       icon={<CircleIcon fontSize="large" style={{fill: "#FFD84C"}}/>}
       heading="Personal Details"
       subtitle="Summarise your professional career in 2 or 3 sentences."
@@ -40,7 +48,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
       <Grid item>
         <Grid container spacing={2} alignItems="flex-end">
           <Grid item xs={12} sm={6}>
-            <TextField
+            {loading ? TextFieldSkeleton :<TextField
               id="firstName"
               name="firstName"
               helperText="First name"
@@ -48,10 +56,12 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               variant="filled"
               defaultValue={firstName}
               onChange={() => onChange()}
-            />
+            />}
+
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
+          {loading ? TextFieldSkeleton :
+          <TextField
               id="lastName"
               name="lastName"
               helperText="Last name"
@@ -60,13 +70,14 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               defaultValue={lastName}
               onChange={() => onChange()}
             />
+            }
           </Grid>
         </Grid>
       </Grid>
       <Grid item>
         <Grid container spacing={2} alignItems="flex-end">
           <Grid item xs={12} sm={6}>
-            <TextField
+          {loading ? TextFieldSkeleton :<TextField
               id="email"
               name="email"
               helperText="Email address"
@@ -74,10 +85,10 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               variant="filled"
               defaultValue={email}
               onChange={() => onChange()}
-            />
+            />}
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
+            {loading ? TextFieldSkeleton :<TextField
               id="phoneNumber"
               name="phoneNumber"
               type="number"
@@ -86,14 +97,14 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               variant="filled"
               defaultValue={phoneNumber}
               onChange={() => onChange()}
-            />
+            />}
           </Grid>
         </Grid>
       </Grid>
       <Grid item>
         <Grid container spacing={2} alignItems="flex-end">
           <Grid item xs={12} sm={6}>
-            <TextField
+          {loading ? TextFieldSkeleton :<TextField
               id="title"
               name="title"
               helperText="Job title"
@@ -101,7 +112,7 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
               variant="filled"
               defaultValue={title}
               onChange={() => onChange()}
-            />
+            />}
           </Grid>
           {/* <Grid item xs={12} sm={6}>
             <Button
