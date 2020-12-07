@@ -15,8 +15,8 @@ const LinkForm: React.FunctionComponent<ILinkFormProps> = ({
     <Grid container spacing={2} alignItems="flex-end">
       <Grid item md={12}>
         <TextField
-          id={`link-title-${number}`}
-          name={`link-title-${number}`}
+          id={`links-title-${number}`}
+          name={`links-title-${number}`}
           helperText="Title"
           fullWidth
           variant="filled"
@@ -25,8 +25,8 @@ const LinkForm: React.FunctionComponent<ILinkFormProps> = ({
       </Grid>
       <Grid item md={12}>
         <TextField
-          id={`link-link-${number}`}
-          name={`link-link-${number}`}
+          id={`links-link-${number}`}
+          name={`links-link-${number}`}
           helperText="Link"
           fullWidth
           variant="filled"

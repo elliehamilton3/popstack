@@ -62,7 +62,9 @@ export function getFormValues(form: HTMLFormElement) {
   serializedArray.forEach((item) => {
     if (
       item.name.split("-")[0] === "educations" ||
-      item.name.split("-")[0] === "jobs"
+      item.name.split("-")[0] === "jobs" ||
+      // item.name.split("-")[0] === "skills" ||
+      item.name.split("-")[0] === "links"
     ) {
       if (!output[item.name.split("-")[0]])
         output[item.name.split("-")[0]] = [];

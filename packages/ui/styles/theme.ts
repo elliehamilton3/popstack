@@ -57,7 +57,7 @@ const theme = createMuiTheme({
       opacity: 0.7,
     },
     body1: {
-      fontSize: "1rem",
+      fontSize: "0.875rem",
       lineHeight: 1.375,
       fontWeight: 300
     },
