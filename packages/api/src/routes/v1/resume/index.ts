@@ -84,6 +84,8 @@ export default [
           bio: Joi.string().allow(''),
           educations: Joi.array(),
           jobs: Joi.array(),
+          skills: Joi.array(),
+          links: Joi.array(),
         }).unknown(),
       },
     },

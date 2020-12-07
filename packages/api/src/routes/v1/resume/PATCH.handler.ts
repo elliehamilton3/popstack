@@ -4,6 +4,8 @@ import Resume from '../../../models/Resume';
 import User from '../../../models/User';
 import Education from '../../../models/Education';
 import Job from '../../../models/Job';
+import Skill from '../../../models/Skill';
+import Link from '../../../models/Link';
 
 export default async function patchHandler({ payload, auth }: any) {
   const { credentials: { sub: authId } } = auth as any;
@@ -54,10 +56,40 @@ export default async function patchHandler({ payload, auth }: any) {
   });
   const jobs = await Job.findAll({ where: { resumeId } });
 
+  await Skill.destroy({ where: { resumeId } });
+
+  payload.skills.forEach(async (education: any, i: number) => {
+    if (i === payload.jobs.length - 1 && payload.jobs.length !== 1) return;
+    await Skill.create({
+      info: education.info,
+      place: education.place,
+      yearFrom: 2000,
+      yearTo: 2000,
+      resumeId,
+    });
+  });
+  const skills = await Skill.findAll({ where: { resumeId } });
+
+  await Link.destroy({ where: { resumeId } });
+
+  payload.links.forEach(async (education: any, i: number) => {
+    if (i === payload.jobs.length - 1 && payload.jobs.length !== 1) return;
+    await Link.create({
+      info: education.info,
+      place: education.place,
+      yearFrom: 2000,
+      yearTo: 2000,
+      resumeId,
+    });
+  });
+  const links = await Link.findAll({ where: { resumeId } });
+
   return {
     user,
     resume,
     jobs,
     educations,
+    skills,
+    links,
   };
 }

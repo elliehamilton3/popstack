@@ -1,12 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import {
-  Button,
   Typography,
   Grid,
   TextField,
   Box,
-  makeStyles,
-  lighten,
   Switch,
   Chip
 } from "@material-ui/core";
@@ -26,23 +23,11 @@ import EducationSection from "../components/resume/educationSection.component";
 import EmploymentSection from "../components/resume/employmentSection.component";
 import LinkSection from "../components/resume/linkSection.component";
 
-const useStyles = makeStyles((theme) => ({
-  button: {
-    justifyContent: "space-between",
-    color: lighten(theme.palette.common.black, 0.4),
-    padding: "10px 16px",
-  },
-  icon: {
-    color: lighten(theme.palette.primary.light, 0.7),
-  },
-}));
-
 export default function Resume() {
 
   const [resume, setResume] = useState<ResumeInterface | undefined>(undefined);
   const [resumeStyle, setResumeStyle] = useState<1 | 2>(1);
   const [checked, setChecked] = useState(false);
-  const classes = useStyles();
   const formRef = useRef<HTMLFormElement>(null);
   const { getAccessTokenSilently } = useAuth0();
 
@@ -50,41 +35,40 @@ export default function Resume() {
   useEffect(() => {
     (async () => {
       try {
-        setResume({} as ResumeInterface);
-        // const token = await getAccessTokenSilently();
+        const token = await getAccessTokenSilently();
   
-        // const response = await fetch(
-        //   `http://localhost:3001/v1/resume/0`,
-        //   {
-        //     headers: {
-        //       Accept: "application/json",
-        //      "Content-Type": "application/json",
-        //       Authorization: `Bearer ${token}`,
-        //     },
-        //   }
-        // );
+        const response = await fetch(
+          `http://localhost:3001/v1/resume/0`,
+          {
+            headers: {
+              Accept: "application/json",
+             "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
   
-        // const responseData = await response.json();
-        // if(responseData.statusCode === 404) {
-        //   const token = await getAccessTokenSilently();
+        const responseData = await response.json();
+        if(responseData.statusCode === 404) {
+          const token = await getAccessTokenSilently();
   
-        // const response1 = await fetch(
-        //   `http://localhost:3001/v1/resume`,
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       Accept: "application/json",
-        //      "Content-Type": "application/json",
-        //       Authorization: `Bearer ${token}`,
-        //     },
-        //   }
-        // );
-        // const responseData1 = await response1.json();
-        // setResume(responseData1 as ResumeInterface);
-        // } else {
+        const response1 = await fetch(
+          `http://localhost:3001/v1/resume`,
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+             "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const responseData1 = await response1.json();
+        setResume(responseData1 as ResumeInterface);
+        } else {
 
-        // setResume(responseData as ResumeInterface);
-        // }
+        setResume(responseData as ResumeInterface);
+        }
   
       } catch (error) {
         console.log(error.message);
