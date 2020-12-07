@@ -56,19 +56,16 @@ export default async function patchHandler({ payload, auth }: any) {
   });
   const jobs = await Job.findAll({ where: { resumeId } });
 
-  // await Skill.destroy({ where: { resumeId } });
+  await Skill.destroy({ where: { resumeId } });
 
-  // payload.skills.forEach(async (education: any, i: number) => {
-  //   if (i === payload.jobs.length - 1 && payload.jobs.length !== 1) return;
-  //   await Skill.create({
-  //     info: education.info,
-  //     place: education.place,
-  //     yearFrom: 2000,
-  //     yearTo: 2000,
-  //     resumeId,
-  //   });
-  // });
-  // const skills = await Skill.findAll({ where: { resumeId } });
+  payload.skills.forEach(async (skill: string, i: number) => {
+    if (i === payload.skills.length - 1 && payload.skills.length !== 1) return;
+    await Skill.create({
+      name: skill,
+      resumeId,
+    });
+  });
+  const skills = await Skill.findAll({ where: { resumeId } });
 
   await Link.destroy({ where: { resumeId } });
 
@@ -87,7 +84,7 @@ export default async function patchHandler({ payload, auth }: any) {
     resume,
     jobs,
     educations,
-    // skills,
+    skills,
     links,
   };
 }

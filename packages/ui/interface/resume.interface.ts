@@ -33,6 +33,7 @@ export interface Education {
       phoneNumber?: number;
     };
     links?: Link[];
+    skills: string[];
   }
   export interface ResumeListItem {
     id: string;

@@ -11,7 +11,6 @@ import { Skeleton } from "@material-ui/lab";
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Navbar from "../components/navbar/navbar.component";
-// import apiFetch from "../../service/apiFetch.service";
 import ParallelogramIcon from "../components/icons/parallelogram.icon";
 import SquareIcon from "../components/icons/square.icon";
 import { getFormValues } from "../helper/getFormValues";
@@ -24,13 +23,12 @@ import EmploymentSection from "../components/resume/employmentSection.component"
 import LinkSection from "../components/resume/linkSection.component";
 
 export default function Resume() {
-
+  const [skills, setSkills] = useState<string[] | null>();
   const [resume, setResume] = useState<ResumeInterface | undefined>(undefined);
   const [resumeStyle, setResumeStyle] = useState<1 | 2>(1);
   const [checked, setChecked] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const { getAccessTokenSilently } = useAuth0();
-
 
   useEffect(() => {
     (async () => {
@@ -66,9 +64,14 @@ export default function Resume() {
         );
         const responseData1 = await response1.json();
         setResume(responseData1 as ResumeInterface);
+
+        const skillNames = responseData.skills.map(({name}) => {console.log(name);return name})
+        setSkills(skillNames)
         } else {
 
         setResume(responseData as ResumeInterface);
+        const skillNames = responseData.skills.map(({name}) => {console.log(name);return name})
+        setSkills(skillNames)
         }
   
       } catch (error) {
@@ -80,6 +83,8 @@ export default function Resume() {
   const updateResume = async () => {
     const form = formRef.current as HTMLFormElement;
     const formData = getFormValues(form);
+    console.log(skills)
+    formData.skills = skills;
     try {
       const token = await getAccessTokenSilently();
 
@@ -98,6 +103,8 @@ export default function Resume() {
 
       const responseData = await response.json();
       setResume(responseData as ResumeInterface);
+      const skillNames = responseData.skills.map(({name}) => {console.log(name);return name})
+      setSkills(skillNames)
 
     } catch (error) {
       console.log(error.message);
@@ -107,7 +114,7 @@ export default function Resume() {
     setChecked(!checked);
     setResumeStyle(!checked ? 2 : 1)
   };
-  const skills = [
+  const skillsList = [
     { title: 'React'},
     { title: 'Javascript'},
     { title: 'Java'},
@@ -185,7 +192,7 @@ export default function Resume() {
 
                 {resume && <EducationSection educations={resume?.educations} onChange={updateResume}/>}
                 
-                {resume &&<ResumeSection
+                {resume &&skills &&<ResumeSection
                   icon={<SquareIcon fontSize="large" />}
                   heading="Skills"
                   subtitle="Add keywords to your resume to help potential employers get a clearer picture of what your skills are in the workplace."
@@ -193,13 +200,20 @@ export default function Resume() {
                   <Autocomplete
                     multiple
                     id="skills"
-                    options={skills.map((option) => option.title)}
+                    options={skillsList.map((option) => option.title)}
                     freeSolo
-                    renderTags={(value, getTagProps) =>
-                      value.map((option, index) => (
+
+                    renderTags={(value, getTagProps) => 
+                       value.map((option, index) => (
                         <Chip color="primary" label={option} {...getTagProps({ index })} />
                       ))
                     }
+                    // defaultValue={[...skills]}
+                    onChange={ (event, value) => {
+                      console.log(value)
+                      setSkills(value);
+                      updateResume()
+                  }}
                     renderInput={(params) => (
                       <TextField {...params} variant="filled" placeholder="Add skills" 
                       fullWidth
