@@ -56,7 +56,7 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
               <Grid item>
                 <Grid container direction="column">
                   <Grid item>
-                    <Typography variant="body2">{education.info}</Typography>
+                    <Typography variant="subtitle2">{education.info}</Typography>
                   </Grid>
                   <Grid item>
                     <Typography>{education.place}, London</Typography>
@@ -92,7 +92,7 @@ const EducationSection: React.FunctionComponent<IEducationSectionProps> = ({educ
               <Grid item>
                 <Grid container direction="column">
                   <Grid item>
-                    <Typography variant="body2">Add education</Typography>
+                    <Typography variant="subtitle2">Add education</Typography>
                   </Grid>
                 </Grid>
               </Grid>

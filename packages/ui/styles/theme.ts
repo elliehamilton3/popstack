@@ -162,7 +162,6 @@ const theme = createMuiTheme({
         border: lighten("#0057FF", 0.7),
         borderWidth: "1px",
         borderStyle: "solid",
-        padding: "8px",
       },
     },
   },

@@ -56,7 +56,7 @@ const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({em
       
                 <Grid container direction="column">
                   <Grid item>
-                    <Typography variant="body2">{job.title} at {job.company}</Typography>
+                    <Typography variant="subtitle2">{job.title} at {job.company}</Typography>
                   </Grid>
                   <Grid item>
                     <Typography>{moment(job.dateFrom).format("MMMM YYYY")} - {moment(job.dateTo).format("MMMM YYYY")}</Typography>
@@ -88,7 +88,7 @@ const EmploymentSection: React.FunctionComponent<IEmploymentSectionProps> = ({em
               <Grid item>
                 <Grid container direction="column">
                   <Grid item>
-                    <Typography variant="body2">Add employment history</Typography>
+                    <Typography variant="subtitle2">Add employment history</Typography>
                   </Grid>
                 </Grid>
               </Grid>

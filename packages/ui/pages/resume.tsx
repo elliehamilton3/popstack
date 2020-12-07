@@ -15,10 +15,8 @@ import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Navbar from "../components/navbar/navbar.component";
 // import apiFetch from "../../service/apiFetch.service";
-import AddIcon from "@material-ui/icons/Add";
 import ParallelogramIcon from "../components/icons/parallelogram.icon";
 import SquareIcon from "../components/icons/square.icon";
-import RectangleIcon from "../components/icons/rectangle.icon";
 import { getFormValues } from "../helper/getFormValues";
 import { Resume as ResumeInterface } from "../interface/resume.interface";
 import ResumeSection from "../components/resume/resumeSection.component";
@@ -26,6 +24,7 @@ import ResumePreview from "../components/resume/resumePreview.component";
 import PersonalDetailsSection from "../components/resume/personalDetails.component";
 import EducationSection from "../components/resume/educationSection.component";
 import EmploymentSection from "../components/resume/employmentSection.component";
+import LinkSection from "../components/resume/linkSection.component";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -152,7 +151,7 @@ export default function Resume() {
                     <Grid container justify="space-between" alignItems="center">
                       <Grid item>
                       {!resume ? <Skeleton variant="text" width={140} height={26} />:
-                        <Typography variant="h2">Your Resumé</Typography>
+                        <Typography variant="h2">Your Résumé</Typography>
                          } 
                       </Grid>
                      
@@ -208,7 +207,7 @@ export default function Resume() {
                 >
                   <Autocomplete
                     multiple
-                    id="tags-filled"
+                    id="skills"
                     options={skills.map((option) => option.title)}
                     freeSolo
                     renderTags={(value, getTagProps) =>
@@ -224,23 +223,7 @@ export default function Resume() {
                   />
                 </ResumeSection>}
 
-                {resume && <ResumeSection
-                  icon={<RectangleIcon fontSize="large" />}
-                  heading="Websites &amp; social media links"
-                  subtitle="Include a link to your personal website or portfolio,
-                  Github repository, LinkedIn, or anything you might want
-                  potential employers to see."
-                >
-                  <Button
-                    color="secondary"
-                    variant="outlined"
-                    className={classes.button}
-                    fullWidth
-                    endIcon={<AddIcon className={classes.icon} />}
-                  >
-                    Add website or link
-                  </Button>
-                </ResumeSection>}
+                {resume && <LinkSection links={resume?.links} onChange={updateResume}/> }
 
               </form>
             </Grid>

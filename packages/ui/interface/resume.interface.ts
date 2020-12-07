@@ -13,6 +13,10 @@ export interface Education {
     dateFrom: Date | null;
     dateTo: Date | null;
   }
+  export interface Link {
+    title: string;
+    link: string;
+  }
   
   export interface Resume {
     resume?: {
@@ -28,6 +32,7 @@ export interface Education {
       email?: string;
       phoneNumber?: number;
     };
+    links?: Link[];
   }
   export interface ResumeListItem {
     id: string;
