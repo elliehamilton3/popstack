@@ -8,9 +8,11 @@ import {
   makeStyles,
   lighten,
   Switch,
+  Chip
 } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import Navbar from "../components/navbar/navbar.component";
 // import apiFetch from "../../service/apiFetch.service";
 import AddIcon from "@material-ui/icons/Add";
@@ -121,6 +123,18 @@ export default function Resume() {
     setChecked(!checked);
     setResumeStyle(!checked ? 2 : 1)
   };
+  const skills = [
+    { title: 'React'},
+    { title: 'Javascript'},
+    { title: 'Java'},
+    { title: 'Front-end'},
+    { title: 'Back-end'},
+    { title: 'UI Design'},
+    { title: 'UX Research'},
+    { title: 'Copywriting'},
+    { title: 'Illustrating'},
+    { title: 'Figma'},
+  ];
 
     return (
         <>
@@ -187,6 +201,27 @@ export default function Resume() {
 
                 {resume && <EducationSection educations={resume?.educations} onChange={updateResume}/>}
                 
+                {resume &&<ResumeSection
+                  icon={<SquareIcon fontSize="large" />}
+                  heading="Skills"
+                  subtitle="Add keywords to your resume to help potential employers get a clearer picture of what your skills are in the workplace."
+                >
+                  <Autocomplete
+                    multiple
+                    id="tags-filled"
+                    options={skills.map((option) => option.title)}
+                    freeSolo
+                    renderTags={(value, getTagProps) =>
+                      value.map((option, index) => (
+                        <Chip color="primary" label={option} {...getTagProps({ index })} />
+                      ))
+                    }
+                    renderInput={(params) => (
+                      <TextField {...params} variant="filled" placeholder="Add skills" />
+                    )}
+                  />
+                </ResumeSection>}
+
                 {resume && <ResumeSection
                   icon={<RectangleIcon fontSize="large" />}
                   heading="Websites &amp; social media links"
@@ -205,21 +240,6 @@ export default function Resume() {
                   </Button>
                 </ResumeSection>}
 
-                {resume &&<ResumeSection
-                  icon={<SquareIcon fontSize="large" />}
-                  heading="Skills"
-                  subtitle="Add any skills you have that you want to highlight."
-                >
-                  <Button
-                    color="secondary"
-                    variant="outlined"
-                    className={classes.button}
-                    fullWidth
-                    endIcon={<AddIcon className={classes.icon} />}
-                  >
-                    Add a skill
-                  </Button>
-                </ResumeSection>}
               </form>
             </Grid>
           </Box>

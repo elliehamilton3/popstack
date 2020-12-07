@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/indent */
 import { createMuiTheme, lighten } from '@material-ui/core/styles';
 import { SkeletonClassKey } from '@material-ui/lab/Skeleton';
+import { AutocompleteClassKey } from '@material-ui/lab/Autocomplete';
 
 declare module '@material-ui/core/styles/overrides' {
   export interface ComponentNameToClassKey {
     MuiSkeleton: SkeletonClassKey;
+    MuiAutocomplete: AutocompleteClassKey;
   }
 }
 
@@ -111,6 +113,13 @@ const theme = createMuiTheme({
     MuiSkeleton: { root: {
       backgroundColor: lighten("#0057FF", 0.9),
     }},
+    MuiAutocomplete: {
+      tag: {
+      margin: "8px 3px"
+    },
+    inputRoot: {
+      paddingTop: "0px !important",
+    }  },
     MuiFormControl: { root: { flexDirection: "column-reverse" } },
     MuiAppBar: {
       root: {
