@@ -43,7 +43,6 @@ const PersonalDetailsSection: React.FunctionComponent<IPersonalDetailsProps> = (
       loading={loading}
       icon={<CircleIcon fontSize="large" style={{fill: "#FFD84C"}}/>}
       heading="Personal Details"
-      subtitle="Summarise your professional career in 2 or 3 sentences."
     > 
       <Grid item>
         <Grid container spacing={2} alignItems="flex-end">

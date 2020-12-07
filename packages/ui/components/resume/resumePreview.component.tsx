@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   box: {
-    backgroundColor: "#2C6DC5",
+    backgroundColor: "#2F80ED",
     padding: "40px",
     height: "calc(100vh - 64px)",
     "@media (min-width: 960px)": {
