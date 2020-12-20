@@ -1,0 +1,3 @@
+# Next-on-Netlify Redirects
+/api/checkout_sessions  /.netlify/functions/next_api_checkout_sessions  200
+/api/webhooks  /.netlify/functions/next_api_webhooks  200
