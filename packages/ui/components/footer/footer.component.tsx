@@ -41,8 +41,10 @@ const Footer: React.FunctionComponent = () => {
       <ListItem>
         <ListItemText primary="About us" />
       </ListItem>
-      <ListItem>
-        <ListItemText primary="Pricing" />
+      <ListItem className={classes.link}>
+        <Link href="/pricing" >
+            <ListItemText primary="Pricing" />
+        </Link>
       </ListItem>
     </List>
     </Grid>

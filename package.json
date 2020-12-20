@@ -35,6 +35,5 @@
     "husky": "^4.2.5",
     "lerna": "^3.22.1",
     "lint-staged": "^10.2.11"
-  },
-  "dependencies": {}
+  }
 }
