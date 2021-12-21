@@ -129,16 +129,16 @@ const ResumePreview: React.FunctionComponent<IResumePreviewProps> = ({
       </Paper>
       </Grid>
       <Grid item>
-                        <Button
-                          variant="contained"
-                          className={classes.button}
-                          disabled={!resume}
-                          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                          onClick={() => generatePdfDocument(resume!, resumeStyle)}
-                        >
-                          Download as PDF
-                        </Button>
-                      </Grid>
+          <Button
+            variant="contained"
+            className={classes.button}
+            disabled={!resume}
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            onClick={() => generatePdfDocument(resume!, resumeStyle)}
+          >
+            Download as PDF
+          </Button>
+        </Grid>
       </Grid>
     </Box>
   );

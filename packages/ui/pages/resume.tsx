@@ -83,7 +83,6 @@ export default function Resume() {
   const updateResume = async () => {
     const form = formRef.current as HTMLFormElement;
     const formData = getFormValues(form);
-    console.log(skills)
     formData.skills = skills;
     try {
       const token = await getAccessTokenSilently();
